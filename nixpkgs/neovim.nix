@@ -97,6 +97,7 @@ in {
     set listchars=trail:•
 
     set scrolloff=4
+    set signcolumn=yes
 
     set completeopt=menu,menuone,noselect
 
