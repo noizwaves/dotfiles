@@ -1,4 +1,10 @@
 root = true
 
+[*]
+indent_style = space
+
 [*.nix]
+indent_size = 2
+
+[*.md]
 indent_size = 2
