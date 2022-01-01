@@ -1,0 +1,17 @@
+alias ssh_proxy_bastion="ssh -L 8124:127.0.0.1:8888 -Nn -J devops.zp.int ubuntu@10.38.4.55"
+alias ssh_bastion="ssh -A -J devops.zp-int.com ubuntu@10.38.4.55"
+
+alias ssh_bastion_cloud_environments_production="ssh -J devops.zp.int ubuntu@10.7.57.33"
+alias ssh_proxy_bastion_cloud_environments_production="ssh -L 8124:127.0.0.1:8888 -Nn -J devops.zp.int ubuntu@10.7.57.33"
+
+alias ssh_proxy_devops="ssh -D 8123 -N devops.zp-int.com"
+alias ssh_devops="ssh -A devops.zp-int.com"
+
+alias aws-creds='gimme-aws-creds | grep export > .file; source .file && yes| rm .file &> /dev/null && printf "Succcess, you have AWS credentials sourced in your environment! \n"'
+
+alias d-beta="/usr/local/bin/devspace-beta"
+alias d-release="/usr/local/bin/devspace"
+alias d="~/workspace/devspace-5.18.1"
+
+alias k="kubectl"
+
