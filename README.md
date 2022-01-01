@@ -17,7 +17,7 @@ Cross-platform configuration for macOS & Linux, powered by Nix.
 1. Install configuration `sudo nixos-rebuild switch`
 1. `ln -s /etc/nixos ~/workspace/dotfiles`
 
-Install future changes by running `ni`
+Install future changes by running `ni`.
 
 ### MacOS
 
