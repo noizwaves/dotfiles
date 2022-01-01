@@ -60,7 +60,7 @@ in {
 
       dracula-vim
 
-      vim-gitgutter
+      gitsigns-nvim
 
       airline
       vim-devicons
@@ -97,7 +97,6 @@ in {
     set listchars=trail:•
 
     set scrolloff=4
-    set signcolumn=yes
 
     set completeopt=menu,menuone,noselect
 
@@ -205,6 +204,10 @@ in {
       on_attach = on_attach,
       capabilities = capabilities,
     }
+    EOF
+
+    lua <<EOF
+    require('gitsigns').setup {}
     EOF
     '';
   };
