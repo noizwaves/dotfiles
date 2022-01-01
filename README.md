@@ -12,6 +12,7 @@ Cross-platform configuration for macOS & Linux, powered by Nix.
   1. `sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager`
   1. `sudo nix-channel --update`
 1. Install configuration `sudo nixos-rebuild switch`
+1. `ln -s /etc/nixos ~/workspace/dotfiles`
 
 Install future changes by running `ni`
 
