@@ -2,6 +2,9 @@
 
 Cross-platform configuration for macOS & Linux, powered by Nix.
 
+![Screenshot of shell prompt](shell_prompt.png)
+![Screenshot of Vim](vim.png)
+
 ## Installation
 
 ### NixOS
