@@ -30,12 +30,20 @@ let
       sha256 = "sha256-mVVZiDjAsAs4PgC8lHf0Ro1uKJ4OKonoPtF59eUd888=";
     };
   });
+
+  use_nightly = false;
 in {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   home.file.".config/nvim/spell".source = symlinkTo ./modules/neovim/spell;
 
   programs.neovim = {
     enable = true;
-    package = neovim-0_6_0;
+    package = if use_nightly then pkgs.neovim-nightly else neovim-0_6_0;
     vimAlias = true;
 
     extraPackages = with pkgs; [
