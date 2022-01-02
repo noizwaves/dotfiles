@@ -26,6 +26,7 @@ in {
         "/.idea"
 
         "/.envrc"
+        "/.direnv/"
         "/.nvmrc"
 
         "/my-scripts/"
