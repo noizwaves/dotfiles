@@ -60,6 +60,8 @@ in {
 
   # Use Nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
+  # Fix post-wake FF artifacting
+  hardware.nvidia.powerManagement.enable = true;
 
   # Basic keyboard configuration
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,caps:escape";
