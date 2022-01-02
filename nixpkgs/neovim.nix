@@ -56,6 +56,7 @@ in {
       editorconfig-vim
 
       nvim-treesitter
+      playground
 
       plenary-nvim
       nvim-web-devicons
