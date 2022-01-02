@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   # installs a vim plugin from git with a given tag / branch
   pluginRev = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
@@ -17,6 +17,8 @@ let
   # from https://github.com/nvim-treesitter/nvim-treesitter/issues/1449#issuecomment-870479095
   macosCppCompilerFix = "require'nvim-treesitter.install'.compilers = { 'clang++' }\n";
 
+  symlinkTo = config.lib.file.mkOutOfStoreSymlink;
+
   # latest stable neovim
   # neovim-unwrapped because https://discourse.nixos.org/t/help-needed-neovim-completions-fail-to-build/14223/3
   neovim-0_6_0 = pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
@@ -29,6 +31,8 @@ let
     };
   });
 in {
+  home.file.".config/nvim/spell".source = symlinkTo ./modules/neovim/spell;
+
   programs.neovim = {
     enable = true;
     package = neovim-0_6_0;
@@ -101,6 +105,15 @@ in {
 
     set completeopt=menu,menuone,noselect
 
+    set spelllang=en_us
+    set spellsuggest=best,9
+    augroup spell
+      autocmd!
+
+      au BufRead,BufNewFile *.md setlocal spell
+      au FileType gitcommit setlocal spell
+    augroup END
+
     let g:dracula_colorterm = 0
     colorscheme dracula
 
@@ -121,6 +134,8 @@ in {
 
     " Ctrl+/ to toggle search highlighting
     nnoremap <C-_> <cmd>set invhlsearch<cr>
+
+    nnoremap <leader>s <cmd>set spell!<cr>
 
     " configure treesitter
     lua <<EOF
