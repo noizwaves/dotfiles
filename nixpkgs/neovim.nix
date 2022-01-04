@@ -132,6 +132,9 @@ in {
 
     nnoremap <leader>rc :source $MYVIMRC<cr>
 
+    nnoremap <S-h> <cmd>bprev<cr>
+    nnoremap <S-l> <cmd>bnext<cr>
+
     nnoremap <leader>o <cmd>Telescope find_files<cr>
     nnoremap <leader>i <cmd>Telescope treesitter<cr>
     nnoremap <leader>f <cmd>Telescope live_grep<cr>
