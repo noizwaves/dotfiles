@@ -126,6 +126,8 @@ in {
     let g:dracula_colorterm = 0
     colorscheme dracula
 
+    let NERDTreeShowHidden=1
+
     nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<cr>
 
     let mapleader = " "
