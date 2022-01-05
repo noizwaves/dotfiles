@@ -134,6 +134,7 @@ in {
 
     nnoremap <S-h> <cmd>bprev<cr>
     nnoremap <S-l> <cmd>bnext<cr>
+    nnoremap <S-w> <cmd>bdelete<cr>
 
     nnoremap <leader>o <cmd>Telescope find_files<cr>
     nnoremap <leader>i <cmd>Telescope treesitter<cr>
