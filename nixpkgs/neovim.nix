@@ -78,7 +78,7 @@ in {
       airline
       vim-devicons
 
-      nerdtree
+      nvim-tree-lua
 
       (pluginLatest "code-biscuits/nvim-biscuits")
 
@@ -126,7 +126,7 @@ in {
     let g:dracula_colorterm = 0
     colorscheme dracula
 
-    let NERDTreeShowHidden=1
+    let g:nvim_tree_show_icons = {'git': 0, 'folders': 1, 'files': 0, 'folder_arrows': 1, }
 
     nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<cr>
 
@@ -143,8 +143,8 @@ in {
     nnoremap <leader>f <cmd>Telescope live_grep<cr>
     nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
 
-    nnoremap <leader>nn :NERDTreeFocus<cr>
-    nnoremap <leader>ng :NERDTreeFind<cr>
+    nnoremap <leader>nn :NvimTreeFocus<cr>
+    nnoremap <leader>ng :NvimTreeFindFile<cr>
 
     " Ctrl+/ to toggle search highlighting
     nnoremap <C-_> <cmd>set invhlsearch<cr>
@@ -235,6 +235,10 @@ in {
 
     lua <<EOF
     require('gitsigns').setup {}
+    EOF
+
+    lua <<EOF
+    require('nvim-tree').setup {}
     EOF
     '';
   };
