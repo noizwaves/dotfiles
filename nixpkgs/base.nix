@@ -20,6 +20,7 @@
     ripgrep
   ] ++ (if pkgs.stdenv.isLinux then with pkgs; [
     tdesktop
+    lutris
   ] else []);
 
   programs.direnv = {
