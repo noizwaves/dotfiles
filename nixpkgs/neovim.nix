@@ -144,7 +144,6 @@ in {
     nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
 
     nnoremap <leader>nn :NERDTreeFocus<cr>
-    nnoremap <leader>nh :NERDTreeToggle<cr>
     nnoremap <leader>ng :NERDTreeFind<cr>
 
     " Ctrl+/ to toggle search highlighting
