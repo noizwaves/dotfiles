@@ -71,6 +71,8 @@ in {
       telescope-nvim
       telescope-fzf-native-nvim
 
+      fzf-vim
+
       dracula-vim
 
       gitsigns-nvim
@@ -128,6 +130,23 @@ in {
 
     let g:nvim_tree_show_icons = {'git': 0, 'folders': 1, 'files': 0, 'folder_arrows': 1, }
 
+    let g:fzf_command_prefix = 'Fzf'
+    let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Search'],
+      \ 'fg+':     ['fg', 'Normal'],
+      \ 'bg+':     ['bg', 'Normal'],
+      \ 'hl+':     ['fg', 'DraculaOrange'],
+      \ 'info':    ['fg', 'DraculaPurple'],
+      \ 'border':  ['fg', 'Normal'],
+      \ 'prompt':  ['fg', 'DraculaGreen'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'],
+      \}
+
     nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer<cr>
 
     let mapleader = " "
@@ -138,7 +157,8 @@ in {
     nnoremap <S-l> <cmd>bnext<cr>
     nnoremap <S-w> <cmd>bprev <bar>bdelete #<cr>
 
-    nnoremap <leader>o <cmd>Telescope find_files<cr>
+    " nnoremap <leader>o <cmd>Telescope find_files<cr>
+    nnoremap <leader>o <cmd>FzfFiles!<cr>
     nnoremap <leader>i <cmd>Telescope treesitter<cr>
     nnoremap <leader>f <cmd>Telescope live_grep<cr>
     nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
