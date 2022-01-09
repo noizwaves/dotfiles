@@ -131,6 +131,7 @@ in {
     let g:nvim_tree_show_icons = {'git': 0, 'folders': 1, 'files': 0, 'folder_arrows': 1, }
 
     let g:fzf_command_prefix = 'Fzf'
+    " Set border to white, ignore looks bad
     let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
       \ 'bg':      ['bg', 'Normal'],
@@ -158,7 +159,7 @@ in {
     nnoremap <S-w> <cmd>bprev <bar>bdelete #<cr>
 
     " nnoremap <leader>o <cmd>Telescope find_files<cr>
-    nnoremap <leader>o <cmd>FzfFiles!<cr>
+    nnoremap <leader>o <cmd>FzfGFiles!<cr>
     nnoremap <leader>i <cmd>Telescope treesitter<cr>
     nnoremap <leader>f <cmd>Telescope live_grep<cr>
     nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
