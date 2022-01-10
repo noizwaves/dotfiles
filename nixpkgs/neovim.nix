@@ -160,6 +160,7 @@ in {
     nnoremap <S-w> <cmd>bprev <bar>bdelete #<cr>
 
     " nnoremap <leader>o <cmd>Telescope find_files<cr>
+    nnoremap <leader><S-o> <cmd>Telescope find_files<cr>
     nnoremap <leader>o <cmd>FzfGFiles!<cr>
     nnoremap <leader>i <cmd>Telescope treesitter<cr>
     nnoremap <leader>f <cmd>Telescope live_grep<cr>
