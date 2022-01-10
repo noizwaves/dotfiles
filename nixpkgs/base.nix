@@ -6,6 +6,7 @@
 
   imports = [
     ./fonts.nix
+    ./bat.nix
     ./git.nix
     ./kitty.nix
     ./neovim.nix
