@@ -19,6 +19,7 @@ in {
         core = { editor = "vim"; };
         init = { defaultBranch = "main"; };
         pull = { rebase = "true"; };
+        push = { default = "current"; };
       };
       ignores = [
         "/.vscode/"
