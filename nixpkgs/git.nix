@@ -26,8 +26,10 @@ in {
         "/.code/"
         "/.idea"
 
+        "/.env"
         "/.envrc"
         "/.direnv/"
+
         "/.nvmrc"
 
         "/my-scripts/"
