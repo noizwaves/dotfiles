@@ -11,7 +11,12 @@ alias aws-creds='gimme-aws-creds | grep export > .file; source .file && yes| rm 
 
 alias d-beta="/usr/local/bin/devspace-beta"
 alias d-release="/usr/local/bin/devspace"
-alias d="~/workspace/devspace-5.18.1"
+alias d="~/workspace/devspace-5.18.2"
+
+alias ds="d run shell"
+alias dss="d run ssh"
+alias dv="d dev"
+alias dt="d run tmux"
 
 alias k="kubectl"
 
