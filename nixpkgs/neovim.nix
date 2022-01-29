@@ -31,7 +31,7 @@ let
     };
   });
 
-  use_nightly = false;
+  use_nightly = true;
 in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
