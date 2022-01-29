@@ -211,10 +211,10 @@ in {
     require('telescope').setup {
       pickers = {
         find_files = {
-          find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git', '-g', '!node_modules', '-g', '!vendor' }
+          find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
         },
         live_grep = {
-          additional_args = function () return { '--hidden', '--no-ignore', '-g', '!.git', '-g', '!node_modules', '-g', '!vendor' } end
+          additional_args = function () return { '--hidden', '-g', '!.git' } end
         }
       }
     }
