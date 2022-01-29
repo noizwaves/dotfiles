@@ -89,6 +89,8 @@ in {
 
       vim-smoothie
 
+      vim-helm
+
       nvim-lspconfig
 
       (pluginLatest "hrsh7th/cmp-nvim-lsp")
