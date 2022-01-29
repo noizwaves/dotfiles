@@ -263,6 +263,13 @@ in {
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     require('lspconfig').rnix.setup { on_attach = on_attach, capabilities = capabilities }
+    if (os.getenv('NEOVIM_LSP_SORBET') == 'true') then
+      local sorbet_cmd = { 'env', 'SRB_SKIP_GEM_RBIS=1', 'bin/srb', 'typecheck', '--lsp' }
+      if (os.getenv('NEOVIM_DEVSPACE') == 'true') then
+        sorbet_cmd = { 'devspace', 'run', 'sorbet-typecheck-lsp' }
+      end
+      require('lspconfig').sorbet.setup { cmd = sorbet_cmd, on_attach = on_attach, capabilities = capabilities }
+    end
     EOF
 
     lua <<EOF
