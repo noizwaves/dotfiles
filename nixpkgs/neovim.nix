@@ -186,6 +186,7 @@ in {
       },
       indent = {
         enable = true,
+        disable = { "yaml" },
       },
       refactor = {
         smart_rename = {
