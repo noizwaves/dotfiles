@@ -98,6 +98,7 @@ in {
       (pluginLatest "hrsh7th/cmp-path")
       (pluginLatest "hrsh7th/cmp-cmdline")
       (pluginLatest "hrsh7th/nvim-cmp")
+      (pluginLatest "ray-x/cmp-treesitter")
     ];
 
     extraConfig = ''
@@ -238,6 +239,8 @@ in {
       },
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+      }, {
+        { name = 'treesitter' },
       })
     })
 
