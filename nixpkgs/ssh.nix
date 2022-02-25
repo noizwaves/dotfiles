@@ -2,6 +2,9 @@
 {
   programs.ssh = {
     enable = true;
+    extraOptionOverrides = {
+      "IgnoreUnknown" = "UseKeychain";
+    };
     matchBlocks = {
       odroid = {
         hostname = "odroid.nodes.noizwaves.cloud";
@@ -22,6 +25,15 @@
       tinkerpi = {
         hostname = "tinkerpi.nodes.noizwaves.cloud";
         user = "pi";
+      };
+      "ssh-zp-adam-neumann-pdx.gusto-dev.com" = {
+        hostname = "ssh-zp-adam-neumann-pdx.gusto-dev.com";
+        port = 3022;
+        user = "root";
+        forwardAgent = true;
+        extraOptions = {
+          "UseKeychain" = "true";
+        };
       };
     };
   };
