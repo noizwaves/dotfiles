@@ -215,15 +215,20 @@ in {
     require('telescope').setup {
       pickers = {
         find_files = {
-          find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
+          find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
         },
         live_grep = {
-          additional_args = function () return { '--hidden', '-g', '!.git' } end
-        }
+          additional_args = function () return { '--hidden', '-g', '!.git' } end,
+        },
       }
     }
 
     require('telescope').load_extension('fzf')
+
+    -- run `:lua find_in_folder 'some/path'` to find in a folder
+    function find_in_folder(path)
+      require('telescope.builtin').live_grep({search_dirs = {path}})
+    end
     EOF
 
     " configure LSP
