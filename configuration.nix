@@ -6,6 +6,7 @@
 let
   mypkgs = {
     tailscale = (pkgs.callPackage ./mypkgs/tailscale.nix { });
+    parsecgaming = (pkgs.callPackage ./mypkgs/parsecgaming.nix { });
   };
 in {
   imports =
@@ -63,6 +64,13 @@ in {
   # Fix post-wake FF artifacting
   hardware.nvidia.powerManagement.enable = true;
 
+  # Enable VA-API to detect Nvidia drivers for hardware acceleration in Parsec
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    extraPackages = [ pkgs.vaapiVdpau ];
+  };
+
   # Basic keyboard configuration
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,caps:escape";
 
@@ -99,6 +107,8 @@ in {
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
     mypkgs.tailscale
+
+    mypkgs.parsecgaming
 
     firefox
     bitwarden
