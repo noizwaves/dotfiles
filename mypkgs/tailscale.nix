@@ -5,7 +5,7 @@
 # https://github.com/NixOS/nixpkgs/pull/141148#issuecomment-979356802
 buildGo117Module rec {
   pname = "tailscale";
-  version = "1.18.1";
+  version = "1.22.1";
 
   src = fetchFromGitHub {
     owner = "tailscale";
