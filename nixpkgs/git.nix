@@ -33,6 +33,7 @@ in {
         "/.nvmrc"
 
         "/my-scripts/"
+        ".DS_Store"
       ];
     };
 
