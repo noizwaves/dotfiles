@@ -16,6 +16,8 @@
     extraConfig = ''
     bind-key f run-shell "tmux neww tmux-sessionizer"
     bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "Reloaded config"
+
+    set -g mouse on
     '';
   };
 }
