@@ -28,6 +28,7 @@ in {
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -101,6 +102,21 @@ in {
   };
   home-manager.users.adam = import ./nixpkgs/home.nix;
 
+  fileSystems."/mnt/encrypted" = {
+    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/encrypted-data";
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/baedrive" = {
+    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/baedrive-data";
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/plex" = {
+    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/plex/data";
+    fsType = "nfs";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -116,6 +132,10 @@ in {
     syncthing
     spotify
     libreoffice
+    tigervnc
+    usbutils
+
+    minikube
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
