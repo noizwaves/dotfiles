@@ -136,7 +136,12 @@ in {
     usbutils
 
     minikube
+
+    libimobiledevice
+    usbmuxd
   ];
+
+  services.usbmuxd.enable = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-13.6.9"
