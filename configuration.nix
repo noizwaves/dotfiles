@@ -142,6 +142,8 @@ in {
 
     libimobiledevice
     usbmuxd
+
+    tor-browser-bundle-bin
   ];
 
   services.usbmuxd.enable = true;
