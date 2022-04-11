@@ -6,6 +6,10 @@
       "IgnoreUnknown" = "UseKeychain";
     };
     matchBlocks = {
+      popintosh = {
+        hostname = "popintosh.nodes.noizwaves.cloud";
+        user = "adam";
+      };
       odroid = {
         hostname = "odroid.nodes.noizwaves.cloud";
         user = "cloud";
