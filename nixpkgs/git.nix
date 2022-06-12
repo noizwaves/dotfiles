@@ -15,6 +15,7 @@ in {
       enable = true;
       userName = "Adam Neumann";
       userEmail = cfg.email;
+      delta.enable = true;
       extraConfig = {
         core = { editor = "vim"; };
         init = { defaultBranch = "main"; };
