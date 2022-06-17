@@ -143,6 +143,9 @@ in {
     libimobiledevice
     usbmuxd
 
+    hdparm
+    ncdu
+
     tor-browser-bundle-bin
   ];
 
