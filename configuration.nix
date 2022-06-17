@@ -102,23 +102,23 @@ in {
   };
   home-manager.users.adam = import ./nixpkgs/home.nix;
 
-  fileSystems."/mnt/encrypted" = {
-    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/encrypted-data";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
-  };
+  #fileSystems."/mnt/encrypted" = {
+  #  device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/encrypted-data";
+  #  fsType = "nfs";
+  #  options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
+  #};
 
-  fileSystems."/mnt/baedrive" = {
-    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/baedrive-data";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
-  };
+  #fileSystems."/mnt/baedrive" = {
+  #  device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/resilio-sync/data/baedrive-data";
+  #  fsType = "nfs";
+  #  options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
+  #};
 
-  fileSystems."/mnt/plex" = {
-    device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/plex/data";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
-  };
+  #fileSystems."/mnt/plex" = {
+  #  device = "odroid.nodes.noizwaves.cloud:/home/cloud/cloud-data/plex/data";
+  #  fsType = "nfs";
+  #  options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "noatime" ];
+  #};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
