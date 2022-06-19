@@ -9,9 +9,9 @@ Cross-platform configuration for macOS & Linux, powered by Nix.
 
 ### NixOS
 
-1. Install NixOS 21.11 using dotfiles and `git clone https://github.com/noizwaves/dotfiles.git /etc/nixos`
+1. Install NixOS 22.05 using dotfiles and `git clone https://github.com/noizwaves/dotfiles.git /etc/nixos`
 1. Set up channels:
-    1. `sudo nix-channel --add https://nixos.org/channels/nixos-21.11 nixos`
+    1. `sudo nix-channel --add https://nixos.org/channels/nixos-22.05 nixos`
     1. `sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager`
     1. `sudo nix-channel --update`
 1. Install configuration `sudo nixos-rebuild switch`
@@ -21,7 +21,7 @@ Install future changes by running `ni`.
 
 ### MacOS
 
-1. Install Nix 2.7.0
+1. Install latest Nix
 1. `git clone https://github.com/noizwaves/dotfiles.git ~/workspace/dotfiles`
 1. `ln -s ~/workspace/dotfiles/nixpkgs ~/.config/nixpkgs`
 1. Set up channels:
