@@ -101,6 +101,7 @@ in {
       (pluginLatest "ray-x/cmp-treesitter")
 
       null-ls-nvim
+      trouble-nvim
     ];
 
     extraConfig = ''
