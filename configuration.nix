@@ -31,7 +31,7 @@ in {
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Denver";
+  time.timeZone = "America/Los_Angeles";
 
   nixpkgs.config.allowUnfree = true;
 
