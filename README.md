@@ -33,3 +33,11 @@ Install future changes by running `ni`.
 1. Install configuration via `home-manager switch`
 
 Install future changes by running `ni`.
+
+## Development
+
+Writing style uses [Vale](https://docs.errata.ai/vale/cli).
+To set up, run:
+
+1. `vale sync` to download styles
+1. Edit markdown files in Neovim

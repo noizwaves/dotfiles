@@ -99,6 +99,8 @@ in {
       (pluginLatest "hrsh7th/cmp-cmdline")
       (pluginLatest "hrsh7th/nvim-cmp")
       (pluginLatest "ray-x/cmp-treesitter")
+
+      null-ls-nvim
     ];
 
     extraConfig = ''
@@ -288,6 +290,14 @@ in {
 
     lua <<EOF
     require('nvim-tree').setup {}
+    EOF
+
+    lua << EOF
+    require("null-ls").setup({
+      sources = {
+        require("null-ls").builtins.diagnostics.vale,
+      },
+    })
     EOF
     '';
   };

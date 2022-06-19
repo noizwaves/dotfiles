@@ -19,6 +19,7 @@
 
   home.packages = with pkgs; [
     ripgrep
+    vale
   ] ++ (if pkgs.stdenv.isLinux then with pkgs; [
     tdesktop
     lutris
