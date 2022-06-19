@@ -41,3 +41,20 @@ To set up, run:
 
 1. `vale sync` to download styles
 1. Edit markdown files in Neovim
+
+## Features
+
+### Feedback on Problems
+
+Neovim's LSP diagnostic framework provides the core functionality.
+The custom dictionary is stored at `~/.config/nvim/spell`.
+
+Vim spell provides spell checking.
+- `<Leader>s` to toggle spelling highlighting
+- `zg` to add a word to the dictionary
+
+[null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) provides diagnostic information using:
+- [Vale](https://docs.errata.ai/) for writing
+
+[Trouble](https://github.com/folke/trouble.nvim) provides a pretty list of problems.
+- `:ToggleTrouble` to activate the list
