@@ -74,7 +74,7 @@ in {
 
       fzf-vim
 
-      dracula-vim
+      (pluginLatest "dracula/vim")
 
       (pluginLatest "lewis6991/gitsigns.nvim")
 
