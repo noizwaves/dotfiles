@@ -87,7 +87,7 @@ in {
 
       (pluginLatest "ThePrimeagen/vim-be-good")
 
-      vim-smoothie
+      (pluginLatest "psliwka/vim-smoothie")
 
       vim-helm
 
