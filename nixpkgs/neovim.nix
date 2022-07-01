@@ -100,8 +100,8 @@ in {
       (pluginLatest "hrsh7th/nvim-cmp")
       (pluginLatest "ray-x/cmp-treesitter")
 
-      null-ls-nvim
-      trouble-nvim
+      (pluginLatest "jose-elias-alvarez/null-ls.nvim")
+      (pluginLatest "folke/trouble.nvim")
     ];
 
     extraConfig = ''
