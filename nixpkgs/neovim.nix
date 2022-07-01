@@ -186,7 +186,7 @@ in {
     (if pkgs.stdenv.isDarwin then macosCppCompilerFix else "") +
     ''
     require'nvim-treesitter.configs'.setup {
-      ensure_installed = "all",
+      ensure_installed = { "ruby", "typescript", "json", "yaml", "javascript", "bash", "python", "nix" },
       highlight = {
         enable = true,
       },
