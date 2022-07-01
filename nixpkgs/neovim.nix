@@ -72,7 +72,8 @@ in {
       telescope-nvim
       telescope-fzf-native-nvim
 
-      fzf-vim
+      (pluginLatest "junegunn/fzf")
+      (pluginLatest "junegunn/fzf.vim")
 
       (pluginLatest "dracula/vim")
 
