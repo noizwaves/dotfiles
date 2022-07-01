@@ -76,7 +76,7 @@ in {
 
       dracula-vim
 
-      gitsigns-nvim
+      (pluginLatest "lewis6991/gitsigns.nvim")
 
       (pluginLatest "vim-airline/vim-airline")
       vim-devicons
