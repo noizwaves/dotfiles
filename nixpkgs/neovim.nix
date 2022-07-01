@@ -78,7 +78,7 @@ in {
 
       gitsigns-nvim
 
-      airline
+      (pluginLatest "vim-airline/vim-airline")
       vim-devicons
 
       nvim-tree-lua
