@@ -58,3 +58,9 @@ Vim spell provides spell checking.
 
 [Trouble](https://github.com/folke/trouble.nvim) provides a pretty list of problems.
 - `:ToggleTrouble` to activate the list
+
+## Vim Keyboard Shortcuts
+
+### Searching
+
+- <kbd>:FindInFolder "some/path"</kbd>: search within a folder
