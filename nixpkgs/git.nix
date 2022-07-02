@@ -16,7 +16,7 @@ in {
 
   config = {
     programs.git = {
-      enable = true;
+      enable = cfg.enabled;
       userName = "Adam Neumann";
       userEmail = cfg.email;
       delta.enable = true;
