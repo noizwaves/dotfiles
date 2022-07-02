@@ -47,6 +47,7 @@ in {
       ga = "git add -p";
       gp = "git pull";
       gc = "git commit";
+      gca = "git commit --amend";
       gcan = "git commit --amend --no-edit";
       gcm = "git commit -m";
     };
