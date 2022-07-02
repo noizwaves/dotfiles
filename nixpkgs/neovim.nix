@@ -223,12 +223,14 @@ in {
         },
       }
     }
-
-    -- run `:lua find_in_folder 'some/path'` to find in a folder
-    function find_in_folder(path)
-      require('telescope.builtin').live_grep({search_dirs = {path}})
-    end
     EOF
+
+    " Implement find in folder
+    function s:find_in_folder(path)
+      :call luaeval("require('telescope.builtin').live_grep({search_dirs = {_A[1]}})", [a:path])
+    endfunction
+
+    :command -nargs=1 -complete=file FindInFolder :call s:find_in_folder(<args>)
 
     " configure LSP
     lua <<EOF
