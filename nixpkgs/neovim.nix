@@ -89,7 +89,7 @@ in {
 
       (pluginLatest "psliwka/vim-smoothie")
 
-      vim-helm
+      (pluginLatest "towolf/vim-helm")
 
       (pluginLatest "neovim/nvim-lspconfig")
 
