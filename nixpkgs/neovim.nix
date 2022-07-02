@@ -82,7 +82,8 @@ in {
       (pluginLatest "vim-airline/vim-airline")
       vim-devicons
 
-      nvim-tree-lua
+      (pluginLatest "kyazdani42/nvim-web-devicons")
+      (pluginLatest "kyazdani42/nvim-tree.lua")
 
       (pluginLatest "code-biscuits/nvim-biscuits")
 
@@ -135,8 +136,6 @@ in {
 
     let g:dracula_colorterm = 0
     colorscheme dracula
-
-    let g:nvim_tree_show_icons = {'git': 0, 'folders': 1, 'files': 0, 'folder_arrows': 1, }
 
     let g:fzf_command_prefix = 'Fzf'
     " Set border to white, ignore looks bad
@@ -297,7 +296,18 @@ in {
     EOF
 
     lua <<EOF
-    require('nvim-tree').setup {}
+    require('nvim-tree').setup {
+      renderer = {
+        icons = {
+          show = {
+            git = false,
+            folder = true,
+            file = false,
+            folder_arrow = true,
+          },
+        },
+      },
+    }
     EOF
 
     lua << EOF
