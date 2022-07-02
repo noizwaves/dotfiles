@@ -61,7 +61,7 @@ in {
 
     # see all plugins in repl using `builtins.attrNames pkgs.vimPlugins`
     plugins = with pkgs.vimPlugins; [
-      editorconfig-vim
+      (pluginLatest "editorconfig/editorconfig-vim")
 
       nvim-treesitter
       nvim-treesitter-refactor
