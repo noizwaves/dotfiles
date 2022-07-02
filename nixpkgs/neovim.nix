@@ -13,10 +13,6 @@ let
   # always installs latest version
   pluginLatest = pluginRev "HEAD";
 
-  # ensure parsers are compiled with CPP-comparible compiler on macOS
-  # from https://github.com/nvim-treesitter/nvim-treesitter/issues/1449#issuecomment-870479095
-  macosCppCompilerFix = "require'nvim-treesitter.install'.compilers = { 'clang++' }\n";
-
   symlinkTo = config.lib.file.mkOutOfStoreSymlink;
 
   # latest stable neovim
@@ -180,9 +176,6 @@ in {
 
     " configure treesitter
     lua <<EOF
-    '' +
-    (if pkgs.stdenv.isDarwin then macosCppCompilerFix else "") +
-    ''
     require'nvim-treesitter.configs'.setup {
       ensure_installed = { "ruby", "typescript", "json", "yaml", "javascript", "bash", "python", "nix" },
       highlight = {
