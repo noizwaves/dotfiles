@@ -214,7 +214,14 @@ in {
         live_grep = {
           additional_args = function () return { '--hidden', '-g', '!.git' } end,
         },
-      }
+      },
+      defaults = {
+        mappings = {
+          n = {
+            ["p"] = require("telescope.actions.layout").toggle_preview,
+          },
+        },
+      },
     }
     EOF
 

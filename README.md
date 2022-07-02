@@ -61,6 +61,11 @@ Vim spell provides spell checking.
 
 ## Vim Keyboard Shortcuts
 
-### Searching
+### Finding / Searching
 
-- <kbd>:FindInFolder "some/path"</kbd>: search within a folder
+- <kbd><Leader>f</kbd>: live grep based find using Telescope
+- <kbd>:FindInFolder "some/path"</kbd>: live grep based find within a folder using Telescope
+- <kbd><Leader>o</kbd>: find git tracked files using FZF
+
+Within Telescope:
+- <kbd>[n]p</kbd>: toggle preview panel
