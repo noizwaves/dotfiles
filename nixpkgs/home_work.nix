@@ -16,8 +16,14 @@ in {
     ".commands.local".source = symlinkTo ../dotfiles/work/.commands.local;
   };
 
-  myOverrides.git= {
-    email = "adam.neumann@gusto.com";
-    enabled = false;
+  myOverrides = {
+    git= {
+      email = "adam.neumann@gusto.com";
+      enabled = false;
+    };
+
+    ssh = {
+      enabled = false;
+    };
   };
 }
