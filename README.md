@@ -63,9 +63,12 @@ Vim spell provides spell checking.
 
 ### Finding / Searching
 
-- <kbd><Leader>f</kbd>: live grep based find using Telescope
-- <kbd>:FindInFolder "some/path"</kbd>: live grep based find within a folder using Telescope
-- <kbd><Leader>o</kbd>: find git tracked files using FZF
+- `<Leader>f`: live grep based find using Telescope
+- `:FindInFolder "some/path"`: live grep based find within a folder using Telescope
+- `<Leader>o`: find git tracked files using FZF
 
 Within Telescope:
-- <kbd>[n]p</kbd>: toggle preview panel
+- `[n]p`: toggle preview panel
+
+Within FZF:
+- `<C-/>`: toggle preview panel
