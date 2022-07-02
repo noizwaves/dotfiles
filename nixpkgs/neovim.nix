@@ -67,10 +67,8 @@ in {
       nvim-treesitter-refactor
       playground
 
-      plenary-nvim
-      nvim-web-devicons
-      telescope-nvim
-      telescope-fzf-native-nvim
+      (pluginLatest "nvim-lua/plenary.nvim")
+      (pluginLatest "nvim-telescope/telescope.nvim")
 
       (pluginLatest "junegunn/fzf")
       (pluginLatest "junegunn/fzf.vim")
@@ -225,8 +223,6 @@ in {
         },
       }
     }
-
-    require('telescope').load_extension('fzf')
 
     -- run `:lua find_in_folder 'some/path'` to find in a folder
     function find_in_folder(path)
