@@ -18,5 +18,6 @@ in {
 
   myOverrides.git= {
     email = "adam.neumann@gusto.com";
+    enabled = false;
   };
 }

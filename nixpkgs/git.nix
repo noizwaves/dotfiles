@@ -8,6 +8,10 @@ in {
       type = types.str;
       default = "noizwaves@users.noreply.github.com";
     };
+    myOverrides.git.enabled = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = {
