@@ -93,7 +93,7 @@ in {
 
       vim-helm
 
-      nvim-lspconfig
+      (pluginLatest "neovim/nvim-lspconfig")
 
       (pluginLatest "hrsh7th/cmp-nvim-lsp")
       (pluginLatest "hrsh7th/cmp-buffer")
