@@ -1,0 +1,7 @@
+[user]
+    email = adam.neumann@gusto.com
+    signingkey = AE995C1C5CDAFD74
+
+[commit]
+    gpgsign = true
+
