@@ -1,0 +1,15 @@
+*~
+*.swp
+.DS_Store
+
+# IDEs
+/.vscode/
+/.code/
+/.idea/
+
+# env var
+/.env
+/.envrc
+/.direnv/
+
+/.nvmrc

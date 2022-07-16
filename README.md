@@ -18,4 +18,5 @@ brew install --cask visual-studio-code
 brew install antigen
 brew install direnv
 brew install starship
+brew install git-delta
 ```
