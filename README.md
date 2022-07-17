@@ -24,29 +24,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew tap homebrew/cask-fonts
-
-brew install stow
-
-brew install git
-brew install git-delta
-
-brew install tmux
-
-brew install neovim
-brew install fzf
-brew install ripgrep
-brew install fd
-brew install tree-sitter
-
-brew install iterm2
-brew install --cask font-jetbrains-mono-nerd-font
-
-brew install antigen
-brew install direnv
-brew install starship
-
-brew install --cask visual-studio-code
+brew bundle
 ```
 
 ## Features
