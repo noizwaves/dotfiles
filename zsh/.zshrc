@@ -58,6 +58,8 @@ if type direnv > /dev/null; then
 fi
 
 # Aliases
+alias vim='nvim'
+
 alias ga='git add -p'
 alias gc='git commit'
 alias gca='git commit --amend'
