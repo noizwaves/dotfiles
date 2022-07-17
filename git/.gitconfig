@@ -11,6 +11,7 @@
 
 [core]
     pager = delta
+    excludesfile = ~/.gitignore
 
 [interactive]
     diffFilter = delta --color-only
