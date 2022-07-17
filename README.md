@@ -48,3 +48,34 @@ brew install starship
 
 brew install --cask visual-studio-code
 ```
+
+## Features
+
+### Feedback on Problems
+
+Neovim's LSP diagnostic framework provides the core functionality.
+The custom dictionary is stored at `~/.config/nvim/spell`.
+
+Vim spell provides spell checking.
+- `<Leader>s` to toggle spelling highlighting
+- `zg` to add a word to the dictionary
+
+[null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) provides diagnostic information using:
+- [Vale](https://docs.errata.ai/) for writing
+
+[Trouble](https://github.com/folke/trouble.nvim) provides a pretty list of problems.
+- `:ToggleTrouble` to activate the list
+
+## Vim Keyboard Shortcuts
+
+### Finding / Searching
+
+- `<Leader>f`: live grep based find using Telescope
+- `:FindInFolder "some/path"`: live grep based find within a folder using Telescope
+- `<Leader>o`: find git tracked files using FZF
+
+Within Telescope:
+- `[n]p`: toggle preview panel
+
+Within FZF:
+- `<C-/>`: toggle preview panel
