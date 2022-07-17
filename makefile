@@ -1,5 +1,5 @@
 all:
-	stow --target=$$HOME --restow */
+	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --restow */
 
 delete:
-	stow --target=$$HOME --delete */
+	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --delete */
