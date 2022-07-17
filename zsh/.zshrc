@@ -33,8 +33,8 @@ unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
-# TODO: tmux?
-#bindkey -s ^f "tmux-sessionizer\n"
+# play nicely with tmux workflow
+bindkey -s ^f "tmux-sessionizer\n"
 
 # fix option+arrow word moving in iterm
 bindkey "\e\e[D" backward-word # ⌥←
