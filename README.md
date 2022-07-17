@@ -9,6 +9,12 @@ make
 1. Install dependencies below
 1. Install tmux plugins (`<prefix>I`)
 1. Install Neovim plugins (`:PlugInstall`)
+1. Configure iTerm 2 to load preferences
+  1. <kbd>Cmd+,</kbd>
+  1. Navigate to `General > Preferences`
+  1. Enable `Load preferences from a custom folder or URL`
+  1. Set directory to `~/workspace/dotfiles`
+  1. Set `Save changes` to `Automatically`
 
 ## Uninstall
 ```
