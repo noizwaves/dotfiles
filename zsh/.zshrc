@@ -57,6 +57,11 @@ if type direnv > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+# Gusto env
+for f in ~/.gusto/*; do
+  source $f;
+done
+
 # Aliases
 alias vim='nvim'
 
