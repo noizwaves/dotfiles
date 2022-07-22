@@ -58,9 +58,11 @@ if type direnv > /dev/null; then
 fi
 
 # Gusto env
-for f in ~/.gusto/*; do
-  source $f;
-done
+if [ -f ~/.gusto ]; then
+  for f in ~/.gusto/*; do
+    source $f;
+  done
+fi
 
 # Aliases
 alias vim='nvim'
