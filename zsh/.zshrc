@@ -58,7 +58,7 @@ if type direnv > /dev/null; then
 fi
 
 # Gusto env
-if [ -f ~/.gusto ]; then
+if [ -d ~/.gusto ]; then
   for f in ~/.gusto/*; do
     source $f;
   done
