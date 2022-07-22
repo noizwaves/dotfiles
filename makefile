@@ -3,3 +3,6 @@ all:
 
 delete:
 	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --delete */
+
+brew:
+	brew bundle
