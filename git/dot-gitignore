@@ -7,6 +7,9 @@
 /.code/
 /.idea/
 
+# DevSpace
+.devspace/
+
 # env var
 /.env
 /.envrc

@@ -545,7 +545,7 @@
     },
     "tap": {
       "homebrew/cask-fonts": {
-        "revision": "c430c45609a09848d7955c03847b79da91f5a4a1"
+        "revision": "85239d934569154a2e4c754125b9727d17804d01"
       }
     },
     "cask": {
@@ -590,6 +590,12 @@
         "options": {
           "full_name": "spotify"
         }
+      },
+      "flycut": {
+        "version": "1.9.6",
+        "options": {
+          "full_name": "flycut"
+        }
       }
     },
     "mas": {
@@ -606,11 +612,11 @@
   "system": {
     "macos": {
       "monterey": {
-        "HOMEBREW_VERSION": "3.5.4",
-        "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "d657d60b748faca86687c30eaf3f11bbb2efeb16",
+        "HOMEBREW_VERSION": "3.5.5",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "3900f1512d894e709168fa5906917231114999eb",
         "CLT": "13.4.0.0.1.1651278267",
-        "Xcode": "13.4",
+        "Xcode": "13.4.1",
         "macOS": "12.4"
       }
     }

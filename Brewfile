@@ -16,6 +16,7 @@ brew "tree-sitter"
 cask "iterm2"
 cask "rectangle"
 cask "keycastr"
+cask "flycut"
 
 tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono-nerd-font"
