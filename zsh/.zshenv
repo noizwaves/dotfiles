@@ -5,3 +5,6 @@ if [[ -z "$ZSH_SESS_VARS_SOURCED" ]]; then
   export WORDCHARS=""
   export PATH=$PATH:~/.local/bin
 fi
+
+# DevSpace global defaults
+export DEVSPACE_LOG_TIMESTAMPS=true

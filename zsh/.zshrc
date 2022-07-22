@@ -72,3 +72,8 @@ alias gcan='git commit --amend --no-edit'
 alias gcm='git commit -m'
 alias gp='git pull'
 alias gs='git status'
+
+alias k='kubectl'
+
+alias d='devspace'
+alias ds='devpace run shell'
