@@ -5,4 +5,4 @@ delete:
 	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --delete */
 
 brew:
-	brew bundle
+	brew bundle --no-lock
