@@ -33,6 +33,11 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 make brew
 ```
 
+and personal dependencies:
+```
+make brew-personal
+```
+
 ## Features
 
 ### Feedback on Problems

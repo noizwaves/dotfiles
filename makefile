@@ -6,3 +6,6 @@ delete:
 
 brew:
 	brew bundle --no-lock
+
+brew-personal:
+	brew bundle --file personal.Brewfile --no-lock
