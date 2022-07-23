@@ -1,4 +1,5 @@
 brew "stow"
+brew "wget"
 
 brew "mas"
 
