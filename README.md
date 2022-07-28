@@ -71,3 +71,7 @@ Within Telescope:
 
 Within FZF:
 - `<C-/>`: toggle preview panel
+
+GitHub integration:
+- `:GBrowse`: Go to file at GitHub in browser
+- `'<,'>:GBrowse`: Go to selected line(s) at GitHub in browser

@@ -40,6 +40,9 @@ Plug 'ray-x/cmp-treesitter'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'folke/trouble.nvim'
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 call plug#end()
 
 set runtimepath^=/nix/store/h74kmi4j27i8fsg9y9kgfwmyvc17gh86-vim-pack-dir
