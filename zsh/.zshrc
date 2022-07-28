@@ -78,4 +78,5 @@ alias gs='git status'
 alias k='kubectl'
 
 alias d='devspace'
-alias ds='devpace run shell'
+alias dv='devspace dev'
+alias ds='devspace run shell'
