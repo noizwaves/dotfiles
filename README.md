@@ -74,4 +74,4 @@ Within FZF:
 
 GitHub integration:
 - `:GBrowse`: Go to file at GitHub in browser
-- `'<,'>:GBrowse`: Go to selected line(s) at GitHub in browser
+- `<Leader>g`: Go to selected line(s) at GitHub in browser

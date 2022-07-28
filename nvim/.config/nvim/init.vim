@@ -120,6 +120,8 @@ nnoremap <C-_> <cmd>set invhlsearch<cr>
 
 nnoremap <leader>s <cmd>set spell!<cr>
 
+xnoremap <leader>g :GBrowse<cr>
+
 " configure treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
