@@ -13,7 +13,7 @@ autoload -U compinit && compinit
 ##
 ## Plugins via Antigen
 ##
-if type antigen > /dev/null; then
+if [ -f /usr/local/share/antigen/antigen.zsh ]; then
   source /usr/local/share/antigen/antigen.zsh
   antigen bundle zsh-users/zsh-autosuggestions
   antigen apply
