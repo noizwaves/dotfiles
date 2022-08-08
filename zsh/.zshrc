@@ -80,3 +80,23 @@ alias k='kubectl'
 alias d='devspace'
 alias dv='devspace dev'
 alias ds='devspace run shell'
+
+# Commands
+function git-delete-branches() {
+  git branch --sort committerdate |
+    grep --invert-match '\*' |
+    cut -c 3- |
+    fzf --multi --no-sort --preview="git log -n 3 {} --" |
+    xargs git branch --delete --force
+}
+
+function git-use-branch() {
+  git checkout $(git branch --list | grep --invert-match '\*' | fzf)
+}
+
+
+function git-optimize() {
+  git remote prune origin
+  # git repack -A -d -f
+  git gc --prune=now --aggressive
+}
