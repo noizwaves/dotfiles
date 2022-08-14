@@ -34,7 +34,7 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
 # play nicely with tmux workflow
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s '^f' "tmux-sessionizer\n"
 
 # fix option+arrow word moving in iterm
 bindkey "\e\e[D" backward-word # ⌥←
