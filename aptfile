@@ -1,0 +1,15 @@
+#!/usr/bin/env aptfile
+
+update
+
+packagelist \
+  "fzf" \
+  "ripgrep" \
+  "stow" \
+  "tmux" \
+  "wget" \
+  "zsh-antigen"
+
+package_from_url "neovim" "https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb"
+
+package_from_url "git-delta" "https://github.com/dandavison/delta/releases/download/0.13.0/git-delta_0.13.0_amd64.deb"

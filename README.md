@@ -4,14 +4,8 @@
 ![Screenshot of Vim](vim.png)
 
 ## Install
-```
-make
-```
-
-### Manual Steps
 1. Install dependencies below
-1. Install tmux plugins (`<prefix>I`)
-1. Install Neovim plugins (`:PlugInstall`)
+1. On macOS, run `make`
 1. Configure iTerm 2 to load preferences
   1. <kbd>Cmd+,</kbd>
   1. Navigate to `General > Preferences`
@@ -25,11 +19,17 @@ make delete
 ```
 
 ## Dependencies
+
+### macOS
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+~/.tmux/plugins/tpm/bin/install_plugins
+
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+nvim +PlugInstall +PlugUpdate +qall
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -39,6 +39,11 @@ make brew
 and personal dependencies:
 ```
 make brew-personal
+```
+
+### Ubuntu
+```bash
+./install
 ```
 
 ## Features
