@@ -13,11 +13,15 @@ autoload -U compinit && compinit
 ##
 ## Plugins via Antigen
 ##
-if [ -f /usr/local/share/antigen/antigen.zsh ]; then
-  source /usr/local/share/antigen/antigen.zsh
-  antigen bundle zsh-users/zsh-autosuggestions
-  antigen apply
-fi
+for sp in /usr/local/share /opt/homebrew/share; do
+  ap="$sp/antigen/antigen.zsh"
+  if [ -f $ap ]; then
+    source $ap
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen apply
+    break
+  fi
+done
 
 # History
 HISTSIZE="10000"
