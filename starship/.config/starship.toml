@@ -5,9 +5,9 @@ $localip\
 $shlvl\
 $singularity\
 $kubernetes\
+${custom.cloudbox}\
 $directory\
 $vcsh\
-${custom.cloudbox}\
 $git_branch\
 $git_commit\
 $git_state\
