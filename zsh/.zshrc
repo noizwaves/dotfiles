@@ -43,6 +43,9 @@ bindkey -s '^f' "tmux-sessionizer\n"
 # fix option+arrow word moving in iterm
 bindkey "\e\e[D" backward-word # ⌥←
 bindkey "\e\e[C" forward-word # ⌥→
+# and edge case when tmux running in ubuntu
+bindkey "\e\eOD" backward-word # ⌥←
+bindkey "\e\eOC" forward-word # ⌥←
 
 # execute any local overrides if present
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
