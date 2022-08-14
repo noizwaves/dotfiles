@@ -4,8 +4,7 @@
 ![Screenshot of Vim](vim.png)
 
 ## Install
-1. Install dependencies below
-1. On macOS, run `make`
+1. `./install`
 1. Configure iTerm 2 to load preferences
   1. <kbd>Cmd+,</kbd>
   1. Navigate to `General > Preferences`

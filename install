@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-./install-ubuntu.sh
+if [[ $OSTYPE == 'darwin'* ]]; then
+  ./install-macos.sh
+else
+  ./install-ubuntu.sh
+fi
