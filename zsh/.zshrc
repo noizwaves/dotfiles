@@ -81,6 +81,8 @@ alias d='devspace'
 alias dv='devspace dev'
 alias ds='devspace run shell'
 
+alias tks='tmux kill-server'
+
 # Commands
 function git-delete-branches() {
   git branch --sort committerdate |
