@@ -1,6 +1,9 @@
 [aws]
 symbol = "  "
 
+[container]
+disabled = true
+
 [conda]
 symbol = " "
 
