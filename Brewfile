@@ -18,6 +18,7 @@ cask "iterm2"
 cask "rectangle"
 cask "keycastr"
 cask "flycut"
+cask "stats"
 
 tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono-nerd-font"
