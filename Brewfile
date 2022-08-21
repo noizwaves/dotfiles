@@ -5,6 +5,7 @@ brew "mas"
 
 brew "git"
 brew "git-delta"
+brew "git-lfs"
 
 brew "tmux"
 

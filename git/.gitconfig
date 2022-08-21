@@ -29,3 +29,8 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:Gusto/**"]
     path = .gitconfig_inc_gusto
 
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
