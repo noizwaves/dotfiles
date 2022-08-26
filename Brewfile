@@ -14,6 +14,7 @@ brew "fzf"
 brew "ripgrep"
 brew "fd"
 brew "tree-sitter"
+brew "bat"
 
 cask "iterm2"
 cask "rectangle"
