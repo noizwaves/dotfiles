@@ -26,3 +26,5 @@ if [ ! -f $VIM_PLUG ]; then
 fi
 
 make
+
+make install-vscode-extensions
