@@ -10,4 +10,6 @@
   "terminal.integrated.tabs.enabled": false,
   "window.zoomLevel": 1,
   "workbench.startupEditor": "none",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
 }
