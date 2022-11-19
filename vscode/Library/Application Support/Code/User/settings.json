@@ -34,6 +34,7 @@
   ],
   // use an absolute path here
   "dotfiles.installCommand": "~/dotfiles/install",
+  // use https to avoid git/ssh/known host shenanigans
   "dotfiles.repository": "https://github.com/noizwaves/dotfiles.git",
   //
   // gitlens
