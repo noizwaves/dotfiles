@@ -64,13 +64,6 @@ if type direnv > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-# Gusto env
-if [ -d ~/.gusto ]; then
-  for f in ~/.gusto/*; do
-    source $f;
-  done
-fi
-
 # Aliases
 alias vim='nvim'
 
@@ -109,3 +102,6 @@ function git-optimize() {
   # git repack -A -d -f
   git gc --prune=now --aggressive
 }
+
+# Load Gusto env
+source ~/.gusto/init.sh
