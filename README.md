@@ -19,6 +19,10 @@ make delete
 
 ## Features
 
+### Cross-platform
+
+Support for macOS, Ubuntu, and devcontainers.
+
 ### Feedback on Problems
 
 Neovim's LSP diagnostic framework provides the core functionality.
@@ -33,6 +37,11 @@ Vim spell provides spell checking.
 
 [Trouble](https://github.com/folke/trouble.nvim) provides a pretty list of problems.
 - `:ToggleTrouble` to activate the list
+
+## VS Code Keyboard Shortcuts
+
+- `Control+Option+Command+l`: go to line in GitHub
+- `Control+Option+Command+c`: go to commit in GitHub
 
 ## Vim Keyboard Shortcuts
 

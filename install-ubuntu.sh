@@ -21,7 +21,17 @@ if ! command -v tree-sitter &> /dev/null; then
   sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
 fi
 
-sudo aptfile
+# manually install because "package_from_url" doesn't understand git-delta missing package
+GIT_DELTA_VERSION="0.13.0"
+if ! command -v delta &> /dev/null; then
+  echo "Installing git-delta..."
+  curl --silent -L -o /tmp/git-delta.deb "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_amd64.deb"
+  dpkg -i /tmp/git-delta.deb
+  rm /tmp/git-delta.deb
+fi
+
+sudo aptfile aptfile-common
+sudo aptfile aptfile-amd64
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."

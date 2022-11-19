@@ -1,0 +1,11 @@
+#!/usr/bin/env aptfile
+
+update
+
+packagelist \
+  "fzf" \
+  "ripgrep" \
+  "stow" \
+  "tmux" \
+  "wget" \
+  "zsh-antigen"

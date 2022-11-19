@@ -2,6 +2,8 @@
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   ./install-macos.sh
+elif [[ "$REMOTE_CONTAINERS" == 'true' ]]; then
+  ./install-devcontainers.sh
 else
   ./install-ubuntu.sh
 fi

@@ -1,6 +1,9 @@
 all:
 	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --restow */
 
+all-devcontainers:
+	stow --target=$$HOME --restow git starship zsh
+
 delete:
 	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --delete */
 
