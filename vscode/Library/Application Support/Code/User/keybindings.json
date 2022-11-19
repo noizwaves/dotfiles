@@ -10,5 +10,25 @@
         "key": "ctrl+h",
         "command": "-extension.vim_ctrl+h",
         "when": "editorTextFocus && vim.active && vim.use<C-h> && !inDebugRepl"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "-editor.action.previousMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "-workbench.action.terminal.findPrevious",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    // Go to line in GitHub
+    {
+        "key": "ctrl+alt+cmd+l",
+        "command": "gitlens.openFileOnRemoteFrom"
+    },
+    // Go to commit in GitHub
+    {
+        "key": "ctrl+alt+cmd+c",
+        "command": "gitlens.openCommitOnRemote"
     }
 ]

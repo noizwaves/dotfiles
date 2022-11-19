@@ -2,14 +2,33 @@
   "editor.minimap.enabled": false,
   "editor.smoothScrolling": true,
   "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
   "github.gitProtocol": "ssh",
-  "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
-  "terminal.integrated.tabs.enabled": false,
-  "window.zoomLevel": 1,
   "workbench.startupEditor": "none",
   "editor.fontSize": 14,
   "terminal.integrated.fontSize": 14,
+  "window.zoomLevel": 1,
+  "editor.tabSize": 2,
+  // formatters
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // devcontainers
+  "dev.containers.defaultExtensions": [
+    "extr0py.vscode-relative-line-numbers",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode"
+  ],
+  // disable aggressive inline history prompts
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
 }
