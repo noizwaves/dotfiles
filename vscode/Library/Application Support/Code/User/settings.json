@@ -12,7 +12,9 @@
   "terminal.integrated.fontSize": 14,
   "window.zoomLevel": 1,
   "editor.tabSize": 2,
+  //
   // formatters
+  //
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -22,12 +24,20 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  //
   // devcontainers
+  //
   "dev.containers.defaultExtensions": [
     "extr0py.vscode-relative-line-numbers",
     "eamodio.gitlens",
     "esbenp.prettier-vscode"
   ],
+  // use an absolute path here
+  "dotfiles.installCommand": "~/dotfiles/install",
+  "dotfiles.repository": "https://github.com/noizwaves/dotfiles.git",
+  //
+  // gitlens
+  //
   // disable aggressive inline history prompts
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
