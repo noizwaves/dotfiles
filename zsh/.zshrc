@@ -104,4 +104,4 @@ function git-optimize() {
 }
 
 # Load Gusto env
-source ~/.gusto/init.sh
+[ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
