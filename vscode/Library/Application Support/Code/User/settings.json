@@ -42,4 +42,5 @@
   // disable aggressive inline history prompts
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
+  "redhat.telemetry.enabled": false,
 }
