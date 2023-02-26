@@ -3,6 +3,7 @@
 update
 
 packagelist \
+  "make" \
   "fzf" \
   "ripgrep" \
   "stow" \

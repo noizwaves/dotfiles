@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
@@ -26,7 +27,7 @@ GIT_DELTA_VERSION="0.13.0"
 if ! command -v delta &> /dev/null; then
   echo "Installing git-delta..."
   curl --silent -L -o /tmp/git-delta.deb "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_amd64.deb"
-  dpkg -i /tmp/git-delta.deb
+  sudo dpkg -i /tmp/git-delta.deb
   rm /tmp/git-delta.deb
 fi
 
@@ -54,4 +55,6 @@ fi
 
 make
 
-make install-vscode-extensions
+if command -v code &> /dev/null; then
+  make install-vscode-extensions
+fi
