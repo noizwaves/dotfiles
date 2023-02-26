@@ -83,6 +83,9 @@ alias ds='devspace run shell'
 
 alias tks='tmux kill-server'
 
+alias wakepcadam='wakeonlan B4:2E:99:36:96:0B'
+alias wakepclauren='wakeonlan B4:2E:99:D1:85:3E'
+
 # Commands
 function git-delete-branches() {
   git branch --sort committerdate |
@@ -105,3 +108,9 @@ function git-optimize() {
 
 # Load Gusto env
 [ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
+
+export PATH="/usr/local/sbin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

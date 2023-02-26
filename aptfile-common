@@ -8,4 +8,5 @@ packagelist \
   "stow" \
   "tmux" \
   "wget" \
+  "zsh" \
   "zsh-antigen"
