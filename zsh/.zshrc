@@ -109,6 +109,11 @@ function git-optimize() {
   git gc --prune=now --aggressive
 }
 
+# AWS Commands
+function aws-use-profile() {
+  export AWS_PROFILE=$(cat ~/.aws/config | grep '\[profile' | cut -d ' ' -f 2 | cut -d ']' -f 1 | fzf)
+}
+
 # adamctl commands
 function fix() {
   if [ "${ADAMCTL_FIX}" = "" ]; then
