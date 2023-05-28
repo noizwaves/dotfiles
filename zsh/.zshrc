@@ -103,11 +103,47 @@ function git-use-branch() {
   git checkout $(git branch --list | grep --invert-match '\*' | fzf)
 }
 
-
 function git-optimize() {
   git remote prune origin
   # git repack -A -d -f
   git gc --prune=now --aggressive
+}
+
+# adamctl commands
+function fix() {
+  if [ "${ADAMCTL_FIX}" = "" ]; then
+    echo "No ADAMCTL_FIX defined"
+    return 1
+  else
+    sh -c "${ADAMCTL_FIX}"
+  fi
+}
+
+function tst() {
+  if [ "${ADAMCTL_TST}" = "" ]; then
+    echo "No ADAMCTL_TST defined"
+    return 1
+  else
+    sh -c "${ADAMCTL_TST}"
+  fi
+}
+
+function bld() {
+  if [ "${ADAMCTL_BLD}" = "" ]; then
+    echo "No ADAMCTL_BLD defined"
+    return 1
+  else
+    sh -c "${ADAMCTL_BLD}"
+  fi
+}
+
+function run() {
+  if [ "${ADAMCTL_RUN}" = "" ]; then
+    echo "No ADAMCTL_RUN defined"
+    return 1
+  else
+    sh -c "${ADAMCTL_RUN}"
+  fi
 }
 
 # Load Gusto env
