@@ -64,6 +64,10 @@ if type direnv > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+if [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && [ -f "$HOME/.asdf/.enabled" ]; then
+  . /usr/local/opt/asdf/libexec/asdf.sh
+fi
+
 # Aliases
 alias vim='nvim'
 
