@@ -146,6 +146,12 @@ function run() {
   fi
 }
 
+# Go setup
+if type go > /dev/null; then
+  export GOPATH=$(go env GOPATH)
+  export PATH=$PATH:"$GOPATH/bin"
+fi
+
 # Load Gusto env
 [ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
 
