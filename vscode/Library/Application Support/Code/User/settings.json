@@ -28,8 +28,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[go]": {
-    "editor.codeActionsOnSave": {
-    }
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {}
   },
   //
   // devcontainers
@@ -54,5 +54,11 @@
     "editor.formatOnType": true
   },
   "workbench.colorTheme": "Default Dark+",
-  "go.lintOnSave": "off",
+  // Go settings
+  "go.lintOnSave": "file",
+  "go.toolsManagement.autoUpdate": true,
+  "gopls": {
+    // More precise syntax highlighting
+    "ui.semanticTokens": true
+  }
 }

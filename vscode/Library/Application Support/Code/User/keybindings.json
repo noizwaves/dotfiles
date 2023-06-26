@@ -30,5 +30,9 @@
     {
         "key": "ctrl+alt+cmd+c",
         "command": "gitlens.openCommitOnRemote"
+    },
+    {
+        "key": "ctrl+alt+cmd+t",
+        "command": "go.toggle.test.file"
     }
 ]
