@@ -55,7 +55,8 @@
   },
   "workbench.colorTheme": "Default Dark+",
   // Go settings
-  "go.lintOnSave": "file",
+  "go.lintOnSave": "package",
+  "go.lintTool": "golangci-lint",
   "go.toolsManagement.autoUpdate": true,
   "gopls": {
     // More precise syntax highlighting
