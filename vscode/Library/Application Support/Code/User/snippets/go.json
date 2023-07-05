@@ -1,0 +1,27 @@
+{
+  "Return error": {
+    "prefix": ["err!"],
+    "body": [
+      "if ${0:err} != nil {",
+      "  return ${0:err}",
+      "}"
+    ],
+    "description": "Return err"
+  },
+  "Return nil, error": {
+    "prefix": ["err!!"],
+    "body": [
+      "if ${0:err} != nil {",
+      "  return ${1:nil}, ${0:err}",
+      "}"
+    ],
+    "description": "Return nil, error"
+  },
+  "Test error":  {
+    "prefix": ["err!t"],
+    "body": [
+      "assert.NoError(t, err)",
+    ],
+    "description": "Assert no error with assert.NoError(t, err)"
+  },
+}
