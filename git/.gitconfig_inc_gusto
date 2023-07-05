@@ -1,10 +1,10 @@
 [user]
-    email = adam.neumann@gusto.com
-    signingkey = AE995C1C5CDAFD74
+    email = 1007983+noizwaves@users.noreply.github.com
+    # signingkey = AE995C1C5CDAFD74
 
 [core]
     hooksPath = /Users/adam.neumann/.gusto/githooks
 
 [commit]
-    gpgsign = true
+    # gpgsign = true
 
