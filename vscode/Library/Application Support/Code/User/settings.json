@@ -62,5 +62,6 @@
     "ui.navigation.symbolScope": "workspace",
     // More precise syntax highlighting
     "ui.semanticTokens": true
-  }
+  },
+  "explorer.confirmDragAndDrop": false,
 }
