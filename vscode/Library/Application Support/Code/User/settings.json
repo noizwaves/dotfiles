@@ -54,6 +54,7 @@
     "editor.formatOnType": true
   },
   "workbench.colorTheme": "Default Dark+",
+  "terminal.integrated.minimumContrastRatio": 1,
   // Go settings
   "go.lintOnSave": "workspace",
   "go.lintTool": "golangci-lint",
