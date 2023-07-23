@@ -6,6 +6,7 @@
   "github.gitProtocol": "ssh",
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "workbench.startupEditor": "none",
   "editor.fontSize": 14,
@@ -65,4 +66,5 @@
     "ui.semanticTokens": true
   },
   "explorer.confirmDragAndDrop": false,
+  "dev.containers.copyGitConfig": false,
 }

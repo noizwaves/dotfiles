@@ -3,8 +3,13 @@
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
   echo "Installing aptfile..."
-  curl --silent -L -o /usr/local/bin/aptfile https://raw.githubusercontent.com/seatgeek/bash-aptfile/$APTFILE_VERSION/bin/aptfile
-  chmod +x /usr/local/bin/aptfile
+  sudo curl --silent -L -o /usr/local/bin/aptfile https://raw.githubusercontent.com/seatgeek/bash-aptfile/$APTFILE_VERSION/bin/aptfile
+  sudo chmod +x /usr/local/bin/aptfile
+fi
+
+if ! command -v starship &> /dev/null; then
+  echo "Installing Starship..."
+  curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
 fi
 
 # manually install because "package_from_url" doesn't understand git-delta missing package
@@ -12,11 +17,14 @@ GIT_DELTA_VERSION="0.13.0"
 if ! command -v delta &> /dev/null; then
   echo "Installing git-delta..."
   curl --silent -L -o /tmp/git-delta.deb "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_arm64.deb"
-  dpkg -i /tmp/git-delta.deb
+  sudo dpkg -i /tmp/git-delta.deb
   rm /tmp/git-delta.deb
 fi
 
-aptfile aptfile-common
+sudo aptfile aptfile-common
+
+# ZSH me pls
+sudo usermod --shell /bin/zsh vscode
 
 # remove any defaults
 rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config/starship.toml $HOME/.zshenv $HOME/.zshrc
