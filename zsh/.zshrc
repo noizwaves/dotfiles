@@ -114,6 +114,19 @@ function aws-use-profile() {
   export AWS_PROFILE=$(cat ~/.aws/config | grep '\[profile' | cut -d ' ' -f 2 | cut -d ']' -f 1 | fzf)
 }
 
+alias aws-ssm-to="aws ssm start-session --target"
+
+function aws-ssm-upload-public-key() {
+  instance_id=$1
+  public_key=$(cat ~/.ssh/id_ed25519.pub | tr -d '\n')
+
+  aws ssm send-command \
+    --document-name "AWS-RunShellScript" \
+    --parameters 'commands=["mkdir -p /home/ssm-user/.ssh", "echo \"'${public_key}'\" > /home/ssm-user/.ssh/authorized_keys", "chown ssm-user:ssm-user /home/ssm-user/.ssh/authorized_keys"]' \
+    --targets "Key=instanceids,Values=$instance_id" \
+    --comment "upload public key"
+}
+
 # adamctl commands
 function fix() {
   if [ "${ADAMCTL_FIX}" = "" ]; then
