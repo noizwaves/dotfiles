@@ -10,4 +10,4 @@ fi
 export DEVSPACE_LOG_TIMESTAMPS=true
 
 # Always DEx
-export AWS_PROFILE=dex-admin-gusto-main
+# export AWS_PROFILE=dex-admin-gusto-main
