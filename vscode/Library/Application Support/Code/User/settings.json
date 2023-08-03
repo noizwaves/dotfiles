@@ -67,4 +67,7 @@
   },
   "explorer.confirmDragAndDrop": false,
   "dev.containers.copyGitConfig": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
