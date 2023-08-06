@@ -41,7 +41,7 @@
     "esbenp.prettier-vscode"
   ],
   // use an absolute path here
-  "dotfiles.installCommand": "~/dotfiles/install",
+  "dotfiles.installCommand": "install",
   // use https to avoid git/ssh/known host shenanigans
   "dotfiles.repository": "https://github.com/noizwaves/dotfiles.git",
   //

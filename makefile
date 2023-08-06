@@ -1,11 +1,11 @@
 all:
-	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --restow */
+	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --restow */
 
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
 
 delete:
-	stow --ignore=com.googlecode.iterm2.plist --target=$$HOME --delete */
+	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete */
 
 brew:
 	brew bundle --no-lock
