@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Installing dotfiles for devcontainers"
+
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
   echo "Installing aptfile..."

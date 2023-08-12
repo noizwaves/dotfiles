@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+echo "Installing dotfiles for Ubuntu"
+
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
   echo "Installing aptfile..."

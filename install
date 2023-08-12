@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+echo "Installing noizwaves dotfiles"
+
 if [[ $OSTYPE == 'darwin'* ]]; then
   ./install-macos.sh
-elif [[ "$REMOTE_CONTAINERS" == 'true' ]]; then
+elif [[ "$REMOTE_CONTAINERS" == 'true' ]] || test -f "/.dockerenv"; then
   ./install-devcontainers.sh
 else
   ./install-ubuntu.sh

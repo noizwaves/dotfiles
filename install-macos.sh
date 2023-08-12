@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Installing dotfiles for macOS"
+
 make brew
 
 if [[ $(hostname) != "adam-neumann-"* ]]; then
