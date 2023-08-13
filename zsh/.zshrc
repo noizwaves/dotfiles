@@ -69,7 +69,9 @@ if [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && [ -f "$HOME/.asdf/.enabled" ]
 fi
 
 # Aliases
-alias vim='nvim'
+if command -v nvim &> /dev/null; then
+  alias vim='nvim'
+fi
 
 alias ga='git add -p'
 alias gc='git commit'
