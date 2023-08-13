@@ -33,8 +33,8 @@ if ! command -v delta &> /dev/null; then
   rm /tmp/git-delta.deb
 fi
 
-sudo aptfile aptfile-common
-sudo aptfile aptfile-amd64
+DEBIAN_FRONTEND=noninteractive sudo aptfile aptfile-common
+DEBIAN_FRONTEND=noninteractive sudo aptfile aptfile-amd64
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."

@@ -23,7 +23,7 @@ if ! command -v delta &> /dev/null; then
   rm /tmp/git-delta.deb
 fi
 
-sudo aptfile aptfile-common
+DEBIAN_FRONTEND=noninteractive sudo aptfile aptfile-common
 
 # ZSH me pls
 sudo usermod --shell /bin/zsh vscode
