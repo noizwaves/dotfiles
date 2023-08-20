@@ -16,3 +16,9 @@
 /.direnv/
 
 /.nvmrc
+
+# current experiments
+/.devcontainer
+/devbox.json
+/devbox.lock
+/devbox.d/
