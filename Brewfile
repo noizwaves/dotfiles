@@ -31,5 +31,6 @@ brew "direnv"
 brew "starship"
 
 brew "goenv"
+brew "tfenv"
 
 brew "syncthing", restart_service: true
