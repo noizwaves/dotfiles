@@ -89,6 +89,8 @@ alias ds='devspace run shell'
 
 alias tks='tmux kill-server'
 
+alias ppaths="echo \$PATH | tr : '\n'"
+
 alias wakepcadam='wakeonlan B4:2E:99:36:96:0B'
 alias wakepclauren='wakeonlan B4:2E:99:D1:85:3E'
 
