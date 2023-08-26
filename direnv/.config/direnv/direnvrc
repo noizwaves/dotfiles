@@ -1,0 +1,8 @@
+# Add `use nvm` to an .envrc to activate NVM
+use_nvm() {
+  if [[ "${NVM_DIR}" == "" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    source "$(brew --prefix)/opt/nvm/nvm.sh"
+    nvm use
+  fi
+}
