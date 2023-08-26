@@ -1,8 +1,31 @@
-# Add `use nvm` to an .envrc to activate NVM
+# Activate homebrew installed NVM
+# Usage: echo 'use nvm' >> .envrc
+# Caveats:
+# - `nvm` is not available in the final shell
+# - bash completion is also not available
 use_nvm() {
   if [[ "${NVM_DIR}" == "" ]]; then
     export NVM_DIR="$HOME/.nvm"
     source "$(brew --prefix)/opt/nvm/nvm.sh"
     nvm use
+  fi
+}
+
+# Activate goenv
+# Usage: echo 'use goenv' >> .envrc
+use_goenv() {
+  if [ -z "$GOENV_ROOT" ]; then
+    if ! has goenv; then
+      echo "ERROR (goenv) goenv is not installed"
+      return -1
+    fi
+
+    eval "$(goenv init - zsh)"
+
+    if [ -f .go-version ]; then
+      goenv install --skip-existing
+    else
+      echo "WARNING (goenv): no .go-version file found, cannot install a go version"
+    fi
   fi
 }

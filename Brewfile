@@ -30,4 +30,6 @@ brew "antigen"
 brew "direnv"
 brew "starship"
 
+brew "goenv"
+
 brew "syncthing", restart_service: true
