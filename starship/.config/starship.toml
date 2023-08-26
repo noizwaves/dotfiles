@@ -74,7 +74,7 @@ $shell\
 $character"""
 
 [aws]
-symbol = "  "
+symbol = "󰅟 "
 
 [container]
 disabled = true
