@@ -188,7 +188,6 @@ export PATH="/usr/local/sbin:$PATH"
 #  [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 #fi
 
-# /opt/homebrew/opt/fzf/install or brew info fzf to install this
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #zprof

@@ -8,6 +8,8 @@ if [[ $(hostname) != "adam-neumann-"* ]]; then
   make brew-personal
 fi
 
+$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish &> /dev/null
+
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
