@@ -1,3 +1,6 @@
+# https://stevenvanbael.com/profiling-zsh-startup
+#zmodload zsh/zprof
+
 typeset -U path cdpath fpath manpath
 
 
@@ -187,3 +190,5 @@ export PATH="/usr/local/sbin:$PATH"
 
 # /opt/homebrew/opt/fzf/install or brew info fzf to install this
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#zprof
