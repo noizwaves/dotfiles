@@ -24,10 +24,8 @@ use_goenv() {
 
     eval "$(goenv init - zsh)"
 
-    if [ -f .go-version ]; then
-      goenv install --skip-existing
-    else
-      echo "WARNING (goenv): no .go-version file found, cannot install a go version"
+    if [ ! -f .go-version ]; then
+      echo "WARNING (goenv): no .go-version file found"
     fi
   fi
 }
