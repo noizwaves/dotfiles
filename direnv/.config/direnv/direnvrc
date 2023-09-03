@@ -27,5 +27,7 @@ use_goenv() {
     if [ ! -f .go-version ]; then
       echo "WARNING (goenv): no .go-version file found"
     fi
+
+    PATH_add "${GOPATH}/bin"
   fi
 }
