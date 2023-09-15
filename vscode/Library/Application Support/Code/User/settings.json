@@ -71,4 +71,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.insertFinalNewline": true,
+  "remote.tunnels.access.preventSleep": true,
+  "remote.SSH.maxReconnectionAttempts": 0,
 }
