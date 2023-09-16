@@ -4,6 +4,9 @@ all:
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
 
+all-devops:
+	stow --target=$$HOME --restow git starship tmux zsh
+
 delete:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete */
 

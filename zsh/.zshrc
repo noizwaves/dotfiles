@@ -120,6 +120,7 @@ function git-optimize() {
 function aws-use-profile() {
   export AWS_PROFILE=$(cat ~/.aws/config | grep '\[profile' | cut -d ' ' -f 2 | cut -d ']' -f 1 | fzf)
 }
+alias aup="aws-use-profile"
 
 alias aws-ssm-to="aws ssm start-session --target"
 
