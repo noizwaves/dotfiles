@@ -84,8 +84,6 @@ alias gcm='git commit -m'
 alias gp='git pull'
 alias gs='git status'
 
-alias k='kubectl'
-
 alias d='devspace'
 alias dv='devspace dev'
 alias ds='devspace run shell'
@@ -134,6 +132,17 @@ function aws-ssm-upload-public-key() {
     --targets "Key=instanceids,Values=$instance_id" \
     --comment "upload public key"
 }
+
+# kubectl commands
+alias k='kubectl'
+
+function kubectl-use-context() {
+  KUBE_CONTEXT=$(kubectl config get-contexts -o 'name' | fzf)
+  kubectl config use-context "${KUBE_CONTEXT}"
+}
+alias kuc="kubectl-use-context"
+
+alias kgc="kubectl config get-contexts -o name"
 
 # adamctl commands
 function fix() {
