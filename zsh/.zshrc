@@ -144,47 +144,44 @@ alias kuc="kubectl-use-context"
 
 alias kgc="kubectl config get-contexts -o name"
 
-# adamctl commands
-function fix() {
-  if [ "${ADAMCTL_FIX}" = "" ]; then
-    echo "No ADAMCTL_FIX defined"
-    return 1
-  else
-    sh -c "${ADAMCTL_FIX}"
-  fi
-}
-
-function tst() {
-  if [ "${ADAMCTL_TST}" = "" ]; then
-    echo "No ADAMCTL_TST defined"
-    return 1
-  else
-    sh -c "${ADAMCTL_TST}"
-  fi
-}
-
-function bld() {
-  if [ "${ADAMCTL_BLD}" = "" ]; then
-    echo "No ADAMCTL_BLD defined"
-    return 1
-  else
-    sh -c "${ADAMCTL_BLD}"
-  fi
-}
-
-function run() {
-  if [ "${ADAMCTL_RUN}" = "" ]; then
-    echo "No ADAMCTL_RUN defined"
-    return 1
-  else
-    sh -c "${ADAMCTL_RUN}"
-  fi
-}
-
 # temp: delegate goenv setup to direnv via `use goenv`
 #if type goenv > /dev/null; then
 #  eval "$(goenv init -)"
 #fi
+
+# Go commands
+function goenv-init() {
+  if [ ! -f .go-version ]; then
+    echo "1.21.0" > .go-version
+  fi
+
+  if [ ! -f .envrc ] || ! grep "use goenv" .envrc > /dev/null; then
+    echo "use goenv" >> .envrc
+  fi
+
+  direnv allow
+  # direnv reload
+}
+
+function go-scratch() {
+  DIR=$(mktemp -d -t go_scratch)
+  (cd $DIR && goenv-init)
+
+  cd $DIR
+  go mod init github.com/noizwaves/go-scratch
+  cat << EOF > main.go
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello, world!")
+}
+EOF
+  code --new-window --goto main.go:6:31 .
+
+  echo "go-scratch in $(pwd)"
+}
 
 # Load Gusto env
 [ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
