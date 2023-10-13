@@ -3,28 +3,31 @@
 
 typeset -U path cdpath fpath manpath
 
-
 # TODO: from nix
 #HELPDIR="/nix/store/s613jv7crzygmj38745a8jnjrlacyh2a-zsh-5.9/share/zsh/$ZSH_VERSION/help"
 
-# TODO: required?
-# Oh-My-Zsh/Prezto calls compinit during initialization,
-# calling it twice causes slight start up slowdown
-# as all $fpath entries will be traversed again.
+# Load homebrew early, kubectl for autocompletion
+# Load Gusto env
+[ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
+
 autoload -U compinit && compinit
 
 ##
 ## Plugins via Antigen
-##
+## run `antigen-reset` after changing
+#export ANTIGEN_CACHE=false
 for sp in /usr/local/share /opt/homebrew/share; do
   ap="$sp/antigen/antigen.zsh"
   if [ -f $ap ]; then
     source $ap
     antigen bundle zsh-users/zsh-autosuggestions
+#    antigen bundle kubectl
     antigen apply
     break
   fi
 done
+
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # History
 HISTSIZE="10000"
@@ -183,9 +186,6 @@ EOF
   echo "go-scratch in $(pwd)"
 }
 
-# Load Gusto env
-[ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
-
 export PATH="/usr/local/sbin:$PATH"
 
 # temp: delegate NVM activation to direnv via `use nvm`
@@ -198,3 +198,4 @@ export PATH="/usr/local/sbin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #zprof
+
