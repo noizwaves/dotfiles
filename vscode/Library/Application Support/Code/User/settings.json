@@ -74,4 +74,27 @@
   "remote.SSH.maxReconnectionAttempts": 0,
   "window.zoomLevel": 1,
   "remote.SSH.enableDynamicForwarding": false,
+  "files.associations": {
+    "*.yml.example": "yaml"
+  },
+  "fuzzyRubyServer.indexGems": false,
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.rulers": [
+      120
+    ],
+    "editor.semanticHighlighting.enabled": true
+  },
+  // templ
+  "editor.formatOnSave": true,
+  "[templ]": {
+    "editor.defaultFormatter": "a-h.templ"
+  },
 }
