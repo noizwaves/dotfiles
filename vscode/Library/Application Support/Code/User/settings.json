@@ -93,8 +93,8 @@
     "editor.semanticHighlighting.enabled": true
   },
   // templ
-  "editor.formatOnSave": true,
   "[templ]": {
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "a-h.templ"
   },
 }
