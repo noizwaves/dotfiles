@@ -72,7 +72,6 @@
   "files.insertFinalNewline": true,
   "remote.tunnels.access.preventSleep": true,
   "remote.SSH.maxReconnectionAttempts": 0,
-  "window.zoomLevel": 1,
   "remote.SSH.enableDynamicForwarding": false,
   "files.associations": {
     "*.yml.example": "yaml"
@@ -97,4 +96,8 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "a-h.templ"
   },
+  // vim
+  "vim.useCtrlKeys": false,
+  "window.zoomLevel": 1, // prevent stealing C-p and C-f in linux
+
 }
