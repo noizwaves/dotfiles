@@ -56,7 +56,7 @@ fi
 curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
 
 sudo aptfile aptfile-common
-sudo aptfile aptfile-desktop
+sudo aptfile aptfile-personal
 if [ "$(arch)" == "x86_64" ]; then
   sudo aptfile aptfile-amd64
 fi
