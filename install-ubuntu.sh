@@ -52,7 +52,11 @@ if ! command -v delta &> /dev/null; then
   rm /tmp/git-delta.deb
 fi
 
+# keys for apt
+curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+
 sudo aptfile aptfile-common
+sudo aptfile aptfile-desktop
 if [ "$(arch)" == "x86_64" ]; then
   sudo aptfile aptfile-amd64
 fi
