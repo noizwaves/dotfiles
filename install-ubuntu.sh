@@ -69,6 +69,13 @@ make
 # ZSH me pls
 sudo usermod --shell /bin/zsh $(whoami)
 
+# Configure Gnome desktop (with Kinto running)
+dconf write /org/gnome/shell/keybindings/toggle-application-view "['<Alt>F1']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/home "['']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/email "['']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/www "['']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/terminal "['']"
+
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
