@@ -43,6 +43,15 @@ if ! command -v tree-sitter &> /dev/null; then
   sudo mv tree-sitter /usr/local/bin/tree-sitter
 fi
 
+# nerd fonts
+mkdir -p ~/.local/share/fonts
+NERD_FONT_VERSION="3.1.1"
+if ! ls -al ~/.local/share/fonts | grep -v JetBrainsMono &> /dev/null; then
+  curl -L -o nerdfont.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v${NERD_FONT_VERSION}/JetBrainsMono.zip
+  unzip nerdfont.zip ~/.local/share/fonts
+  rm nerdfont.zip
+fi
+
 # manually install because "package_from_url" doesn't understand git-delta missing package
 GIT_DELTA_VERSION="0.13.0"
 if ! command -v delta &> /dev/null; then
