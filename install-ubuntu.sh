@@ -85,6 +85,9 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/email "['']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/www "['']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/terminal "['']"
 
+# Configure Gnome dock
+dconf write /org/gnome/shell/extensions/dash-to-dock/dock-fixed 'false'
+
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
