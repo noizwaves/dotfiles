@@ -155,7 +155,7 @@ alias kgc="kubectl config get-contexts -o name"
 # Go commands
 function goenv-init() {
   if [ ! -f .go-version ]; then
-    echo "1.21.0" > .go-version
+    echo "1.21.5" > .go-version
   fi
 
   if [ ! -f .envrc ] || ! grep "use goenv" .envrc > /dev/null; then
