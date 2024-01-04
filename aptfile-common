@@ -4,10 +4,12 @@ update
 
 packagelist \
   "make" \
-  "fzf" \
-  "ripgrep" \
   "stow" \
   "tmux" \
   "wget" \
   "zsh" \
   "zsh-antigen"
+
+  # "fzf" \
+  # "direnv" \
+  # "ripgrep" \

@@ -1,0 +1,61 @@
+binaries:
+  - name: delta
+    source: https://github.com/dandavison/delta/releases/download/{{ .Version }}/delta-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.tar.gz
+    version: "0.16.5"
+    platforms:
+      linux:
+        amd64: [unknown-linux-gnu, x86_64]
+        arm64: [unknown-linux-gnu, aarch64]
+      darwin:
+        amd64: [apple-darwin, x86_64]
+        arm64: [apple-darwin, aarch64]
+  - name: direnv
+    source: https://github.com/direnv/direnv/releases/download/v{{ .Version }}/direnv.linux-amd64
+    version: "2.33.0"
+    platforms:
+      linux:
+        amd64: [linux, amd64]
+        arm64: [linux, arm64]
+      darwin:
+        amd64: [darwin, amd64]
+        arm64: [darwin, arm64]
+  - name: fzf
+    source: https://github.com/junegunn/fzf/releases/download/{{ .Version }}/fzf-{{ .Version }}-{{ .Platform }}_{{ .Arch }}.tar.gz
+    version: "0.45.0"
+    platforms:
+      linux:
+        amd64: [linux, amd64]
+        arm64: [linux, arm64]
+      darwin:
+        amd64: [darwin, amd64]
+        arm64: [darwin, arm64]
+  - name: starship
+    source: https://github.com/starship/starship/releases/download/v{{ .Version }}/starship-{{ .Arch }}-{{ .Platform }}.tar.gz
+    version: "1.17.0"
+    platforms:
+      linux:
+        amd64: [unknown-linux-musl, x86_64]
+        arm64: [unknown-linux-musl, aarch64]
+      darwin:
+        amd64: [apple-darwin, x86_64]
+        arm64: [apple-darwin, aarch64]
+  - name: rg
+    source: https://github.com/BurntSushi/ripgrep/releases/download/{{ .Version }}/ripgrep-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.tar.gz
+    version: "14.0.3"
+    platforms:
+      linux:
+        amd64: [unknown-linux-musl, x86_64]
+        arm64: [unknown-linux-gnu, aarch64]
+      darwin:
+        amd64: [apple-darwin, x86_64]
+        arm64: [apple-darwin, aarch64]
+  - name: tree-sitter
+    source: https://github.com/tree-sitter/tree-sitter/releases/download/v{{ .Version }}/tree-sitter-{{ .Platform }}-{{ .Arch }}.gz
+    version: "0.20.8"
+    platforms:
+      linux:
+        amd64: [linux, x64]
+        arm64: [linux, arm64]
+      darwin:
+        amd64: [macos, x64]
+        arm64: [macos, arm64]

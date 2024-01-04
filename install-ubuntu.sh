@@ -29,20 +29,6 @@ if ! command -v aptfile &> /dev/null; then
   sudo chmod +x /usr/local/bin/aptfile
 fi
 
-if ! command -v starship &> /dev/null; then
-  echo "Installing Starship..."
-  curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
-fi
-
-TREE_SITTER_VERSION="0.20.8"
-if ! command -v tree-sitter &> /dev/null; then
-  echo "Installing tree-sitter..."
-  curl --silent -L -o tree-sitter.gz https://github.com/tree-sitter/tree-sitter/releases/download/v$TREE_SITTER_VERSION/tree-sitter-linux-$(farch x64 arm64).gz
-  gunzip tree-sitter.gz
-  chmod +x tree-sitter
-  sudo mv tree-sitter /usr/local/bin/tree-sitter
-fi
-
 # nerd fonts
 mkdir -p ~/.local/share/fonts
 NERD_FONT_VERSION="3.1.1"
@@ -50,15 +36,6 @@ if ! ls -al ~/.local/share/fonts | grep -v JetBrainsMono &> /dev/null; then
   curl -L -o nerdfont.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v${NERD_FONT_VERSION}/JetBrainsMono.zip
   unzip nerdfont.zip ~/.local/share/fonts
   rm nerdfont.zip
-fi
-
-# manually install because "package_from_url" doesn't understand git-delta missing package
-GIT_DELTA_VERSION="0.13.0"
-if ! command -v delta &> /dev/null; then
-  echo "Installing git-delta..."
-  curl --silent -L -o /tmp/git-delta.deb "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_$(farch amd64 arm64).deb"
-  sudo dpkg -i /tmp/git-delta.deb
-  rm /tmp/git-delta.deb
 fi
 
 # keys for apt
