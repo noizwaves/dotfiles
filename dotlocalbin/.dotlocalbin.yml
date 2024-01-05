@@ -10,7 +10,7 @@ binaries:
         amd64: [apple-darwin, x86_64]
         arm64: [apple-darwin, aarch64]
   - name: direnv
-    source: https://github.com/direnv/direnv/releases/download/v{{ .Version }}/direnv.linux-amd64
+    source: https://github.com/direnv/direnv/releases/download/v{{ .Version }}/direnv.{{ .Platform }}-{{ .Arch }}
     version: "2.33.0"
     platforms:
       linux:
