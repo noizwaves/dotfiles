@@ -49,3 +49,13 @@ binaries:
       darwin:
         amd64: [apple-darwin, x86_64, tar.gz]
         arm64: [apple-darwin, aarch64, tar.gz]
+  - name: lefthook
+    source: https://github.com/evilmartians/lefthook/releases/download/v{{ .Version }}/lefthook_{{ .Version }}_{{ .Platform }}_{{ .Arch }}.gz
+    version: "1.5.5"
+    platforms:
+      linux:
+        amd64: [Linux, x86_64, ""]
+        arm64: [Linux, aarch64, ""]
+      darwin:
+        amd64: [MacOS, x86_64, ""]
+        arm64: [MacOS, arm64, ""]
