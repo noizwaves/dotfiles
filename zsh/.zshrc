@@ -16,8 +16,8 @@ autoload -U compinit && compinit
 ## Plugins via Antigen
 ## run `antigen-reset` after changing
 #export ANTIGEN_CACHE=false
-for sp in /usr/local/share /opt/homebrew/share; do
-  ap="$sp/antigen/antigen.zsh"
+for sp in /usr/local/share/antigen /opt/homebrew/share/antigen /usr/share/zsh-antigen; do
+  ap="$sp/antigen.zsh"
   if [ -f $ap ]; then
     source $ap
     antigen bundle zsh-users/zsh-autosuggestions
