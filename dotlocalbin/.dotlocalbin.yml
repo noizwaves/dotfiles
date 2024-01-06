@@ -49,13 +49,3 @@ binaries:
       darwin:
         amd64: [apple-darwin, x86_64, tar.gz]
         arm64: [apple-darwin, aarch64, tar.gz]
-  - name: tree-sitter
-    source: https://github.com/tree-sitter/tree-sitter/releases/download/v{{ .Version }}/tree-sitter-{{ .Platform }}-{{ .Arch }}.{{ .Ext }}
-    version: "0.20.8"
-    platforms:
-      linux:
-        amd64: [linux, x64, gz]
-        arm64: [linux, arm64, gz]
-      darwin:
-        amd64: [macos, x64, gz]
-        arm64: [macos, arm64, gz]
