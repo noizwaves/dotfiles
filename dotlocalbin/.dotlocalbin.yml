@@ -5,6 +5,7 @@ binaries:
       org: dandavison
       repo: delta
       releaseName: "{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "delta-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
       overrides:
         linux:
@@ -21,6 +22,7 @@ binaries:
       org: direnv
       repo: direnv
       releaseName: "v{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "direnv.{{ .Platform }}-{{ .Arch }}"
       overrides:
         linux:
@@ -37,6 +39,7 @@ binaries:
       org: junegunn
       repo: fzf
       releaseName: "{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "fzf-{{ .Version }}-{{ .Platform }}_{{ .Arch }}.{{ .Ext }}"
       overrides:
         linux:
@@ -53,6 +56,7 @@ binaries:
       org: starship
       repo: starship
       releaseName: "v{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "starship-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
       overrides:
         linux:
@@ -69,6 +73,7 @@ binaries:
       org: BurntSushi
       repo: ripgrep
       releaseName: "{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "ripgrep-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
       overrides:
         linux:
@@ -85,6 +90,7 @@ binaries:
       org: evilmartians
       repo: lefthook
       releaseName: "v{{ .Version }}"
+      releaseRegex: \d+\.\d+\.\d+
       fileName: "lefthook_{{ .Version }}_{{ .Platform }}_{{ .Arch }}.gz"
       overrides:
         linux:
