@@ -1,73 +1,97 @@
 binaries:
   - name: delta
-    source: https://github.com/dandavison/delta/releases/download/{{ .Version }}/delta-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}
     version: "0.16.5"
-    versionFlags: [--version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [unknown-linux-gnu, x86_64, tar.gz]
-        arm64: [unknown-linux-gnu, aarch64, tar.gz]
-      darwin:
-        amd64: [apple-darwin, x86_64, tar.gz]
-        arm64: [apple-darwin, aarch64, tar.gz]
+    source:
+      org: dandavison
+      repo: delta
+      releaseName: "{{ .Version }}"
+      fileName: "delta-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
+      overrides:
+        linux:
+          amd64: [unknown-linux-gnu, x86_64, tar.gz]
+          arm64: [unknown-linux-gnu, aarch64, tar.gz]
+        darwin:
+          amd64: [apple-darwin, x86_64, tar.gz]
+          arm64: [apple-darwin, aarch64, tar.gz]
+      versionFlags: [--version]
+      versionRegex: \d+\.\d+\.\d+
   - name: direnv
-    source: https://github.com/direnv/direnv/releases/download/v{{ .Version }}/direnv.{{ .Platform }}-{{ .Arch }}
     version: "2.33.0"
-    versionFlags: [--version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [linux, amd64, ""]
-        arm64: [linux, arm64, ""]
-      darwin:
-        amd64: [darwin, amd64, ""]
-        arm64: [darwin, arm64, ""]
+    source:
+      org: direnv
+      repo: direnv
+      releaseName: "v{{ .Version }}"
+      fileName: "direnv.{{ .Platform }}-{{ .Arch }}"
+      overrides:
+        linux:
+          amd64: [linux, amd64, ""]
+          arm64: [linux, arm64, ""]
+        darwin:
+          amd64: [darwin, amd64, ""]
+          arm64: [darwin, arm64, ""]
+      versionFlags: [--version]
+      versionRegex: \d+\.\d+\.\d+
   - name: fzf
-    source: https://github.com/junegunn/fzf/releases/download/{{ .Version }}/fzf-{{ .Version }}-{{ .Platform }}_{{ .Arch }}.{{ .Ext }}
     version: "0.45.0"
-    versionFlags: [--version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [linux, amd64, tar.gz]
-        arm64: [linux, arm64, tar.gz]
-      darwin:
-        amd64: [darwin, amd64, zip]
-        arm64: [darwin, arm64, zip]
+    source:
+      org: junegunn
+      repo: fzf
+      releaseName: "{{ .Version }}"
+      fileName: "fzf-{{ .Version }}-{{ .Platform }}_{{ .Arch }}.{{ .Ext }}"
+      overrides:
+        linux:
+          amd64: [linux, amd64, tar.gz]
+          arm64: [linux, arm64, tar.gz]
+        darwin:
+          amd64: [darwin, amd64, zip]
+          arm64: [darwin, arm64, zip]
+      versionFlags: [--version]
+      versionRegex: \d+\.\d+\.\d+
   - name: starship
-    source: https://github.com/starship/starship/releases/download/v{{ .Version }}/starship-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}
     version: "1.17.0"
-    versionFlags: [--version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [unknown-linux-musl, x86_64, tar.gz]
-        arm64: [unknown-linux-musl, aarch64, tar.gz]
-      darwin:
-        amd64: [apple-darwin, x86_64, tar.gz]
-        arm64: [apple-darwin, aarch64, tar.gz]
+    source:
+      org: starship
+      repo: starship
+      releaseName: "v{{ .Version }}"
+      fileName: "starship-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
+      overrides:
+        linux:
+          amd64: [unknown-linux-musl, x86_64, tar.gz]
+          arm64: [unknown-linux-musl, aarch64, tar.gz]
+        darwin:
+          amd64: [apple-darwin, x86_64, tar.gz]
+          arm64: [apple-darwin, aarch64, tar.gz]
+      versionFlags: [--version]
+      versionRegex: \d+\.\d+\.\d+
   - name: rg
-    source: https://github.com/BurntSushi/ripgrep/releases/download/{{ .Version }}/ripgrep-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}
     version: "14.0.3"
-    versionFlags: [--version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [unknown-linux-musl, x86_64, tar.gz]
-        arm64: [unknown-linux-gnu, aarch64, tar.gz]
-      darwin:
-        amd64: [apple-darwin, x86_64, tar.gz]
-        arm64: [apple-darwin, aarch64, tar.gz]
+    source:
+      org: BurntSushi
+      repo: ripgrep
+      releaseName: "{{ .Version }}"
+      fileName: "ripgrep-{{ .Version }}-{{ .Arch }}-{{ .Platform }}.{{ .Ext }}"
+      overrides:
+        linux:
+          amd64: [unknown-linux-musl, x86_64, tar.gz]
+          arm64: [unknown-linux-gnu, aarch64, tar.gz]
+        darwin:
+          amd64: [apple-darwin, x86_64, tar.gz]
+          arm64: [apple-darwin, aarch64, tar.gz]
+      versionFlags: [--version]
+      versionRegex: \d+\.\d+\.\d+
   - name: lefthook
-    source: https://github.com/evilmartians/lefthook/releases/download/v{{ .Version }}/lefthook_{{ .Version }}_{{ .Platform }}_{{ .Arch }}.gz
     version: "1.5.5"
-    versionFlags: [version]
-    versionRegex: \d+\.\d+\.\d+
-    platforms:
-      linux:
-        amd64: [Linux, x86_64, ""]
-        arm64: [Linux, aarch64, ""]
-      darwin:
-        amd64: [MacOS, x86_64, ""]
-        arm64: [MacOS, arm64, ""]
+    source:
+      org: evilmartians
+      repo: lefthook
+      releaseName: "v{{ .Version }}"
+      fileName: "lefthook_{{ .Version }}_{{ .Platform }}_{{ .Arch }}.gz"
+      overrides:
+        linux:
+          amd64: [Linux, x86_64, ""]
+          arm64: [Linux, aarch64, ""]
+        darwin:
+          amd64: [MacOS, x86_64, ""]
+          arm64: [MacOS, arm64, ""]
+      versionFlags: [version]
+      versionRegex: \d+\.\d+\.\d+
