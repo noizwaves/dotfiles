@@ -1,0 +1,18 @@
+apiVersion: garb.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: direnv
+spec:
+  gitHubRelease:
+    org: direnv
+    repo: direnv
+    name: 'v{{ .Version }}'
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: direnv.darwin-amd64
+      darwin,arm64: direnv.darwin-arm64
+      linux,amd64: direnv.linux-amd64
+      linux,arm64: direnv.linux-arm64
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+

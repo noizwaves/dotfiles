@@ -1,0 +1,18 @@
+apiVersion: garb.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: delta
+spec:
+  gitHubRelease:
+    org: dandavison
+    repo: delta
+    name: "{{ .Version }}"
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: delta-{{ .Version }}-x86_64-apple-darwin.tar.gz
+      darwin,arm64: delta-{{ .Version }}-aarch64-apple-darwin.tar.gz
+      linux,amd64: delta-{{ .Version }}-x86_64-unknown-linux-gnu.tar.gz
+      linux,arm64: delta-{{ .Version }}-aarch64-unknown-linux-gnu.tar.gz
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
