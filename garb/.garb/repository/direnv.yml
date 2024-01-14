@@ -6,7 +6,7 @@ spec:
   gitHubRelease:
     org: direnv
     repo: direnv
-    name: 'v{{ .Version }}'
+    name: "v{{ .Version }}"
     versionRegex: \d+\.\d+\.\d+
     fileName:
       darwin,amd64: direnv.darwin-amd64
