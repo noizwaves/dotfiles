@@ -1,7 +1,7 @@
 packages:
-  delta: "0.16.5"
-  direnv: "2.33.0"
-  fzf: "0.45.0"
-  starship: "1.17.1"
-  rg: "14.1.0"
-  lefthook: "1.5.6"
+  delta: 0.16.5
+  direnv: 2.33.0
+  fzf: 0.45.0
+  lefthook: 1.5.6
+  rg: 14.1.0
+  starship: 1.17.1
