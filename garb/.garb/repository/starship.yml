@@ -9,10 +9,10 @@ spec:
     name: "v{{ .Version }}"
     versionRegex: \d+\.\d+\.\d+
     fileName:
-      darwin,amd64: starship-x86_64-apple-darwin.{{ .Ext }}
-      darwin,arm64: starship-aarch64-apple-darwin.{{ .Ext }}
-      linux,amd64: starship-x86_64-unknown-linux-musl.{{ .Ext }}
-      linux,arm64: starship-aarch64-unknown-linux-musl.{{ .Ext }}
+      darwin,amd64: starship-x86_64-apple-darwin.tar.gz
+      darwin,arm64: starship-aarch64-apple-darwin.tar.gz
+      linux,amd64: starship-x86_64-unknown-linux-musl.tar.gz
+      linux,arm64: starship-aarch64-unknown-linux-musl.tar.gz
   program:
     versionArgs: [--version]
     versionRegex: \d+\.\d+\.\d+
