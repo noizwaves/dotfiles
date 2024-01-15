@@ -1,0 +1,18 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: adamctl
+spec:
+  gitHubRelease:
+    org: noizwaves
+    repo: adamctl
+    name: "v{{ .Version }}"
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: adamctl-darwin-amd64
+      darwin,arm64: adamctl-darwin-arm64
+      linux,amd64: adamctl-linux-amd64
+      linux,arm64: adamctl-linux-arm64
+  program:
+    versionArgs: [version]
+    versionRegex: \d+\.\d+\.\d+
