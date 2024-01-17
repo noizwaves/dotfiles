@@ -14,5 +14,5 @@ spec:
       linux,amd64: scope-{{ .Version }}-x86_64-unknown-linux-gnu.tgz
       linux,arm64: scope-{{ .Version }}-aarch64-unknown-linux-gnu.tgz
   program:
-    versionArgs: [version]
+    versionArgs: [--version]
     versionRegex: \d+\.\d+\.\d+
