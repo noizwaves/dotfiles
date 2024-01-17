@@ -5,4 +5,5 @@ packages:
   fzf: 0.45.0
   lefthook: 1.5.6
   rg: 14.1.0
+  scope: 2024.1.7
   starship: 1.17.1
