@@ -3,7 +3,7 @@ packages:
   delta: 0.16.5
   direnv: 2.33.0
   fzf: 0.45.0
-  lefthook: 1.5.6
+  lefthook: 1.5.7
   rg: 14.1.0
-  scope: 2024.1.7
+  scope: 2024.1.21
   starship: 1.17.1
