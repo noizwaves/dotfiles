@@ -31,4 +31,11 @@ fi
 
 make
 
+# TODO: bootstrap grab if missing
+if ! command -v grab &> /dev/null; then
+  echo "grab is missing; install manually"
+  exit 1
+fi
+grab install
+
 make install-vscode-extensions

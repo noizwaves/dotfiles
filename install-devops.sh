@@ -41,6 +41,13 @@ rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config
 
 make all-devops
 
+# TODO: bootstrap grab if missing
+if ! command -v grab &> /dev/null; then
+  echo "grab is missing; install manually"
+  exit 1
+fi
+grab install
+
 # ZSH me pls
 sudo usermod --shell /bin/zsh $(whoami)
 
