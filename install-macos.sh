@@ -29,13 +29,13 @@ if [ ! -f $VIM_PLUG ]; then
   nvim +PlugInstall +PlugUpdate +qall
 fi
 
-make
-
 # TODO: bootstrap grab if missing
 if ! command -v grab &> /dev/null; then
   echo "grab is missing; install manually"
   exit 1
 fi
-grab install
+grab --config-path grab/.grab install
+
+make
 
 make install-vscode-extensions
