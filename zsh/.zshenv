@@ -8,3 +8,8 @@ fi
 
 # Always DEx
 # export AWS_PROFILE=dex-admin-gusto-main
+
+# Load cargo if installed
+if [ -d "$HOME/.cargo" ]; then
+  . "$HOME/.cargo/env"
+fi
