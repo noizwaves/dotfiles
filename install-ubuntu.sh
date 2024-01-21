@@ -47,18 +47,17 @@ if [ "$(arch)" == "x86_64" ]; then
   sudo aptfile aptfile-amd64
 fi
 
-# remove any defaults
-rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config/starship.toml $HOME/.zshenv $HOME/.zshrc
-
-make
-
-# Run grab before stow by pointing directly raw dotfiles
 # TODO: bootstrap grab if missing
 if ! command -v grab &> /dev/null; then
   echo "grab is missing; install manually"
   exit 1
 fi
-grab install
+grab --config-path grab/.grab install
+
+# remove any defaults
+rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config/starship.toml $HOME/.zshenv $HOME/.zshrc
+
+make
 
 # ZSH me pls
 sudo usermod --shell /bin/zsh $(whoami)
