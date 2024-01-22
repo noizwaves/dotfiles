@@ -4,7 +4,7 @@ packages:
   direnv: 2.33.0
   fzf: 0.45.0
   grab: 0.0.44
-  lefthook: 1.5.7
+  lefthook: 1.6.0
   rg: 14.1.0
-  scope: 2024.1.21
+  scope: 2024.1.27
   starship: 1.17.1

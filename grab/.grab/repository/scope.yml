@@ -9,8 +9,8 @@ spec:
     name: "{{ .Version }}"
     versionRegex: \d+\.\d+\.\d+
     fileName:
-      darwin,amd64: scope-darwin.tgz
-      darwin,arm64: scope-darwin.tgz
+      darwin,amd64: scope-{{ .Version }}-darwin.tgz
+      darwin,arm64: scope-{{ .Version }}-darwin.tgz
       linux,amd64: scope-{{ .Version }}-x86_64-unknown-linux-gnu.tgz
       linux,arm64: scope-{{ .Version }}-aarch64-unknown-linux-gnu.tgz
   program:
