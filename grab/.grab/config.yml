@@ -7,4 +7,5 @@ packages:
   lefthook: 1.6.0
   rg: 14.1.0
   scope: 2024.1.27
+  scope-intercept: 2024.1.27
   starship: 1.17.1
