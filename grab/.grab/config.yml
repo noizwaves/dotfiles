@@ -2,10 +2,10 @@ packages:
   adamctl: 0.0.5
   delta: 0.16.5
   direnv: 2.33.0
-  fzf: 0.46.0
-  grab: 0.0.46
+  fzf: 0.46.1
+  grab: 0.0.47
   lefthook: 1.6.1
   rg: 14.1.0
-  scope: 2024.1.41
-  scope-intercept: 2024.1.41
+  scope: 2024.2.1
+  scope-intercept: 2024.2.1
   starship: 1.17.1
