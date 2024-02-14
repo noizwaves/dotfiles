@@ -6,13 +6,13 @@ spec:
   gitHubRelease:
     org: ethankhall
     repo: scope
-    name: "{{ .Version }}"
+    name: "v{{ .Version }}"
     versionRegex: \d+\.\d+\.\d+
     fileName:
-      darwin,amd64: scope-{{ .Version }}-darwin.tgz
-      darwin,arm64: scope-{{ .Version }}-darwin.tgz
-      linux,amd64: scope-{{ .Version }}-x86_64-unknown-linux-gnu.tgz
-      linux,arm64: scope-{{ .Version }}-aarch64-unknown-linux-gnu.tgz
+      darwin,amd64: dev-scope-x86_64-apple-darwin.tar.xz
+      darwin,arm64: dev-scope-aarch64-apple-darwin.tar.xz
+      linux,amd64: dev-scope-x86_64-unknown-linux-gnu.tar.xz
+      linux,arm64: dev-scope-aarch64-unknown-linux-gnu.tar.xz
   program:
     versionArgs: [--version]
     versionRegex: \d+\.\d+\.\d+
