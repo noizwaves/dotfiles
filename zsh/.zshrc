@@ -136,6 +136,22 @@ function aws-ssm-upload-public-key() {
     --comment "upload public key"
 }
 
+function aws-sso-expiration() {
+  local profile=$1
+
+  local SHA=$(aws configure get sso_start_url --profile $profile | tr -d '\n' | sha1sum | cut -d' ' -f 1)
+
+  local EXPIRES_AT=$(cat ~/.aws/sso/cache/${SHA}.json | jq -r .expiresAt)
+
+  local EXP=$(TZ="UTC" date -j -f "%Y-%m-%dT%H:%M:%SZ" "+%s" "$EXPIRES_AT")
+
+  local DIFF=$(( $EXP - $(TZ=UTC date "+%s") ))
+  local DIFF_HOURS=$(echo "scale=2; $DIFF / 3600" | bc)
+
+  echo "$DIFF seconds until expiry"
+  echo "$DIFF_HOURS hours until expiry"
+}
+
 # kubectl commands
 alias k='kubectl'
 
