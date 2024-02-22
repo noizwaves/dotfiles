@@ -202,6 +202,11 @@ EOF
   echo "go-scratch in $(pwd)"
 }
 
+# misc commands
+function jwt-decode() {
+  sed 's/\./\n/g' <<< $(cut -d. -f1,2 <<< $1) | base64 --decode | jq
+}
+
 export PATH="/usr/local/sbin:$PATH"
 
 # temp: delegate NVM activation to direnv via `use nvm`
