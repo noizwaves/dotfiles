@@ -97,7 +97,13 @@
     "editor.defaultFormatter": "a-h.templ"
   },
   // vim
-  "vim.useCtrlKeys": false,
-  "window.zoomLevel": 1, // prevent stealing C-p and C-f in linux
+  "vim.useCtrlKeys": false, // prevent stealing C-p and C-f in linux
+  "window.zoomLevel": 1,
 
+  // Rust Analyzer
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.renderColons": false,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
 }
