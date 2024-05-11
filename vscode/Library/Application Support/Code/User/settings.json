@@ -31,6 +31,10 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {}
   },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+  },
   //
   // devcontainers
   //
@@ -96,6 +100,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "a-h.templ"
   },
+
   // vim
   "vim.useCtrlKeys": false, // prevent stealing C-p and C-f in linux
   "window.zoomLevel": 1,
@@ -107,4 +112,12 @@
   "rust-analyzer.inlayHints.chainingHints.enable": false,
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
   "rust-analyzer.lens.enable": false,
+
+  // Copilot
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
 }

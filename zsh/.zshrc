@@ -3,12 +3,13 @@
 
 typeset -U path cdpath fpath manpath
 
-# TODO: from nix
-#HELPDIR="/nix/store/s613jv7crzygmj38745a8jnjrlacyh2a-zsh-5.9/share/zsh/$ZSH_VERSION/help"
-
 # Load homebrew early, kubectl for autocompletion
-# Load Gusto env
-[ -f "$HOME/.gusto/init.sh" ] && source "$HOME/.gusto/init.sh"
+if [ -f ~/.gusto/init.sh ]; then
+  # Load Gusto env
+  source ~/.gusto/init.sh
+else
+  [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+fi
 
 autoload -U compinit && compinit
 
