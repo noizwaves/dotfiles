@@ -142,12 +142,55 @@ function aws-ssm-upload-public-key() {
     --comment "upload public key"
 }
 
-function aws-sso-expiration() {
+
+# Gets the expiration for a v2 style `aws sso login` login
+function aws-sso-expiration-v2() {
   local profile=$1
+
+  if [[ -z "$profile" ]]; then
+    echo "Usage: aws-sso-expiration-v2 <profile-name>"
+    return 1
+  fi
 
   local SHA=$(aws configure get sso_start_url --profile $profile | tr -d '\n' | sha1sum | cut -d' ' -f 1)
 
   local EXPIRES_AT=$(cat ~/.aws/sso/cache/${SHA}.json | jq -r .expiresAt)
+
+  local EXP=$(TZ="UTC" date -j -f "%Y-%m-%dT%H:%M:%SZ" "+%s" "$EXPIRES_AT")
+
+  local DIFF=$(( $EXP - $(TZ=UTC date "+%s") ))
+  local DIFF_HOURS=$(echo "scale=2; $DIFF / 3600" | bc)
+
+  echo "$DIFF seconds until expiry"
+  echo "$DIFF_HOURS hours until expiry"
+}
+
+# Gets the expiration for a v3 style `aws sso login --sso-session` login
+function aws-sso-expiration-v3() {
+  local sso_session=$1
+
+  if [[ -z "$sso_session" ]]; then
+    echo "Usage: aws-sso-expiration-v3 <sso-session-name>"
+    return 1
+  fi
+
+  local SHA=$(echo -n $sso_session | sha1sum | cut -d' ' -f 1)
+
+  local EXPIRES_AT=$(cat ~/.aws/sso/cache/${SHA}.json | jq -r .expiresAt)
+
+  local EXP=$(TZ="UTC" date -j -f "%Y-%m-%dT%H:%M:%SZ" "+%s" "$EXPIRES_AT")
+
+  local DIFF=$(( $EXP - $(TZ=UTC date "+%s") ))
+  local DIFF_HOURS=$(echo "scale=2; $DIFF / 3600" | bc)
+
+  echo "$DIFF seconds until expiry"
+  echo "$DIFF_HOURS hours until expiry"
+}
+
+function aws-sso-expiration-for-cache-file() {
+  local filePath=$1
+
+  local EXPIRES_AT=$(cat $filePath | jq -r .registrationExpiresAt)
 
   local EXP=$(TZ="UTC" date -j -f "%Y-%m-%dT%H:%M:%SZ" "+%s" "$EXPIRES_AT")
 
