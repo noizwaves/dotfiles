@@ -30,8 +30,7 @@ brew "antigen"
 brew "direnv"
 brew "starship"
 
-brew "goenv"
-brew "tfenv"
+brew "mise"
 
 brew "syncthing", restart_service: true
 brew "openssh"

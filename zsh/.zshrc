@@ -8,6 +8,7 @@ if [ -f ~/.gusto/init.sh ]; then
   # Load Gusto env
   source ~/.gusto/init.sh
 else
+  eval "$("$(brew --prefix)"/bin/mise activate)"
   [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 fi
 
@@ -212,11 +213,6 @@ alias kuc="kubectl-use-context"
 
 alias kgc="kubectl config get-contexts -o name"
 
-# temp: delegate goenv setup to direnv via `use goenv`
-#if type goenv > /dev/null; then
-#  eval "$(goenv init -)"
-#fi
-
 # Go commands
 function goenv-init() {
   if [ ! -f .go-version ]; then
@@ -268,13 +264,6 @@ function jwt-decode() {
 }
 
 export PATH="/usr/local/sbin:$PATH"
-
-# temp: delegate NVM activation to direnv via `use nvm`
-#if [[ "x${NVM_DIR}" == "x" ]]; then
-#  export NVM_DIR="$HOME/.nvm"
-#  [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-#  [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-#fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
