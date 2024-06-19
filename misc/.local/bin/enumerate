@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# for each argument, print the index and the value
+
+i=1
+while test $# -gt 0; do
+  echo "$i: $1"
+  shift
+  i=$((i+1))
+done
