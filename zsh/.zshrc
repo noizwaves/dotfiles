@@ -211,7 +211,6 @@ EOF
 # Rust commands
 function rust-scratch() {
   DIR=$(mktemp -d -t rust_scratch)
-  echo $DIR
   cd $DIR
   cargo init --bin --name rust_scratch .
 
