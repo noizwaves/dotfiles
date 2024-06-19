@@ -99,7 +99,12 @@ alias paths="echo \$PATH | tr : '\n'"
 alias wakepcadam='wakeonlan B4:2E:99:36:96:0B'
 alias wakepclauren='wakeonlan B4:2E:99:D1:85:3E'
 
-# Commands
+# shell commands
+function reload() {
+  exec zsh
+}
+
+# git commands
 function git-delete-branches() {
   git branch --sort committerdate |
     grep --invert-match '\*' |
@@ -201,6 +206,18 @@ EOF
   code --new-window --goto main.go:6:31 .
 
   echo "go-scratch in $(pwd)"
+}
+
+# Rust commands
+function rust-scratch() {
+  DIR=$(mktemp -d -t rust_scratch)
+  echo $DIR
+  cd $DIR
+  cargo init --bin --name rust_scratch .
+
+  code --new-window --goto src/main.rs:2:31 .
+
+  echo "rust-scratch in $(pwd)"
 }
 
 # misc commands
