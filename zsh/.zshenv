@@ -3,6 +3,9 @@ if [[ -z "$ZSH_SESS_VARS_SOURCED" ]]; then
   export ZSH_SESS_VARS_SOURCED=1
 
   export WORDCHARS=""
+fi
+
+if [[ "$PATH" != *"$HOME/.local/bin"* ]]; then
   export PATH=$PATH:~/.local/bin
 fi
 
