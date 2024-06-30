@@ -18,15 +18,14 @@ tmux_running=$(pgrep tmux)
 # By default, tmux will launch a new interactive shell.
 # On macOS, thanks to `/usr/libexec/path_helper` and `/etc/zprofile`, this will cause the PATH to be re-ordered.
 # The workaround here is to clear out `PATH` and let the shell re-initialize it.
-new_session_cmd="env -u PATH ${SHELL} -l"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected "$new_session_cmd"
+    tmux new-session -s $selected_name -c $selected
     exit 0
 fi
 
 if ! tmux has-session -t $selected_name 2> /dev/null; then
-    tmux -l new-session -ds $selected_name -c $selected "$new_session_cmd"
+    tmux -l new-session -ds $selected_name -c $selected
 fi
 
 if [ -z "${TMUX}" ]; then
