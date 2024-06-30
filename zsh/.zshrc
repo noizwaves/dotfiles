@@ -8,8 +8,8 @@ if [ -f ~/.gusto/init.sh ]; then
   # Load Gusto env
   source ~/.gusto/init.sh
 else
-  eval "$("$(brew --prefix)"/bin/mise activate)"
-  [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+  # specify shell because $SHELL shenanigans on cachyos
+  command -v mise >/dev/null && eval "$(mise activate --shell zsh)"
 fi
 
 autoload -U compinit && compinit
@@ -72,10 +72,14 @@ fi
 
 if type starship > /dev/null && [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   eval "$(starship init zsh)"
+else
+  echo "warning: starship not installed"
 fi
 
 if type direnv > /dev/null; then
   eval "$(direnv hook zsh)"
+else
+  echo "warning: direnv not installed"
 fi
 
 if [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && [ -f "$HOME/.asdf/.enabled" ]; then

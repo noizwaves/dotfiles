@@ -6,6 +6,8 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   ./install-macos.sh
 elif [[ "$REMOTE_CONTAINERS" == 'true' ]] || test -f "/.dockerenv"; then
   ./install-devcontainers.sh
+elif command -v pacman &>/dev/null; then
+  ./install-arch.sh
 else
   ./install-ubuntu.sh
 fi
