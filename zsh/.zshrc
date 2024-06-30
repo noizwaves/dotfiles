@@ -33,8 +33,8 @@ done
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # History
-HISTSIZE="10000"
-SAVEHIST="10000"
+HISTSIZE="100000"
+SAVEHIST="100000"
 
 HISTFILE="$HOME/.zsh_history"
 mkdir -p "$(dirname "$HISTFILE")"
