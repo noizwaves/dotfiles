@@ -19,7 +19,8 @@ sudo pacman -S --noconfirm \
   atuin \
   starship \
   git-delta \
-  ttf-jetbrains-mono-nerd
+  ttf-jetbrains-mono-nerd \
+  dust
 
 if ! command -v cargo; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
