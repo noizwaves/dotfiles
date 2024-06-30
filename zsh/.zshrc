@@ -24,6 +24,7 @@ for sp in /usr/local/share/antigen /opt/homebrew/share/antigen /usr/share/zsh-an
     source $ap
     antigen bundle zsh-users/zsh-autosuggestions
 #    antigen bundle kubectl
+    antigen bundle atuinsh/atuin@main
     antigen apply
     break
   fi
@@ -63,6 +64,11 @@ bindkey "\e\eOC" forward-word # ⌥←
 
 # load custom commands
 [ -f "$HOME/.commands" ] && source "$HOME/.commands"
+
+if type atuin >/dev/null; then
+  # Add `--disable-up-arrow` to disable up arrow integration
+  eval "$(atuin init zsh)"
+fi
 
 if type starship > /dev/null && [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   eval "$(starship init zsh)"
@@ -265,7 +271,8 @@ function jwt-decode() {
 
 export PATH="/usr/local/sbin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Disable fzf integration in favor of atuin
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #zprof
 
