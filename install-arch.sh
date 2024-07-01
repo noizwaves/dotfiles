@@ -3,8 +3,6 @@ set -e
 
 echo "Installing dotfiles for Arch"
 
-# TODO: antigen 
-
 # packages
 sudo pacman -S --noconfirm \
   make \
@@ -21,6 +19,20 @@ sudo pacman -S --noconfirm \
   git-delta \
   ttf-jetbrains-mono-nerd \
   dust
+
+# yay for AUR
+if ! command -v yay; then
+  sudo pacman -S --needed --noconfirm base-devel git
+  git clone https://aur.archlinux.org/yay.git
+  pushd yay
+  makepkg -si --noconfirm
+  popd
+
+  rm -rf yay
+fi
+
+# AUR packages
+yay -S antigen-git
 
 if ! command -v cargo; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
