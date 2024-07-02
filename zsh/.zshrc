@@ -67,7 +67,7 @@ bindkey "\e\eOC" forward-word # ⌥←
 
 if type atuin >/dev/null; then
   # Add `--disable-up-arrow` to disable up arrow integration
-  eval "$(atuin init zsh)"
+  eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
 if type starship > /dev/null && [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
