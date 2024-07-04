@@ -1,5 +1,7 @@
 import = ["~/.config/alacritty/dracula.toml"]
-working_directory = "~"
+
+[env]
+term = "xterm-256color"
 
 [font]
 normal.family = "JetBrainsMono Nerd Font"
