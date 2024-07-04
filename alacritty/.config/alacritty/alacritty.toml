@@ -1,0 +1,7 @@
+import = ["~/.config/alacritty/dracula.toml"]
+working_directory = "~"
+
+[font]
+normal.family = "JetBrainsMono Nerd Font"
+normal.style = "Medium"
+size = 18
