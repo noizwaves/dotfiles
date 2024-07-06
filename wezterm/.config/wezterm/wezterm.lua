@@ -4,6 +4,8 @@ return {
   hide_tab_bar_if_only_one_tab = true,
 
   font_size = 18.0,
+  -- disable ligatures
+  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
 
   window_padding = {
     left = 10,
