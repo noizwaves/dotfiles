@@ -23,7 +23,7 @@ for sp in /usr/local/share/antigen /opt/homebrew/share/antigen /usr/share/zsh-an
   if [ -f $ap ]; then
     source $ap
     antigen bundle zsh-users/zsh-autosuggestions
-#    antigen bundle kubectl
+    #antigen bundle kubectl
 
     # This seems to take priority over regular activation, but only over SSH
     #antigen bundle atuinsh/atuin@main
