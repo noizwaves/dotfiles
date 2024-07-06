@@ -18,7 +18,8 @@ sudo pacman -S --noconfirm \
   starship \
   git-delta \
   ttf-jetbrains-mono-nerd \
-  dust
+  dust \
+  wezterm
 
 # yay for AUR
 if ! command -v yay; then
