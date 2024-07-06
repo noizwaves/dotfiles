@@ -24,7 +24,9 @@ for sp in /usr/local/share/antigen /opt/homebrew/share/antigen /usr/share/zsh-an
     source $ap
     antigen bundle zsh-users/zsh-autosuggestions
 #    antigen bundle kubectl
-    antigen bundle atuinsh/atuin@main
+
+    # This seems to take priority over regular activation, but only over SSH
+    #antigen bundle atuinsh/atuin@main
     antigen apply
     break
   fi
