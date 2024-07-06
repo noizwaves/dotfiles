@@ -11,7 +11,6 @@ brew "git-lfs"
 brew "tmux"
 
 brew "neovim"
-brew "alacritty"
 brew "fzf"
 brew "ripgrep"
 brew "fd"
