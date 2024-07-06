@@ -19,7 +19,9 @@ sudo pacman -S --noconfirm \
   git-delta \
   ttf-jetbrains-mono-nerd \
   dust \
-  wezterm
+  wezterm \
+  obsidian \
+  syncthing
 
 # yay for AUR
 if ! command -v yay; then
@@ -33,7 +35,9 @@ if ! command -v yay; then
 fi
 
 # AUR packages
-yay -S antigen-git
+yay -S --needed --noconfirm \
+  antigen-git \
+  visual-studio-code-bin
 
 if ! command -v cargo; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -69,6 +73,6 @@ fi
 # TODO: neovim?
 
 # VS Code is installed and running in a GUI (i.e. not a remote connection)
-# if (command -v code &> /dev/null) && (type Xorg &> /dev/null); then
-#   make install-vscode-extensions
-# fi
+if (command -v code &> /dev/null) && (type Xorg &> /dev/null); then
+  make install-vscode-extensions
+fi
