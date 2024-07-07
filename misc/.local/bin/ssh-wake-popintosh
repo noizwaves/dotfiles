@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Wake up popintosh via upsnap
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# if /dev/tty is available, redirect all output to it
+# https://stackoverflow.com/questions/69075612/cross-platform-method-to-detect-whether-dev-tty-is-available-functional
+if sh -c ": >/dev/tty" >/dev/null 2>/dev/null; then
+  exec 1>/dev/tty
+  exec 2>/dev/tty
+fi
+
+if ! [[ -f "${DIR}/ssh-wake-popintosh.env" ]]; then
+  echo "Missing ${DIR}/ssh-wake-popintosh.env"
+  exit 1
+fi
+
+source "${DIR}/ssh-wake-popintosh.env"
+
+UPSNAP_HOST='https://upsnap.noizwaves.cloud'
+POPINTOSH_ID='24eg45kkq869zfs'
+
+function get-status() {
+  curl -X GET "${UPSNAP_HOST}/api/collections/devices/records/${POPINTOSH_ID}" \
+    --header 'Content-Type: application/json' \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --silent \
+    | jq --raw-output '.status'
+}
+
+function wake() {
+  curl -X GET "${UPSNAP_HOST}/api/upsnap/wake/${POPINTOSH_ID}" \
+    --header 'Content-Type: application/json' \
+    --header "Authorization: Bearer ${TOKEN}" \
+    --silent \
+    | jq --raw-output '.status'
+}
+
+function main() {
+  local STATUS
+  STATUS=$(get-status)
+  if [[ $STATUS == 'offline' ]]; then
+    echo "Waking up popintosh..."
+    STATUS=$(wake)
+
+    while [[ $STATUS == 'pending' ]]; do
+      echo "Waiting for popintosh to wake up"
+      sleep 1
+      STATUS=$(get-status)
+    done
+
+    if [[ $STATUS == 'online' ]]; then
+      echo "popintosh is now online"
+    else
+      echo "Failed to wake up popintosh, status is now: $STATUS"
+    fi
+  elif [[ $STATUS == 'pending' ]]; then
+    echo "Already trying to start popintosh"
+  else
+    echo "popintosh is already online"
+  fi
+}
+
+main

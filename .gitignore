@@ -1,2 +1,4 @@
 /nixpkgs/home.nix
 /.vale_styles
+
+/misc/.local/bin/*.env
