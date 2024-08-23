@@ -142,7 +142,21 @@ function aws-use-profile() {
 }
 alias aup="aws-use-profile"
 
-alias aws-ssm-to="aws ssm start-session --target"
+alias aws-ssm-to="AWS_PROFILE=dex-admin-gusto-main aws ssm start-session --target"
+
+function aws-ssm-to-asg {
+    local asg;
+    asg="${1:-buildkite_dev_adam}";
+    local instance_id;
+    instance_id="$(aws-ec2-get-instance-ids-asg "${asg}" | jq -r '. | first')";
+    aws-ssm-to "${instance_id}"
+}
+
+function aws-ec2-get-instance-ids-asg {
+    local asg;
+    asg="${1}";
+    aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names "${asg}" --output json --query="AutoScalingGroups[*].Instances[].InstanceId"
+}
 
 function aws-ssm-upload-public-key() {
   instance_id=$1
