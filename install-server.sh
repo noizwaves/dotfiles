@@ -19,7 +19,7 @@ function farch() {
 
 export DEBIAN_FRONTEND=noninteractive
 
-echo "Installing dotfiles for devcontainers"
+echo "Installing dotfiles for server"
 
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
