@@ -2,13 +2,13 @@ all:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --restow */
 
 all-devcontainers:
-	stow --target=$$HOME --restow git starship zsh dotlocalbin
+	stow --target=$$HOME --restow git starship zsh
 
 all-server:
-	stow --target=$$HOME --restow git starship tmux zsh ssh dotlocalbin
+	stow --target=$$HOME --restow git starship tmux zsh ssh
 
 all-devops:
-	stow --target=$$HOME --restow git starship tmux zsh ssh dotlocalbin
+	stow --target=$$HOME --restow git starship tmux zsh ssh
 
 delete:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete */
