@@ -4,6 +4,9 @@ all:
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh dotlocalbin
 
+all-server:
+	stow --target=$$HOME --restow git starship tmux zsh ssh dotlocalbin
+
 all-devops:
 	stow --target=$$HOME --restow git starship tmux zsh ssh dotlocalbin
 
