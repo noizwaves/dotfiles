@@ -100,6 +100,7 @@ alias gcan='git commit --amend --no-edit'
 alias gcm='git commit -m'
 alias gp='git pull'
 alias gs='git status'
+alias glp=git-log-pretty
 
 alias d='devspace'
 alias dv='devspace dev'
@@ -134,6 +135,20 @@ function git-optimize() {
   git remote prune origin
   # git repack -A -d -f
   git gc --prune=now --aggressive
+}
+
+# from https://github.com/mrnugget/dotfiles/blob/c4624ed521d539856bcf764f04a295bb19093566/githelpers#L11-L15
+# from https://registerspill.thorstenball.com/p/how-i-use-git
+function git-log-pretty() {
+  HASH="%C(always,yellow)%h%C(always,reset)"
+  RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
+  AUTHOR="%C(always,bold blue)%an%C(always,reset)"
+  REFS="%C(always,red)%d%C(always,reset)"
+  SUBJECT="%s"
+
+  FORMAT="$HASH $RELATIVE_TIME $AUTHOR $REFS $SUBJECT"
+
+  git log --graph --pretty="tformat:$FORMAT" $*
 }
 
 # AWS Commands
