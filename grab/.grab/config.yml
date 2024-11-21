@@ -1,5 +1,5 @@
 packages:
-  adamctl: 0.0.5
+  adamctl: 0.0.6
   delta: 0.16.5
   direnv: 2.33.0
   fzf: 0.46.1
