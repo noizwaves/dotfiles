@@ -28,21 +28,12 @@ if ! command -v aptfile &> /dev/null; then
   sudo chmod +x /usr/local/bin/aptfile
 fi
 
-if ! command -v starship &> /dev/null; then
-  echo "Installing Starship..."
-  curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
-fi
-
-# manually install because "package_from_url" doesn't understand git-delta missing package
-GIT_DELTA_VERSION="0.13.0"
-if ! command -v delta &> /dev/null; then
-  echo "Installing git-delta..."
-  curl --silent -L -o /tmp/git-delta.deb "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_$(farch amd64 arm64).deb"
-  sudo dpkg -i /tmp/git-delta.deb
-  rm /tmp/git-delta.deb
-fi
-
 sudo aptfile aptfile-common
+
+if ! command -v grab &>/dev/null; then
+  curl --silent https://raw.githubusercontent.com/noizwaves/grab/main/install.sh | bash
+fi
+grab --config-path grab/.grab install
 
 # ZSH me pls
 sudo usermod --shell /bin/zsh $(whoami)

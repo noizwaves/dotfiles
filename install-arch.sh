@@ -47,12 +47,10 @@ if ! command -v mise; then
   curl --proto '=https' --tlsv1.2 -sSf https://mise.run | sh
 fi
 
-# TODO: grab
-# if ! command -v grab &> /dev/null; then
-#   echo "grab is missing; install manually"
-#   exit 1
-# fi
-# grab --config-path grab/.grab install
+if ! command -v grab &>/dev/null; then
+  curl --silent https://raw.githubusercontent.com/noizwaves/grab/main/install.sh | bash
+fi
+grab --config-path grab/.grab install
 
 # remove any defaults
 rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config/starship.toml $HOME/.zshenv $HOME/.zshrc

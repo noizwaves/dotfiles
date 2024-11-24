@@ -47,10 +47,8 @@ if [ "$(arch)" == "x86_64" ]; then
   sudo aptfile aptfile-amd64
 fi
 
-# TODO: bootstrap grab if missing
-if ! command -v grab &> /dev/null; then
-  echo "grab is missing; install manually"
-  exit 1
+if ! command -v grab &>/dev/null; then
+  curl --silent https://raw.githubusercontent.com/noizwaves/grab/main/install.sh | bash
 fi
 grab --config-path grab/.grab install
 
