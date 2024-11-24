@@ -95,6 +95,9 @@
     ],
     "editor.semanticHighlighting.enabled": true
   },
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "mise",
+  },
   // templ
   "[templ]": {
     "editor.formatOnSave": true,
@@ -121,4 +124,5 @@
     "scminput": false
   },
   "github.copilot.editor.enableAutoCompletions": true,
+  "update.showReleaseNotes": false,
 }
