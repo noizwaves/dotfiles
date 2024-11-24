@@ -3,7 +3,7 @@ packages:
   delta: 0.18.2
   direnv: 2.35.0
   fzf: 0.56.3
-  grab: 0.0.48
+  grab: 0.0.50
   lefthook: 1.8.4
   rg: 14.1.1
   starship: 1.21.1
