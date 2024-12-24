@@ -12,7 +12,7 @@
 
 # env var
 /.env
-/.envrc
+.envrc
 /.direnv/
 
 /.nvmrc
