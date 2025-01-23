@@ -1,2 +1,4 @@
 theme = Dracula
 font-size = 16
+
+config-file = ?local-config

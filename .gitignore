@@ -2,3 +2,5 @@
 /.vale_styles
 
 /misc/.local/bin/*.env
+
+/ghostty/.config/ghostty/local-config
