@@ -22,3 +22,6 @@
 /devbox.json
 /devbox.lock
 /devbox.d/
+
+# Mise
+.mise.local.toml
