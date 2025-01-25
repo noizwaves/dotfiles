@@ -1,4 +1,8 @@
 theme = Dracula
+
 font-size = 16
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 config-file = ?local-config
