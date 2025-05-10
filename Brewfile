@@ -29,6 +29,7 @@ cask "font-jetbrains-mono-nerd-font"
 brew "antigen"
 brew "direnv"
 brew "starship"
+brew "atuin"
 
 brew "mise"
 
