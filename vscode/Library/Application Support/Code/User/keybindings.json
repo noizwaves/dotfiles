@@ -34,5 +34,9 @@
     {
         "key": "ctrl+alt+cmd+t",
         "command": "go.toggle.test.file"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
     }
 ]
