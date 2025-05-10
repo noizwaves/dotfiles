@@ -42,3 +42,4 @@ make install-vscode-extensions
 osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
 
 # TODO: Configure Caps Lock as Escape
+# TODO: Configure Use F1, F2, etc as standard function keys
