@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+git checkout main
+
+git pull
+
+if [ -f "bin/setup" ]; then
+  bin/setup
+else
+  echo "Warning: No bin/setup script found"
+fi
