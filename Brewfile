@@ -18,7 +18,7 @@ brew "tree-sitter"
 brew "bat"
 brew "tlrc"
 
-cask "iterm2"
+cask "ghostty"
 cask "rectangle"
 cask "keycastr"
 cask "flycut"
