@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 echo "Installing dotfiles for macOS"
 
@@ -8,7 +9,7 @@ if [[ $(hostname) != "adam-neumann-"* ]]; then
   make brew-personal
 fi
 
-$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish &> /dev/null
+$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish --no-zsh &> /dev/null
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "Installing tmux plugin manager..."

@@ -14,10 +14,10 @@ delete:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete */
 
 brew:
-	brew bundle --no-lock
+	brew bundle
 
 brew-personal:
-	brew bundle --file personal.Brewfile --no-lock
+	brew bundle --file personal.Brewfile
 
 install-vscode-extensions:
 	cat ~/Library/Application\ Support/Code/User/extensions.txt | xargs -L 1 code --install-extension

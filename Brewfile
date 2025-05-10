@@ -24,7 +24,6 @@ cask "keycastr"
 cask "flycut"
 cask "stats"
 
-tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono-nerd-font"
 
 brew "antigen"
