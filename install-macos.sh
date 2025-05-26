@@ -43,3 +43,7 @@ osascript -e 'tell application "System Events" to tell appearance preferences to
 
 # TODO: Configure Caps Lock as Escape
 # TODO: Configure Use F1, F2, etc as standard function keys
+# TODO: Configure Finder to show home directory by default
+
+mkdir ~/Screenshots
+defaults write com.apple.screencapture location "$HOME/Screenshots"
