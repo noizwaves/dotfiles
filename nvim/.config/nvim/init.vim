@@ -38,7 +38,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'ray-x/cmp-treesitter'
 
-Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'folke/trouble.nvim'
 
 Plug 'tpope/vim-fugitive'
@@ -225,7 +225,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>j', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig').rnix.setup { on_attach = on_attach, capabilities = capabilities }
 if (os.getenv('NEOVIM_LSP_SORBET') == 'true') then
@@ -256,10 +257,10 @@ require('nvim-tree').setup {
 }
 EOF
 
-lua << EOF
-require("null-ls").setup({
-  sources = {
-    require("null-ls").builtins.diagnostics.vale,
-  },
-})
-EOF
+" lua << EOF
+" require("null-ls").setup({
+"  sources = {
+"     require("null-ls").builtins.diagnostics.vale,
+"   },
+" })
+" EOF
