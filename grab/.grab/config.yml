@@ -1,9 +1,9 @@
 packages:
   adamctl: 0.0.9
   delta: 0.18.2
-  direnv: 2.35.0
-  fzf: 0.56.3
+  direnv: 2.36.0
+  fzf: 0.62.0
   grab: 0.0.50
-  lefthook: 1.8.4
+  lefthook: 1.11.14
   rg: 14.1.1
-  starship: 1.21.1
+  starship: 1.23.0
