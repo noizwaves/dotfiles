@@ -106,6 +106,7 @@ alias gp='git pull'
 alias gs='git status'
 alias glp=git-log-pretty
 alias gub='git-use-branch'
+alias gdp='gdev pull'
 
 alias d='devspace'
 alias dv='devspace dev'
@@ -310,4 +311,3 @@ export PATH="/usr/local/sbin:$PATH"
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #zprof
-
