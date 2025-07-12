@@ -1,6 +1,7 @@
 packages:
   adamctl: 0.0.9
   delta: 0.18.2
+  diffsitter: 0.9.0
   direnv: 2.37.0
   fzf: 0.64.0
   grab: 0.0.53
