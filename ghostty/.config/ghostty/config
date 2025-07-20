@@ -6,3 +6,4 @@ font-feature = -liga
 font-feature = -dlig
 
 config-file = ?local-config
+keybind = shift+enter=text:\n
