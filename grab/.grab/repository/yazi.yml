@@ -1,0 +1,23 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: yazi
+spec:
+  gitHubRelease:
+    org: sxyazi
+    repo: yazi
+    name: "v{{ .Version }}"
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: "yazi-x86_64-apple-darwin.zip"
+      darwin,arm64: "yazi-aarch64-apple-darwin.zip"
+      linux,amd64: "yazi-x86_64-unknown-linux-gnu.tar.gz"
+      linux,arm64: "yazi-aarch64-unknown-linux-gnu.tar.gz"
+    embeddedBinaryPath:
+      darwin,amd64: "yazi-x86_64-apple-darwin/yazi"
+      darwin,arm64: "yazi-aarch64-apple-darwin/yazi"
+      linux,amd64: "yazi-x86_64-unknown-linux-gnu/yazi"
+      linux,arm64: "yazi-aarch64-unknown-linux-gnu/yazi"
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
