@@ -4,7 +4,7 @@ packages:
   diffsitter: 0.9.0
   direnv: 2.37.1
   fzf: 0.64.0
-  grab: 0.0.55
+  grab: 0.0.58
   lefthook: 1.12.2
   rg: 14.1.1
   starship: 1.23.0
