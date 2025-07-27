@@ -61,7 +61,7 @@
   "terminal.integrated.minimumContrastRatio": 1,
   // Go settings
   "go.lintOnSave": "workspace",
-  "go.lintTool": "golangci-lint",
+  "go.lintTool": "golangci-lint-v2",
   "go.toolsManagement.autoUpdate": true,
   "gopls": {
     "ui.navigation.symbolScope": "workspace",
