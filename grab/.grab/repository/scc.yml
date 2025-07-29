@@ -1,0 +1,18 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: scc
+spec:
+  gitHubRelease:
+    org: boyter
+    repo: scc
+    name: v{{ .Version }}
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: scc_Darwin_x86_64.tar.gz
+      darwin,arm64: scc_Darwin_arm64.tar.gz
+      linux,amd64: scc_Linux_x86_64.tar.gz
+      linux,arm64: scc_Linux_arm64.tar.gz
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
