@@ -6,29 +6,30 @@
 	helper = osxkeychain
 
 [user]
-    name = Adam Neumann
-    email = 1007983+noizwaves@users.noreply.github.com
+	name = Adam Neumann
+	email = 1007983+noizwaves@users.noreply.github.com
+	signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
-    pager = delta
-    excludesfile = ~/.gitignore
+	pager = delta
+	excludesfile = ~/.gitignore
 	fsmonitor = true
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	navigate = true  # use n and N to move between diff sections
+	light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 
 [merge]
-    conflictstyle = diff3
+	conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+	colorMoved = default
 
 [includeIf "hasconfig:remote.*.url:git@github.com:Gusto/**"]
-    path = .gitconfig_inc_gusto
+	path = .gitconfig_inc_gusto
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -37,3 +38,7 @@
 	required = true
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
