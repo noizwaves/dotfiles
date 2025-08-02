@@ -1,0 +1,23 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: crush
+spec:
+  gitHubRelease:
+    org: charmbracelet
+    repo: crush
+    name: v{{ .Version }}
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: crush_{{ .Version }}_Darwin_x86_64.tar.gz
+      darwin,arm64: crush_{{ .Version }}_Darwin_arm64.tar.gz
+      linux,amd64: crush_{{ .Version }}_Linux_x86_64.tar.gz
+      linux,arm64: crush_{{ .Version }}_Linux_arm64.tar.gz
+    embeddedBinaryPath:
+      darwin,amd64: crush_{{ .Version }}_Darwin_x86_64/crush
+      darwin,arm64: crush_{{ .Version }}_Darwin_arm64/crush
+      linux,amd64: crush_{{ .Version }}_Linux_x86_64/crush
+      linux,arm64: crush_{{ .Version }}_Linux_arm64/crush
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
