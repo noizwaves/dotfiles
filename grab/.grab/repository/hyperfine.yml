@@ -1,0 +1,23 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: hyperfine
+spec:
+  gitHubRelease:
+    org: sharkdp
+    repo: hyperfine
+    name: v{{ .Version }}
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: hyperfine-v{{ .Version }}-x86_64-apple-darwin.tar.gz
+      darwin,arm64: hyperfine-v{{ .Version }}-aarch64-apple-darwin.tar.gz
+      linux,amd64: hyperfine-v{{ .Version }}-x86_64-unknown-linux-gnu.tar.gz
+      linux,arm64: hyperfine-v{{ .Version }}-aarch64-unknown-linux-gnu.tar.gz
+    embeddedBinaryPath:
+      darwin,amd64: hyperfine-v{{ .Version }}-x86_64-apple-darwin/hyperfine
+      darwin,arm64: hyperfine-v{{ .Version }}-aarch64-apple-darwin/hyperfine
+      linux,amd64: hyperfine-v{{ .Version }}-x86_64-unknown-linux-gnu/hyperfine
+      linux,arm64: hyperfine-v{{ .Version }}-aarch64-unknown-linux-gnu/hyperfine
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
