@@ -163,7 +163,10 @@ function aws-use-profile() {
 }
 alias aup="aws-use-profile"
 
-alias aws-ssm-to="AWS_PROFILE=dex-admin-gusto-main aws ssm start-session --target"
+function aws-ssm-to() {
+  local instance_id=$1
+  aws ssm start-session --target $instance_id
+}
 
 function aws-ssm-to-asg {
     local asg;
