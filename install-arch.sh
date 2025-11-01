@@ -10,13 +10,8 @@ sudo pacman -S --noconfirm \
   tmux \
   wget \
   zsh \
-  fzf \
   tree \
-  direnv \
-  ripgrep \
   atuin \
-  starship \
-  git-delta \
   ttf-jetbrains-mono-nerd \
   dust \
   wezterm \
@@ -50,7 +45,7 @@ fi
 if ! command -v grab &>/dev/null; then
   curl --silent https://raw.githubusercontent.com/noizwaves/grab/main/install.sh | bash
 fi
-grab --config-path grab/.grab install
+$HOME/.local/bin/grab --config-path grab/.grab install
 
 # remove any defaults
 rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config/starship.toml $HOME/.zshenv $HOME/.zshrc

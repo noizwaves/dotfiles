@@ -13,6 +13,11 @@ spec:
       darwin,arm64: delta-{{ .Version }}-aarch64-apple-darwin.tar.gz
       linux,amd64: delta-{{ .Version }}-x86_64-unknown-linux-gnu.tar.gz
       linux,arm64: delta-{{ .Version }}-aarch64-unknown-linux-gnu.tar.gz
+    embeddedBinaryPath:
+      darwin,amd64: "delta-{{ .Version }}-x86_64-apple-darwin/delta"
+      darwin,arm64: "delta-{{ .Version }}-aarch64-apple-darwin/delta"
+      linux,amd64: "delta-{{ .Version }}-x86_64-unknown-linux-gnu/delta"
+      linux,arm64: "delta-{{ .Version }}-aarch64-unknown-linux-gnu/delta"
   program:
     versionArgs: [--version]
     versionRegex: \d+\.\d+\.\d+

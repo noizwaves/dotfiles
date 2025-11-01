@@ -13,6 +13,11 @@ spec:
       darwin,arm64: ripgrep-{{ .Version }}-aarch64-apple-darwin.tar.gz
       linux,amd64: ripgrep-{{ .Version }}-x86_64-unknown-linux-musl.tar.gz
       linux,arm64: ripgrep-{{ .Version }}-aarch64-unknown-linux-gnu.tar.gz
+    embeddedBinaryPath:
+      darwin,amd64: "ripgrep-{{ .Version }}-x86_64-apple-darwin/rg"
+      darwin,arm64: "ripgrep-{{ .Version }}-aarch64-apple-darwin/rg"
+      linux,amd64: "ripgrep-{{ .Version }}-x86_64-unknown-linux-musl/rg"
+      linux,arm64: "ripgrep-{{ .Version }}-aarch64-unknown-linux-gnu/rg"
   program:
     versionArgs: [--version]
     versionRegex: \d+\.\d+\.\d+
