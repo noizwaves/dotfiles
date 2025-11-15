@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Usage: bmount /dev/sdd bigbackup
+
+set -euo pipefail
+
+DEVICE="$1"
+LABEL="$2"
+
+sudo mkdir -p "/media/$LABEL"
+sudo cryptsetup luksOpen "$DEVICE" "$LABEL"
+sudo mount "/dev/mapper/$LABEL" "/media/$LABEL"
