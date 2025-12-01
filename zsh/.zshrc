@@ -350,6 +350,10 @@ function claude() {
   mise exec -- claude "$@"
 }
 
+function claude-done() {
+  $ terminal-notifier -title "Claude Code" -message "Claude has finished working"
+}
+
 # Disable fzf integration in favor of atuin
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
