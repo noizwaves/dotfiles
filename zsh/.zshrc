@@ -314,6 +314,30 @@ function claude-done() {
   $ terminal-notifier -title "Claude Code" -message "Claude has finished working"
 }
 
+function crush() {
+  local AWS_PROFILE="bedrock-users"
+  export AWS_REGION="us-west-2"
+
+  # Check if AWS SSO is logged in for given profile
+  if ! aws sts get-caller-identity >/dev/null 2>&1; then
+    echo "AWS SSO session not found. Logging in..."
+    aws sso login
+    if [ $? -ne 0 ]; then
+      echo "AWS SSO login failed"
+      return 1
+    fi
+  fi
+
+  # Export credentials for the profile and eval directly
+  eval "$(aws configure export-credentials --profile $AWS_PROFILE --format env)"
+  if [ $? -ne 0 ]; then
+    echo "Failed to export AWS credentials"
+    return 1
+  fi
+
+  $HOME/.local/bin/crush "$@"
+}
+
 # Disable fzf integration in favor of atuin
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
