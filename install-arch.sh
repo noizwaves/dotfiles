@@ -3,7 +3,7 @@ set -e
 
 echo "Installing dotfiles for Arch"
 
-# packages
+# tools
 sudo pacman -S --noconfirm \
   make \
   stow \
@@ -14,9 +14,10 @@ sudo pacman -S --noconfirm \
   atuin \
   ttf-jetbrains-mono-nerd \
   dust \
-  wezterm \
-  obsidian \
-  syncthing
+  syncthing \
+  ghostty \
+  bitwarden \
+  obsidian
 
 # yay for AUR
 if ! command -v yay; then
@@ -32,7 +33,8 @@ fi
 # AUR packages
 yay -S --needed --noconfirm \
   antigen-git \
-  visual-studio-code-bin
+  visual-studio-code-bin \
+  plexamp-bin
 
 if ! command -v cargo; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
