@@ -310,46 +310,6 @@ function jwt-decode() {
 
 export PATH="/usr/local/sbin:$PATH"
 
-# Task Master aliases added on 7/22/2025
-alias tm='task-master'
-alias taskmaster='task-master'
-
-# Setup Claude Code for Gusto
-function gusto-claude-setup() {
-  if !mise exec -- claude --version >&/dev/null; then
-    echo "Installing Claude Code"
-    npm install -g @anthropic-ai/claude-code
-  fi
-
-  if !aws sts get-caller-identity >&/dev/null; then
-    echo "Logging into AWS"
-    aws sso login
-  fi
-
-  eval "$(aws configure export-credentials --format env)"
-
-  export AWS_REGION=us-west-2
-  export CLAUDE_CODE_USE_BEDROCK=1
-
-  # Claude Sonnet 4
-  export ANTHROPIC_MODEL="us.anthropic.claude-sonnet-4-20250514-v1:0"
-
-  # Claude Sonnet 3.7
-  # export ANTHROPIC_MODEL="us.anthropic.claude-3-7-sonnet-20250219-v1:0"
-}
-
-# Override `claude` to switch between work and home Claude subscriptions
-function claude() {
-  if [ "${CLAUDE_USE_PERSONAL:-false}" != "true" ]; then
-    echo "Using Claude Code with Gusto AWS Bedrock model"
-    gusto-claude-setup
-  else
-    echo "Using personal Claude Code subscription"
-  fi
-
-  mise exec -- claude "$@"
-}
-
 function claude-done() {
   $ terminal-notifier -title "Claude Code" -message "Claude has finished working"
 }
