@@ -25,3 +25,7 @@
 
 # Mise
 .mise.local.toml
+
+# AI tools
+.sidecar/
+.todos/
