@@ -12,4 +12,5 @@ packages:
   scc: 3.6.0
   sidecar: 0.71.1
   starship: 1.24.2
+  td: 0.34.0
   yazi: 26.1.22
