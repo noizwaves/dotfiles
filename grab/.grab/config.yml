@@ -10,5 +10,6 @@ packages:
   lefthook: 2.1.1
   rg: 15.1.0
   scc: 3.6.0
+  sidecar: 0.71.1
   starship: 1.24.2
   yazi: 26.1.22

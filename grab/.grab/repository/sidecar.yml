@@ -1,0 +1,18 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: sidecar
+spec:
+  gitHubRelease:
+    org: marcus
+    repo: sidecar
+    name: v{{ .Version }}
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: sidecar_{{ .Version }}_darwin_amd64.tar.gz
+      darwin,arm64: sidecar_{{ .Version }}_darwin_arm64.tar.gz
+      linux,amd64: sidecar_{{ .Version }}_linux_amd64.tar.gz
+      linux,arm64: sidecar_{{ .Version }}_linux_arm64.tar.gz
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+
