@@ -303,6 +303,15 @@ function rust-scratch() {
   echo "rust-scratch in $(pwd)"
 }
 
+# Claude commands
+function claude-scratch() {
+  DIR=$(mktemp -d -t claude_scratch.XXXXXXX)
+  cd $DIR
+  echo "claude-scratch in $(pwd)"
+
+  claude
+}
+
 # misc commands
 function jwt-decode() {
   sed 's/\./\n/g' <<< $(cut -d. -f1,2 <<< $1) | base64 --decode | jq
