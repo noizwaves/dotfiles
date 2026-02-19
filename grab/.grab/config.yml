@@ -9,6 +9,7 @@ packages:
   grab: 0.0.69
   hyperfine: 1.20.0
   lefthook: 2.1.1
+  pup: 0.18.0
   rg: 15.1.0
   scc: 3.6.0
   sidecar: 0.71.1
