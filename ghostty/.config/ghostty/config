@@ -7,3 +7,4 @@ font-feature = -dlig
 
 config-file = ?local-config
 keybind = shift+enter=text:\n
+window-inherit-working-directory = false
