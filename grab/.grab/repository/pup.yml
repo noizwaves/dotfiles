@@ -9,9 +9,9 @@ spec:
     name: v{{ .Version }}
     versionRegex: \d+\.\d+\.\d+
     fileName:
-      darwin,amd64: pup_{{ .Version }}_Darwin_amd64.tar.gz
+      darwin,amd64: pup_{{ .Version }}_Darwin_x86_64.tar.gz
       darwin,arm64: pup_{{ .Version }}_Darwin_arm64.tar.gz
-      linux,amd64: pup_{{ .Version }}_Linux_amd64.tar.gz
+      linux,amd64: pup_{{ .Version }}_Linux_x86_64.tar.gz
       linux,arm64: pup_{{ .Version }}_Linux_arm64.tar.gz
   program:
     versionArgs: [--version]
