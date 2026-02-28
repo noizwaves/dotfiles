@@ -304,6 +304,8 @@ function rust-scratch() {
 }
 
 # Claude commands
+alias c="claude"
+
 function claude-scratch() {
   DIR=$(mktemp -d -t claude_scratch.XXXXXXX)
   cd $DIR
