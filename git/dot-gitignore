@@ -32,3 +32,4 @@ mise.local.toml
 .todos/
 .mcp.json
 CLAUDE.local.md
+.claude/settings.local.json

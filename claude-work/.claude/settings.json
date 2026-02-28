@@ -22,14 +22,11 @@
       "Bash(git commit:*)",
       "Read(~/Screenshots/*)",
       "Read(~/.claude/*)",
-      "Read(.claude/*)",
-      "mcp__plugin_playwright_playwright__browser_navigate",
-      "mcp__plugin_playwright_playwright__browser_snapshot",
-      "mcp__plugin_playwright_playwright__browser_evaluate",
-      "mcp__plugin_playwright_playwright__browser_close"
+      "Read(.claude/*)"
     ],
     "defaultMode": "plan"
   },
+  "outputStyle": "Explanatory",
   "enabledPlugins": {
     "playground@claude-plugins-official": true
   },
