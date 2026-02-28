@@ -16,6 +16,7 @@
     "allow": [
       "Bash(head:*)",
       "Bash(cat:*)",
+      "Bash(ls:*)",
       "WebFetch(domain:docs.github.com)",
       "Bash(git add:*)",
       "Bash(git commit:*)",

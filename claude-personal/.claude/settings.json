@@ -4,6 +4,7 @@
     "allow": [
       "Bash(head:*)",
       "Bash(cat:*)",
+      "Bash(ls:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Read(~/.claude/*)",
