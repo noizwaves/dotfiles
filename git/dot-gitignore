@@ -25,7 +25,10 @@
 
 # Mise
 .mise.local.toml
+mise.local.toml
 
 # AI tools
 .sidecar/
 .todos/
+.mcp.json
+CLAUDE.local.md
