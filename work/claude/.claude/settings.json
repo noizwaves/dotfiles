@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "awsAuthRefresh": "aws sso login --profile $AWS_PROFILE",
+  "env": {
+    "AWS_REGION": "us-west-2",
+    "AWS_PROFILE": "bedrock-users",
+    "CLAUDE_CODE_USE_BEDROCK": "true",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-opus-4-6-v1",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-6-v1",
+    "ANTHROPIC_SMALL_FAST_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-6-v1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(head:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:docs.github.com)",
+      "Bash(python3:*)",
+      "Bash(open:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Read(~/Screenshots/*)",
+      "Read(~/.claude/*)",
+      "Read(.claude/*)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_close"
+    ],
+    "defaultMode": "plan"
+  },
+  "enabledPlugins": {
+    "playground@claude-plugins-official": true
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754056851748
+  },
+  "effortLevel": "medium",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.local/bin/starship-claude"
+  }
+}

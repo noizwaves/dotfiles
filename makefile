@@ -1,5 +1,8 @@
 all:
-	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --restow */
+	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --ignore=personal --ignore=work --target=$$HOME --restow */
+
+all-work:
+	stow --target=$$HOME --restow --dir=work claude
 
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
@@ -11,7 +14,7 @@ all-devops:
 	stow --target=$$HOME --restow git starship tmux zsh ssh
 
 delete:
-	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete */
+	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --ignore=personal --ignore=work --target=$$HOME --delete */
 
 brew:
 	brew bundle
