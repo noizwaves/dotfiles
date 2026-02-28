@@ -17,8 +17,6 @@
       "Bash(head:*)",
       "Bash(cat:*)",
       "WebFetch(domain:docs.github.com)",
-      "Bash(python3:*)",
-      "Bash(open:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Read(~/Screenshots/*)",

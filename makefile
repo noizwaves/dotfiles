@@ -4,6 +4,9 @@ all:
 all-work:
 	stow --target=$$HOME --restow --dir=work claude
 
+all-personal:
+	stow --target=$$HOME --restow --dir=personal claude
+
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
 
