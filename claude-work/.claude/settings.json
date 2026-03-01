@@ -22,7 +22,8 @@
       "Bash(git commit:*)",
       "Read(~/Screenshots/*)",
       "Read(~/.claude/*)",
-      "Read(.claude/*)"
+      "Read(.claude/*)",
+      "Bash(gh pr view:*)"
     ],
     "defaultMode": "plan"
   },
