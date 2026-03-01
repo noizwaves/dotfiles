@@ -12,11 +12,12 @@
     ],
     "defaultMode": "plan"
   },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
+  },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.local/bin/starship-claude"
-  }
+  "model": "opus"
 }

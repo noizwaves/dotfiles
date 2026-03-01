@@ -36,6 +36,6 @@
   "effortLevel": "medium",
   "statusLine": {
     "type": "command",
-    "command": "~/.local/bin/starship-claude"
+    "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
   }
 }
