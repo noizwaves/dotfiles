@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: rgh <search-string>" >&2
+  exit 1
+fi
+
+results=$(gh search code "$1" --owner Gusto --json repository -L 1000)
+
+if [[ $(echo "$results" | jq 'length') -eq 1000 ]]; then
+  echo "Warning: results capped at 1000 — output may be incomplete" >&2
+fi
+
+repos=$(echo "$results" | jq -r '[.[].repository.nameWithOwner] | unique | .[]')
+
+# Filter out archived repos
+for repo in $repos; do
+  if [[ $(gh repo view "$repo" --json isArchived -q '.isArchived') == "false" ]]; then
+    echo "$repo"
+  fi
+done
