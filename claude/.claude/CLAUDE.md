@@ -7,6 +7,9 @@
 ## Planning
 - Always ask clarifying questions before finalizing a plan
 
+## Git
+- Do not use command substitution (`$(...)`) in git commit messages — pass the message directly with `-m`
+
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*
 - Never duplicate variable or function names in comments
