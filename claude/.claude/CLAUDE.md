@@ -9,6 +9,10 @@
 
 ## Git
 - Do not use command substitution (`$(...)`) in git commit messages — pass the message directly with `-m`
+- Always prefix new git branches with `an--` (e.g., `an--feature-name`)
+- Use semantic commit messages with the format `type: message` (e.g., `feat: Add user auth`, `fix: Prevent duplicate submissions`)
+- Commit messages should be succinct and explain *why* the change was made or what problem was fixed — not describe the diff
+- For large diffs, a very high-level summary is acceptable
 
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*

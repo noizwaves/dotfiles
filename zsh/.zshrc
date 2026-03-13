@@ -112,6 +112,8 @@ alias d='devspace'
 alias dv='devspace dev'
 alias ds='devspace run shell'
 
+alias jql="jq -C | less -R"
+
 alias tks='tmux kill-server'
 
 alias paths="echo \$PATH | tr : '\n'"
