@@ -50,8 +50,8 @@
     "playground@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
-  "effortLevel": "medium",
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  }
+  },
+  "effortLevel": "high"
 }
