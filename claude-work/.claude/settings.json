@@ -42,16 +42,16 @@
     ],
     "defaultMode": "plan"
   },
-  "outputStyle": "Explanatory",
-  "enabledPlugins": {
-    "playground@claude-plugins-official": true
-  },
-  "feedbackSurveyState": {
-    "lastShownTime": 1754056851748
-  },
-  "effortLevel": "medium",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
+  },
+  "enabledPlugins": {
+    "playground@claude-plugins-official": true
+  },
+  "outputStyle": "Explanatory",
+  "effortLevel": "medium",
+  "feedbackSurveyState": {
+    "lastShownTime": 1754056851748
   }
 }

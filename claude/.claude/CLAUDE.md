@@ -15,6 +15,7 @@
 - Commit messages should be succinct and explain *why* the change was made or what problem was fixed — not describe the diff
 - For large diffs, a very high-level summary is acceptable
 - When updating a branch to resolve merge conflicts, use `git merge` (not `git rebase`)
+- Do not chain multiple git commands with `&&` in a single Bash call — run them as separate tool calls (in parallel when independent) instead
 
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*
