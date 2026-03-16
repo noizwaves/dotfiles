@@ -10,7 +10,7 @@
   - **Problem**: succinct description of the issue — include expected vs. actual behavior when applicable
   - **Solution**: *why* this approach was chosen, key trade-offs considered, and overall description of the changes
   - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally). Write in prose or concise paragraphs, not an incomplete checklist
-- At the end of every PR description, append collapsible sections for context:
+- At the end of every PR description, append a `## Prompts` heading with collapsible sections for context:
   1. **Plan section** (only when a plan was generated during the session): a `<details><summary>Plan</summary>` block containing the **final** plan (not intermediate drafts)
   2. **Conversation section**: a `<details><summary>Conversation</summary>` block containing the task-relevant conversation (not the entire session — only the portion relevant to the PR's changes)
      - User messages formatted as block quotes (`>`)
