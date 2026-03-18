@@ -4,9 +4,10 @@
 - Never add "Generated with Claude Code" or any Claude attribution to PR descriptions
 - Do not use semantic prefixes (e.g., `feat:`, `fix:`) in PR titles
 - Focus on *why*, not *what* — the diff already shows what changed; the PR body should explain motivation, trade-offs, and decisions. If sufficient "why" context is missing, ask clarifying questions before writing the description
+- When a PR is for a Jira ticket, prefix the ticket number in the title (e.g., `[BUILD-123] Foo bar`) and link to the ticket in the Context section of the description
 - If the repo has a PR template, use that structure first — add headings for any missing focus areas below
 - If there is no PR template, structure the body with `##` headings for each focus area:
-  - **Context**: relevant conversations, resources, or observations (e.g., links to Slack threads, Jira tickets)
+  - **Context**: relevant conversations, resources, or observations (e.g., links to Slack threads, Jira tickets, Jira links)
   - **Problem**: succinct description of the issue — include expected vs. actual behavior when applicable
   - **Solution**: *why* this approach was chosen, key trade-offs considered, and overall description of the changes
   - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally). Write in prose or concise paragraphs, not an incomplete checklist
@@ -22,6 +23,7 @@
 - For large diffs, a very high-level summary is acceptable
 - When updating a branch to resolve merge conflicts, use `git merge` (not `git rebase`)
 - Do not chain multiple git commands with `&&` in a single Bash call — run them as separate tool calls (in parallel when independent) instead
+- Do not `cd` to the repo root before running git commands — run them from the current directory and reference file paths relatively. This applies to worktrees as well.
 
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*

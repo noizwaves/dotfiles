@@ -316,7 +316,7 @@ function cd-claude-worktree() {
     return 1
   fi
   local worktree
-  worktree=$(ls -1 "$worktree_dir" 2>/dev/null | fzf --prompt="worktree> ")
+  worktree=$(ls -1 "$worktree_dir" 2>/dev/null | fzf --select-1 --prompt="worktree> ")
   [[ -n "$worktree" ]] && worktree="$worktree_dir/$worktree"
   if [[ -n "$worktree" ]]; then
     cd "$worktree"

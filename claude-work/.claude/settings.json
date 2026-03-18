@@ -33,6 +33,8 @@
       "Bash(git pull:*)",
       "Bash(git status:*)",
       "Bash(git log:*)",
+      "Bash(git mv:*)",
+      "Bash(git revert:*)",
       "Read(~/.claude/*)",
       "Read(.claude/*)",
       "Bash(gh pr view:*)",
