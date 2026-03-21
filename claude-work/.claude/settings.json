@@ -36,11 +36,15 @@
       "Bash(git mv:*)",
       "Bash(git revert:*)",
       "Read(~/.claude/*)",
+      "Glob(~/.claude/*)",
+      "Grep(~/.claude/*)",
       "Read(.claude/*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr create:*)",
-      "Bash(rgh:*)"
+      "Bash(rgh:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(git count-objects:*)"
     ],
     "defaultMode": "plan"
   },
