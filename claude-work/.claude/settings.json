@@ -55,7 +55,9 @@
       "Bash(gh pr create:*)",
       "Bash(rgh:*)",
       "Bash(gh pr diff:*)",
-      "Bash(git count-objects:*)"
+      "Bash(git count-objects:*)",
+      "Bash(gh search issues:*)",
+      "Bash(gh issue view:*)"
     ],
     "defaultMode": "plan"
   },
