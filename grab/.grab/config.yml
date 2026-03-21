@@ -15,4 +15,5 @@ packages:
   sidecar: 0.74.1
   starship: 1.24.2
   td: 0.38.0
+  tv: 0.15.3
   yazi: 26.1.22
