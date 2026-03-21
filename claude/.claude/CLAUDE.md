@@ -31,6 +31,7 @@
 
 ## Shell & Tooling
 - Use `jq` for JSON parsing, querying, and manipulation — do not use Python or Node one-liners for JSON tasks
+- To run one-off Node scripts, write the script to a temp file in `<working-dir>/tmp/`, execute it with `node` (or `node-safe`), then remove the temp file — do not pass script contents as multi-line strings or heredocs
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
