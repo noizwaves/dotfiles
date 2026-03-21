@@ -29,5 +29,8 @@
 - Only write comments that are contextually useful — explain *why*, not *what*
 - Never duplicate variable or function names in comments
 
+## Shell & Tooling
+- Use `jq` for JSON parsing, querying, and manipulation — do not use Python or Node one-liners for JSON tasks
+
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
