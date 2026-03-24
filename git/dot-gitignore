@@ -34,3 +34,4 @@ mise.local.toml
 CLAUDE.local.md
 .claude/settings.local.json
 .tmp/
+.claude/worktrees
