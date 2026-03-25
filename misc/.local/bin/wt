@@ -12,19 +12,29 @@ usage() {
 }
 
 branch=""
-while getopts ":b:" opt; do
-  case $opt in
-    b) branch="$OPTARG" ;;
-    *) usage ;;
+name=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -b)
+      branch="${2:?"-b requires a branch name"}"
+      shift 2
+      ;;
+    -*)
+      usage
+      ;;
+    *)
+      if [[ -n "$name" ]]; then
+        usage
+      fi
+      name="$1"
+      shift
+      ;;
   esac
 done
-shift $((OPTIND - 1))
 
-if [[ $# -eq 0 ]]; then
+if [[ -z "$name" ]]; then
   usage
 fi
-
-name="$1"
 repo_root=$(git rev-parse --show-toplevel)
 repo_name=$(basename "$repo_root")
 worktree_path="$HOME/workspace/${repo_name}-${name}"
