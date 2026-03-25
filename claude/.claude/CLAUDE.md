@@ -23,7 +23,6 @@
 - For large diffs, a very high-level summary is acceptable
 - When updating a branch to resolve merge conflicts, use `git merge` (not `git rebase`)
 - Do not chain multiple git commands with `&&` in a single Bash call — run them as separate tool calls (in parallel when independent) instead
-- Do not `cd` to the repo root before running git commands — run them from the current directory and reference file paths relatively. This applies to worktrees as well.
 
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*
