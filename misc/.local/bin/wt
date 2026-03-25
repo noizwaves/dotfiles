@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: wt [-b <branch>] <name>" >&2
+  echo "" >&2
+  echo "Create a git worktree at ~/workspace/<repo>-<name>" >&2
+  echo "" >&2
+  echo "Options:" >&2
+  echo "  -b <branch>  Use an existing branch instead of creating an--<name>" >&2
+  exit 1
+}
+
+branch=""
+while getopts ":b:" opt; do
+  case $opt in
+    b) branch="$OPTARG" ;;
+    *) usage ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+if [[ $# -eq 0 ]]; then
+  usage
+fi
+
+name="$1"
+repo_root=$(git rev-parse --show-toplevel)
+repo_name=$(basename "$repo_root")
+worktree_path="$HOME/workspace/${repo_name}-${name}"
+
+if [[ -n "$branch" ]]; then
+  git worktree add "$worktree_path" "$branch"
+else
+  git worktree add "$worktree_path" -b "an--${name}"
+fi
+
+# Symlink .envrc if present
+if [[ -f "$repo_root/.envrc" ]]; then
+  ln -s "$repo_root/.envrc" "$worktree_path/.envrc"
+  echo "Symlinked .envrc"
+fi
+
+# Symlink .claude/settings.local.json if present
+if [[ -f "$repo_root/.claude/settings.local.json" ]]; then
+  mkdir -p "$worktree_path/.claude"
+  ln -s "$repo_root/.claude/settings.local.json" "$worktree_path/.claude/settings.local.json"
+  echo "Symlinked .claude/settings.local.json"
+fi
