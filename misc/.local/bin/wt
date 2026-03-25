@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   echo "Usage: wt [-b <branch>] <name>" >&2
   echo "" >&2
-  echo "Create a git worktree at ~/workspace/<repo>-<name>" >&2
+  echo "Create a git worktree at ~/workspace/<repo>--<name>" >&2
   echo "" >&2
   echo "Options:" >&2
   echo "  -b <branch>  Use an existing branch instead of creating an--<name>" >&2
@@ -37,7 +37,7 @@ if [[ -z "$name" ]]; then
 fi
 repo_root=$(git rev-parse --show-toplevel)
 repo_name=$(basename "$repo_root")
-worktree_path="$HOME/workspace/${repo_name}-${name}"
+worktree_path="$HOME/workspace/${repo_name}--${name}"
 
 if [[ -n "$branch" ]]; then
   git worktree add "$worktree_path" "$branch"
@@ -57,3 +57,5 @@ if [[ -f "$repo_root/.claude/settings.local.json" ]]; then
   ln -s "$repo_root/.claude/settings.local.json" "$worktree_path/.claude/settings.local.json"
   echo "Symlinked .claude/settings.local.json"
 fi
+
+tmux-sessionizer "$worktree_path"
