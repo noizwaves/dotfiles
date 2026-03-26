@@ -2,22 +2,28 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: wt [-b <branch>] <name>" >&2
+  echo "Usage: wt [--clone] [-b <branch>] <name>" >&2
   echo "" >&2
   echo "Create a git worktree at ~/workspace/<repo>--<name>" >&2
   echo "" >&2
   echo "Options:" >&2
   echo "  -b <branch>  Use an existing branch instead of creating an--<name>" >&2
+  echo "  --clone      Create a full git clone instead of a worktree" >&2
   exit 1
 }
 
 branch=""
+clone=false
 name=""
 while [[ $# -gt 0 ]]; do
   case $1 in
     -b)
       branch="${2:?"-b requires a branch name"}"
       shift 2
+      ;;
+    --clone)
+      clone=true
+      shift
       ;;
     -*)
       usage
@@ -39,10 +45,20 @@ repo_root=$(git rev-parse --show-toplevel)
 repo_name=$(basename "$repo_root")
 worktree_path="$HOME/workspace/${repo_name}--${name}"
 
-if [[ -n "$branch" ]]; then
-  git worktree add "$worktree_path" "$branch"
+if [[ "$clone" == true ]]; then
+  if [[ -n "$branch" ]]; then
+    git clone --branch "$branch" "$repo_root" "$worktree_path"
+  else
+    git clone "$repo_root" "$worktree_path"
+    git -C "$worktree_path" checkout -b "an--${name}"
+  fi
+  cp "$repo_root/.git/config" "$worktree_path/.git/config"
 else
-  git worktree add "$worktree_path" -b "an--${name}"
+  if [[ -n "$branch" ]]; then
+    git worktree add "$worktree_path" "$branch"
+  else
+    git worktree add "$worktree_path" -b "an--${name}"
+  fi
 fi
 
 # Symlink .envrc if present
