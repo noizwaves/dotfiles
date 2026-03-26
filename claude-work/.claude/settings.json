@@ -56,7 +56,9 @@
   },
   "enabledPlugins": {
     "playground@claude-plugins-official": true,
-    "gusto-builds@gusto-claude-code": true
+    "gusto-builds@gusto-claude-code": true,
+    "superpowers@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
   "feedbackSurveyState": {
