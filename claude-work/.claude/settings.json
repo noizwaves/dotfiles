@@ -56,7 +56,8 @@
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
   },
   "enabledPlugins": {
-    "playground@claude-plugins-official": true
+    "playground@claude-plugins-official": true,
+    "gusto-builds@gusto-claude-code": true
   },
   "outputStyle": "Explanatory",
   "feedbackSurveyState": {
