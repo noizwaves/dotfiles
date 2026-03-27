@@ -16,7 +16,7 @@ all-server:
 	stow --target=$$HOME --restow git starship tmux zsh ssh
 
 all-devops:
-	stow --target=$$HOME --restow git starship tmux zsh ssh nvim
+	stow --target=$$HOME --restow git starship tmux zsh ssh nvim grab
 
 delete:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete $(PACKAGES)
