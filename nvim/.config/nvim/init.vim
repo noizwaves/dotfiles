@@ -1,3 +1,8 @@
+" Disable netrw so fugitive's :GBrowse uses vim.ui.open instead of the
+" broken netrw#BrowseX path in Neovim 0.10+
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
 
