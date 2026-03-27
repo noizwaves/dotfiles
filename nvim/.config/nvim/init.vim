@@ -108,6 +108,7 @@ nnoremap <leader><S-o> <cmd>Telescope find_files<cr>
 nnoremap <leader>o <cmd>FzfGFiles!<cr>
 nnoremap <leader>i <cmd>Telescope treesitter<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
+nnoremap <leader>F <cmd>Telescope grep_string<cr>
 nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
 
 nnoremap <leader>e :NvimTreeToggle<cr>
