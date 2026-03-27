@@ -2,8 +2,6 @@ call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-refactor'
-Plug 'nvim-treesitter/playground'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -36,7 +34,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'ray-x/cmp-treesitter'
+" Plug 'ray-x/cmp-treesitter' " removed: incompatible with nvim-treesitter rewrite
 
 " Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'folke/trouble.nvim'
@@ -112,6 +110,7 @@ nnoremap <leader>i <cmd>Telescope treesitter<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>u <cmd>Telescope lsp_workspace_symbols<cr>
 
+nnoremap <leader>e :NvimTreeToggle<cr>
 nnoremap <leader>nn :NvimTreeFocus<cr>
 nnoremap <leader>ng :NvimTreeFindFile<cr>
 
@@ -122,27 +121,8 @@ nnoremap <leader>s <cmd>set spell!<cr>
 
 xnoremap <leader>g :GBrowse<cr>
 
-" configure treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "typescript", "json", "yaml", "javascript", "bash", "python", "nix" },
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-    disable = { "yaml" },
-  },
-  refactor = {
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "<leader>rt",
-      },
-    },
-  },
-}
-EOF
+" Treesitter highlight and indent are built-in in Nvim 0.11
+" Use :TSInstall to add parsers, :InspectTree replaces playground
 
 " configure airline
 let g:airline#extensions#tabline#enabled = 1
@@ -194,7 +174,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
   }, {
-    { name = 'treesitter' },
+    { name = 'buffer' },
   })
 })
 
@@ -212,29 +192,32 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Setup lspconfig
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+-- LSP keymaps via LspAttach autocmd (replaces on_attach)
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local opts = { noremap = true, silent = true, buffer = args.buf }
+    vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>j', vim.lsp.buf.code_action, opts)
+  end,
+})
 
-  local opts = { noremap=true, silent=true }
+-- Set capabilities globally for all LSP servers
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
 
-  -- LSP keymaps, `:help vim.lsp.*`
-  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-  buf_set_keymap('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  buf_set_keymap('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-  buf_set_keymap('n', '<leader>j', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-end
+-- Enable LSP servers (configs provided by nvim-lspconfig in lsp/ directory)
+vim.lsp.enable('rnix')
 
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require('lspconfig').rnix.setup { on_attach = on_attach, capabilities = capabilities }
-if (os.getenv('NEOVIM_LSP_SORBET') == 'true') then
+if os.getenv('NEOVIM_LSP_SORBET') == 'true' then
   local sorbet_cmd = { 'env', 'SRB_SKIP_GEM_RBIS=1', 'bin/srb', 'typecheck', '--lsp' }
-  if (os.getenv('NEOVIM_DEVSPACE') == 'true') then
+  if os.getenv('NEOVIM_DEVSPACE') == 'true' then
     sorbet_cmd = { 'devspace', 'run', 'sorbet-typecheck-lsp' }
   end
-  require('lspconfig').sorbet.setup { cmd = sorbet_cmd, on_attach = on_attach, capabilities = capabilities }
+  vim.lsp.config('sorbet', { cmd = sorbet_cmd })
+  vim.lsp.enable('sorbet')
 end
 EOF
 

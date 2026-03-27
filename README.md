@@ -38,6 +38,13 @@ Vim spell provides spell checking.
 [Trouble](https://github.com/folke/trouble.nvim) provides a pretty list of problems.
 - `:ToggleTrouble` to activate the list
 
+## Updating Vim Plugins
+
+Open Neovim and run `:PlugUpdate` to update all plugins managed by [vim-plug](https://github.com/junegunn/vim-plug).
+To install newly added plugins, run `:PlugInstall`.
+
+After removing plugins from the config, run `:PlugClean` to remove the installed files.
+
 ## VS Code Keyboard Shortcuts
 
 - `Control+Option+Command+l`: go to line in GitHub
