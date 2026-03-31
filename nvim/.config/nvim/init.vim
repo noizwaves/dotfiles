@@ -68,6 +68,12 @@ set signcolumn=yes
 
 set completeopt=menu,menuone,noselect
 
+set autoread
+augroup autoreload
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+augroup END
+
 set spelllang=en_us
 set spellsuggest=best,9
 augroup spell
@@ -148,8 +154,18 @@ require('telescope').setup {
     live_grep = {
       additional_args = function () return { '--hidden', '-g', '!.git' } end,
     },
+    grep_string = {
+      additional_args = function () return { '--hidden', '-g', '!.git' } end,
+    },
   },
   defaults = {
+    layout_config = {
+      width = { padding = 0 },
+      height = { padding = 0 },
+    },
+    preview = {
+      hide_on_startup = true,
+    },
     mappings = {
       n = {
         ["p"] = require("telescope.actions.layout").toggle_preview,
@@ -164,7 +180,7 @@ function s:find_in_folder(path)
   :call luaeval("require('telescope.builtin').live_grep({search_dirs = {_A[1]}})", [a:path])
 endfunction
 
-:command -nargs=1 -complete=file FindInFolder :call s:find_in_folder(<args>)
+:command -nargs=1 -complete=file FindInFolder :call s:find_in_folder(<q-args>)
 
 " configure LSP
 lua <<EOF
