@@ -1,0 +1,33 @@
+{
+  "budget": {
+    "today": {
+      "amount": 0
+    }
+  },
+  "display": {
+    "autoWrap": true,
+    "lines": [
+      {
+        "segments": {
+          "model": {
+            "enabled": true
+          },
+          "session": {
+            "enabled": true,
+            "type": "both",
+            "costSource": "calculated"
+          },
+          "today": {
+            "enabled": true,
+            "type": "both"
+          },
+          "context": {
+            "enabled": true,
+            "showPercentageOnly": false,
+            "percentageMode": "used"
+          }
+        }
+      }
+    ]
+  }
+}
