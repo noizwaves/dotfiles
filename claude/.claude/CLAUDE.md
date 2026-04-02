@@ -30,6 +30,7 @@
 - Never duplicate variable or function names in comments
 
 ## Shell & Tooling
+- Prefer the `Grep` tool over `find ... -exec grep` or raw `rg` for content searches; prefer `Glob` over `find ... -name` for file listing
 - To run one-off Node scripts, use `node-safe`. Example: `node-safe -e 'expression1; expression2'`
 - Use `node-safe` for JSON parsing, querying, and manipulation — do not use jq
 - To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
