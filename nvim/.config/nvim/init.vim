@@ -87,6 +87,7 @@ let g:dracula_colorterm = 0
 colorscheme dracula
 
 let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
 " Set border to white, ignore looks bad
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
