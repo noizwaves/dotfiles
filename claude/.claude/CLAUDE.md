@@ -16,6 +16,7 @@
 - Always ask clarifying questions before finalizing a plan
 
 ## Git
+- Never use `git -C <dir>` when already in the correct working directory — run git commands directly
 - Do not use command substitution (`$(...)`) in git commit messages — pass the message directly with `-m`
 - Always prefix new git branches with `an--` (e.g., `an--feature-name`)
 - Use semantic commit messages with the format `type: message` (e.g., `feat: Add user auth`, `fix: Prevent duplicate submissions`)
