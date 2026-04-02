@@ -132,6 +132,7 @@ nnoremap <C-_> <cmd>set invhlsearch<cr>
 nnoremap <leader>s <cmd>set spell!<cr>
 
 xnoremap <leader>g :GBrowse<cr>
+xnoremap <leader>l :<C-u>execute "Git log -L " . line("'<") . "," . line("'>") . ":%"<cr>
 
 " Treesitter highlight and indent are built-in in Nvim 0.11
 " Use :TSInstall to add parsers, :InspectTree replaces playground
