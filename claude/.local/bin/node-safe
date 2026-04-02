@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Detect host timezone (Node.js respects TZ env var)
+# Priority: $TZ env var > /etc/localtime symlink > /etc/timezone file > UTC
+if [[ -n "${TZ:-}" ]]; then
+  HOST_TZ="$TZ"
+elif [[ -L /etc/localtime ]]; then
+  HOST_TZ=$(readlink /etc/localtime | sed 's|.*/zoneinfo/||')
+elif [[ -f /etc/timezone ]]; then
+  HOST_TZ=$(cat /etc/timezone)
+else
+  HOST_TZ="UTC"
+fi
+
+# Only attach TTY if stdin is a terminal
+TTY_FLAG=""
+[ -t 0 ] && TTY_FLAG="-t"
+
+# Pull image quietly if not already cached
+IMAGE="node:lts-slim"
+if ! docker image inspect "$IMAGE" &>/dev/null; then
+  docker pull -q "$IMAGE" >/dev/null
+fi
+
+exec docker run \
+  --rm \
+  -i $TTY_FLAG \
+  --network=none \
+  --read-only \
+  --cap-drop=ALL \
+  --security-opt=no-new-privileges \
+  --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+  --pids-limit=256 \
+  --memory=1g \
+  --user "$(id -u):$(id -g)" \
+  -e "TZ=$HOST_TZ" \
+  -v "$PWD:/workdir:ro" \
+  -w /workdir \
+  "$IMAGE" \
+  node "$@"

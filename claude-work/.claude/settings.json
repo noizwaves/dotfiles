@@ -80,9 +80,13 @@
       "Bash(gh project list *)",
       "Bash(gh project view *)",
       "Bash(gh browse *)",
-      "Bash(rgh *)"
+      "Bash(rgh *)",
+      "Bash(node-safe *)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "plan",
+    "additionalDirectories": [
+      "~/.tmp"
+    ]
   },
   "model": "sonnet",
   "statusLine": {
