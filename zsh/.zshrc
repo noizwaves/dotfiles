@@ -306,6 +306,7 @@ function rust-scratch() {
 }
 
 # Claude commands
+export CLAUDE_CODE_NO_FLICKER=1
 alias c="claude"
 alias cw="cd-claude-worktree"
 
