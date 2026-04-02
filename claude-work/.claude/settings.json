@@ -51,6 +51,11 @@
       "Read(~/.claude/*)",
       "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
+      "Read(~/.tmp/*)",
+      "Write(~/.tmp/*)",
+      "Edit(~/.tmp/*)",
+      "Glob(~/.tmp/*)",
+      "Grep(~/.tmp/*)",
       "Read(.claude/*)",
       "Bash(gh pr view *)",
       "Bash(gh pr list *)",
@@ -83,10 +88,7 @@
       "Bash(rgh *)",
       "Bash(node-safe *)"
     ],
-    "defaultMode": "plan",
-    "additionalDirectories": [
-      "~/.tmp"
-    ]
+    "defaultMode": "plan"
   },
   "model": "sonnet",
   "statusLine": {
