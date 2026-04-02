@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  echo "Usage: gh-file-view <owner/repo> <path> [ref]" >&2
+  exit 1
+fi
+
+repo="$1"
+path="$2"
+ref="${3:-}"
+
+api_path="repos/${repo}/contents/${path}"
+if [[ -n "$ref" ]]; then
+  api_path="${api_path}?ref=${ref}"
+fi
+
+gh api "$api_path" | jq -r '.content' | base64 -d

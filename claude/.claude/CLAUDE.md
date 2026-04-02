@@ -32,6 +32,7 @@
 ## Shell & Tooling
 - To run one-off Node scripts, use `node-safe`. Example: `node-safe -e 'expression1; expression2'`
 - Use `node-safe` for JSON parsing, querying, and manipulation — do not use jq
+- To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
 - Never use heredocs, multi-line strings, or `$(cat <<'EOF'...)` in shell commands — instead, write content to a temp file at `~/.tmp` with the Write tool and reference it via a file flag (e.g., `git commit --file`, `gh pr create --body-file`)
 
 ## Bug Fixes
