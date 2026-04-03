@@ -27,6 +27,9 @@
   "sandbox": {
     "filesystem": {
       "allowWrite": [".git"]
+    },
+    "network": {
+      "allowedHosts": ["github.com"]
     }
   }
 }
