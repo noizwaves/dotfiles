@@ -7,6 +7,7 @@
   },
   "permissions": {
     "allow": [
+      "Read(~/workspace/**)",
       "Bash(lsof *)",
       "Bash(kill *)",
       "Bash(grep *)",
@@ -17,6 +18,7 @@
       "Bash(ls *)",
       "Bash(echo *)",
       "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:buildkite.com)",
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git checkout *)",

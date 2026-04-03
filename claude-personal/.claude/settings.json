@@ -9,7 +9,9 @@
       "Bash(git commit:*)",
       "Read(~/.claude/*)",
       "Read(.claude/*)",
-      "Bash(python-safe *)"
+      "Read(~/workspace/**)",
+      "Bash(python-safe *)",
+      "WebFetch(domain:buildkite.com)"
     ],
     "defaultMode": "plan"
   },
