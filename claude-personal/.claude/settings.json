@@ -20,5 +20,10 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "model": "opus"
+  "model": "opus",
+  "sandbox": {
+    "filesystem": {
+      "allowWrite": [".git"]
+    }
+  }
 }

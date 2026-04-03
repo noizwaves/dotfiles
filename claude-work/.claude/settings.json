@@ -137,6 +137,11 @@
     "superpowers@claude-plugins-official": true,
     "code-review@claude-plugins-official": true
   },
+  "sandbox": {
+    "filesystem": {
+      "allowWrite": [".git"]
+    }
+  },
   "outputStyle": "Explanatory",
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
