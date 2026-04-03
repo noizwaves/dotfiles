@@ -87,6 +87,7 @@
       "Bash(gh browse *)",
       "Bash(rgh *)",
       "Bash(node-safe *)",
+      "Bash(python-safe *)",
       "Bash(gh-file-view *)",
       "mcp__buildkite__access_token",
       "mcp__buildkite__current_user",

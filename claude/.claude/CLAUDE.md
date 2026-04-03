@@ -16,7 +16,7 @@
 - Always ask clarifying questions before finalizing a plan
 
 ## Git
-- Never use `git -C <dir>` when already in the correct working directory — run git commands directly
+- Never use `git -C <dir>` — if the working directory needs to change, use `cd` first
 - Do not use command substitution (`$(...)`) in git commit messages — pass the message directly with `-m`
 - Always prefix new git branches with `an--` (e.g., `an--feature-name`)
 - Use semantic commit messages with the format `type: message` (e.g., `feat: Add user auth`, `fix: Prevent duplicate submissions`)
@@ -38,6 +38,10 @@
 - For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
 - Always use `node-safe` to execute Node scripts or expressions — never invoke `node` directly
   - node-safe only has access to files under `$PWD`. Copy any required files (downloaded data, absolute-path inputs) into `./.tmp` before invoking node-safe, then reference them by their absolute path.
+- Always use `python-safe` to execute Python scripts or expressions — never invoke `python` directly
+  - python-safe only has access to files under `$PWD`. Copy any required files into `./.tmp` before invoking python-safe, then reference them by their absolute path.
+  - Useful for CSV manipulation (`csvkit`), data processing (`polars`), and table formatting (`tabulate`)
+  - Multi-line scripts can be condensed to a single line with semicolons: `python-safe -c 'import polars as pl; ...'`
 - To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
 - Never use heredocs, multi-line strings, or `$(cat <<'EOF'...)` in shell commands — instead, write content to a temp file at `./.tmp` with the Write tool and reference it via a file flag (e.g., `git commit --file`, `gh pr create --body-file`)
 
