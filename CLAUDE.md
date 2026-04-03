@@ -26,3 +26,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 ## Editing Tips
 
 - When adding a new config, create a new stow package directory mirroring the home directory path
+
+## Git
+
+- Never use `git -C <path>` — all changes live in this directory; run git commands directly
