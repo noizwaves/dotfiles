@@ -16,6 +16,7 @@
       "Bash(head *)",
       "Bash(cat *)",
       "Bash(ls *)",
+      "Bash(ls -al *)",
       "Bash(echo *)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:buildkite.com)",
