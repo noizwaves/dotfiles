@@ -51,11 +51,11 @@
       "Read(~/.claude/*)",
       "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
-      "Read(~/.tmp/*)",
-      "Write(~/.tmp/*)",
-      "Edit(~/.tmp/*)",
-      "Glob(~/.tmp/*)",
-      "Grep(~/.tmp/*)",
+      "Read(.tmp/*)",
+      "Write(.tmp/*)",
+      "Edit(.tmp/*)",
+      "Glob(.tmp/*)",
+      "Grep(.tmp/*)",
       "Read(.claude/*)",
       "Bash(gh pr view *)",
       "Bash(gh pr list *)",
@@ -116,7 +116,8 @@
       "mcp__gdrivegusto__get_metadata",
       "mcp__gdrivegusto__list_folder",
       "mcp__gdrivegusto__list_permissions",
-      "mcp__gdrivegusto__search"
+      "mcp__gdrivegusto__search",
+      "mcp__jiraconfluencegusto__getJiraIssue"
     ],
     "ask": [
       "mcp__gdrivegusto__create_doc_from_markdown",
@@ -124,7 +125,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"

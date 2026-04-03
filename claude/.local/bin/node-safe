@@ -35,7 +35,7 @@ exec docker run \
   --memory=1g \
   --user "$(id -u):$(id -g)" \
   -e "TZ=$HOST_TZ" \
-  -v "$PWD:/workdir:ro" \
-  -w /workdir \
+  -v "$PWD:$PWD:ro" \
+  -w "$PWD" \
   "$IMAGE" \
   node "$@"

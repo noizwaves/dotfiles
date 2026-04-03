@@ -31,10 +31,11 @@
 
 ## Shell & Tooling
 - Prefer the `Grep` tool over `find ... -exec grep` or raw `rg` for content searches; prefer `Glob` over `find ... -name` for file listing
-- To run one-off Node scripts, use `node-safe`. Example: `node-safe -e 'expression1; expression2'`
-- Use `node-safe` for JSON parsing, querying, and manipulation — do not use jq
+- For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
+- Always use `node-safe` to execute Node scripts or expressions — never invoke `node` directly
+  - node-safe only has access to files under `$PWD`. Copy any required files (downloaded data, absolute-path inputs) into `./.tmp` before invoking node-safe, then reference them by their absolute path.
 - To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
-- Never use heredocs, multi-line strings, or `$(cat <<'EOF'...)` in shell commands — instead, write content to a temp file at `~/.tmp` with the Write tool and reference it via a file flag (e.g., `git commit --file`, `gh pr create --body-file`)
+- Never use heredocs, multi-line strings, or `$(cat <<'EOF'...)` in shell commands — instead, write content to a temp file at `./.tmp` with the Write tool and reference it via a file flag (e.g., `git commit --file`, `gh pr create --body-file`)
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
