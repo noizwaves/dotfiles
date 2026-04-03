@@ -29,6 +29,10 @@
 - Only write comments that are contextually useful — explain *why*, not *what*
 - Never duplicate variable or function names in comments
 
+## MCP vs CLI Tools
+- Prefer local CLI tools (e.g., `gh`, `jq`, Bash commands) over MCP equivalents when available
+- Fall back to MCP tools only if the CLI fails, returns an error, or lacks the specific functionality needed
+
 ## Shell & Tooling
 - Prefer the `Grep` tool over `find ... -exec grep` or raw `rg` for content searches; prefer `Glob` over `find ... -name` for file listing
 - For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
