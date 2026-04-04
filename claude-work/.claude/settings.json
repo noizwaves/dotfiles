@@ -161,6 +161,8 @@
   },
   "outputStyle": "Explanatory",
   "sandbox": {
+    "autoAllowBashIfSandboxed": true,
+    "enabled": true,
     "network": {},
     "filesystem": {
       "allowWrite": [
