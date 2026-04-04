@@ -135,7 +135,7 @@
     "network": {},
     "filesystem": {
       "allowWrite": [
-        ".git"
+        ".git/**"
       ]
     }
   },
