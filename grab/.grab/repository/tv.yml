@@ -11,8 +11,8 @@ spec:
     fileName:
       darwin,amd64: tv-{{ .Version }}-x86_64-apple-darwin.tar.gz
       darwin,arm64: tv-{{ .Version }}-aarch64-apple-darwin.tar.gz
-      linux,amd64: tv-{{ .Version }}-x86_64-unknown-linux-gnu.deb
-      linux,arm64: tv-{{ .Version }}-aarch64-unknown-linux-gnu.deb
+      linux,amd64: tv-{{ .Version }}-x86_64-unknown-linux-gnu.tar.gz
+      linux,arm64: tv-{{ .Version }}-aarch64-unknown-linux-gnu.tar.gz
     embeddedBinaryPath:
       darwin,amd64: tv-{{ .Version }}-x86_64-apple-darwin/tv
       darwin,arm64: tv-{{ .Version }}-aarch64-apple-darwin/tv
