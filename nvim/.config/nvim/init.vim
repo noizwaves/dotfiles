@@ -69,6 +69,7 @@ set signcolumn=yes
 set completeopt=menu,menuone,noselect
 
 set autoread
+set updatetime=250
 augroup autoreload
   autocmd!
   autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
