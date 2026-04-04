@@ -17,7 +17,6 @@
 - Always ask clarifying questions before finalizing a plan
 
 ## Git
-- Never use `git -C <dir>` — if the working directory needs to change, use `cd` first
 - Do not use command substitution (`$(...)`) in git commit messages — pass the message directly with `-m`
 - Always prefix new git branches with `an--` (e.g., `an--feature-name`)
 - Use semantic commit messages with the format `type: message` (e.g., `feat: Add user auth`, `fix: Prevent duplicate submissions`)
@@ -44,7 +43,6 @@
   - Useful for CSV manipulation (`csvkit`), data processing (`polars`), and table formatting (`tabulate`)
   - Multi-line scripts can be condensed to a single line with semicolons: `python-safe -c 'import polars as pl; ...'`
 - To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
-- Never use heredocs, multi-line strings, or `$(cat <<'EOF'...)` in shell commands — instead, write content to a temp file at `./.tmp` with the Write tool and reference it via a file flag (e.g., `git commit --file`, `gh pr create --body-file`)
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
