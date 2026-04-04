@@ -308,21 +308,6 @@ function rust-scratch() {
 # Claude commands
 export CLAUDE_CODE_NO_FLICKER=1
 alias c="claude"
-alias cw="cd-claude-worktree"
-
-function cd-claude-worktree() {
-  local worktree_dir=".claude/worktrees"
-  if [[ ! -d "$worktree_dir" ]]; then
-    echo "No .claude/worktrees directory found"
-    return 1
-  fi
-  local worktree
-  worktree=$(ls -1 "$worktree_dir" 2>/dev/null | fzf --select-1 --prompt="worktree> ")
-  [[ -n "$worktree" ]] && worktree="$worktree_dir/$worktree"
-  if [[ -n "$worktree" ]]; then
-    cd "$worktree"
-  fi
-}
 
 function claude-scratch() {
   DIR=$(mktemp -d -t claude_scratch.XXXXXXX)
