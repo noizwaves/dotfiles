@@ -1,6 +1,7 @@
 # User Preferences
 
 ## PR Creation
+- Always create PRs as drafts unless explicitly told not to
 - Never add "Generated with Claude Code" or any Claude attribution to PR descriptions
 - Do not use semantic prefixes (e.g., `feat:`, `fix:`) in PR titles
 - Focus on *why*, not *what* — the diff already shows what changed; the PR body should explain motivation, trade-offs, and decisions. If sufficient "why" context is missing, ask clarifying questions before writing the description

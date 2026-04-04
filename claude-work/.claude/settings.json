@@ -8,50 +8,20 @@
   "permissions": {
     "allow": [
       "Read(~/workspace/**)",
-      "Bash(cd *)",
-      "Bash(lsof *)",
-      "Bash(kill *)",
-      "Bash(grep *)",
-      "Bash(wc *)",
-      "Bash(jq *)",
-      "Bash(head *)",
       "Bash(cat *)",
+      "Bash(cd *)",
+      "Bash(echo *)",
+      "Bash(git *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(jq *)",
+      "Bash(kill *)",
       "Bash(ls *)",
       "Bash(ls -al *)",
-      "Bash(echo *)",
+      "Bash(lsof *)",
+      "Bash(wc *)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:buildkite.com)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git checkout *)",
-      "Bash(git count-objects *)",
-      "Bash(git diff *)",
-      "Bash(git show *)",
-      "Bash(git blame *)",
-      "Bash(git shortlog *)",
-      "Bash(git describe *)",
-      "Bash(git rev-parse *)",
-      "Bash(git rev-list *)",
-      "Bash(git ls-files *)",
-      "Bash(git ls-tree *)",
-      "Bash(git ls-remote *)",
-      "Bash(git cat-file *)",
-      "Bash(git for-each-ref *)",
-      "Bash(git name-rev *)",
-      "Bash(git reflog *)",
-      "Bash(git cherry *)",
-      "Bash(git range-diff *)",
-      "Bash(git whatchanged *)",
-      "Bash(git push -u origin *)",
-      "Bash(git push origin *)",
-      "Bash(git push)",
-      "Bash(git pull *)",
-      "Bash(git status *)",
-      "Bash(git log *)",
-      "Bash(git mv *)",
-      "Bash(git revert *)",
-      "Bash(git fetch *)",
-      "Bash(git rebase *)",
       "Read(~/.claude/*)",
       "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
@@ -149,7 +119,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "sonnet",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -160,15 +130,15 @@
     "superpowers@claude-plugins-official": true,
     "code-review@claude-plugins-official": true
   },
+  "outputStyle": "Explanatory",
   "sandbox": {
+    "network": {},
     "filesystem": {
-      "allowWrite": [".git"]
-    },
-    "network": {
-      "allowedHosts": ["github.com"]
+      "allowWrite": [
+        ".git"
+      ]
     }
   },
-  "outputStyle": "Explanatory",
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
   }
