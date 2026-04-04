@@ -46,3 +46,6 @@
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
+
+## Sandbox
+- If `git commit` fails with "could not create temporary file" inside the sandbox, run `mkdir -p /tmp/claude` — the sandbox sets `TMPDIR=/tmp/claude` but doesn't pre-create it, and SSH commit signing needs that directory for temp files

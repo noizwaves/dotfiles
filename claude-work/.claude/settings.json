@@ -167,11 +167,6 @@
     "network": {},
     "filesystem": {
       "allowWrite": [
-        ".git/**",
-        ".git/*",
-        ".git/objects/*",
-        ".git/objects/**",
-        ".git"
       ]
     }
   },
