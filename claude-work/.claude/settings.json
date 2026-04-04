@@ -8,6 +8,8 @@
   "permissions": {
     "allow": [
       "Read(~/workspace/**)",
+      "Edit(~/workspace/**)",
+      "Write(~/workspace/**)",
       "Bash(cat *)",
       "Bash(cd *)",
       "Bash(echo *)",
@@ -148,7 +150,6 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -161,8 +162,8 @@
   },
   "outputStyle": "Explanatory",
   "sandbox": {
-    "autoAllowBashIfSandboxed": true,
     "enabled": true,
+    "autoAllowBashIfSandboxed": true,
     "network": {},
     "filesystem": {
       "allowWrite": [
@@ -172,5 +173,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  }
+  },
+  "model": "opus"
 }
