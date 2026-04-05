@@ -5,17 +5,17 @@ return {
     init = function()
       vim.g.fzf_command_prefix = "Fzf"
       vim.g.fzf_preview_window = { "right:50%:hidden", "ctrl-/" }
-      -- Set border to white; default ignore colours look bad against dracula
+      -- Set border to white; default ignore colours look bad against dark themes
       vim.g.fzf_colors = {
         fg = { "fg", "Normal" },
         bg = { "bg", "Normal" },
         hl = { "fg", "Search" },
         ["fg+"] = { "fg", "Normal" },
         ["bg+"] = { "bg", "Normal" },
-        ["hl+"] = { "fg", "DraculaOrange" },
-        info = { "fg", "DraculaPurple" },
+        ["hl+"] = { "fg", "Constant" },
+        info = { "fg", "Statement" },
         border = { "fg", "Normal" },
-        prompt = { "fg", "DraculaGreen" },
+        prompt = { "fg", "String" },
         pointer = { "fg", "Exception" },
         marker = { "fg", "Keyword" },
         spinner = { "fg", "Label" },
