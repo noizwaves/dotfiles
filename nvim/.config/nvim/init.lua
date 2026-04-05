@@ -34,9 +34,6 @@ vim.opt.spellsuggest = "best,9"
 -- Bootstrap lazy.nvim and load plugin specs
 require("config.lazy")
 
--- Colorscheme (set after lazy has loaded tokyonight)
-vim.cmd.colorscheme("tokyonight-night")
-
 -- Load keymaps and autocmds
 require("config.keymaps")
 require("config.autocmds")
