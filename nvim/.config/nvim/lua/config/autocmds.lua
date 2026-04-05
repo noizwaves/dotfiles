@@ -7,15 +7,9 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "checktime",
 })
 
--- Enable spellcheck for markdown files and git commit messages
-local spell_group = augroup("spell", { clear = true })
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = spell_group,
-  pattern = "*.md",
-  callback = function() vim.opt_local.spell = true end,
-})
+-- Enable spellcheck for git commit messages
 autocmd("FileType", {
-  group = spell_group,
+  group = augroup("spell", { clear = true }),
   pattern = "gitcommit",
   callback = function() vim.opt_local.spell = true end,
 })

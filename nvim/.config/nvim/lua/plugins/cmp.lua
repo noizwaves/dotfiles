@@ -24,11 +24,7 @@ return {
         }),
       })
 
-      cmp.setup.filetype("markdown", {
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-        }),
-      })
+      cmp.setup.filetype("markdown", { enabled = false })
 
       cmp.setup.cmdline(":", {
         sources = cmp.config.sources({
