@@ -1,6 +1,13 @@
 # https://stevenvanbael.com/profiling-zsh-startup
 #zmodload zsh/zprof
 
+# Disable sleep when actively SSH'ed into popintosh
+if [[ -n "$SSH_CONNECTION" && "$HOST" == "popintosh" && -z "$_SSH_INHIBIT_ACTIVE" ]]; then
+  export _SSH_INHIBIT_ACTIVE=1
+  systemd-inhibit --what=sleep --who="SSH" --why="Active SSH session" --mode=block zsh
+  exit
+fi
+
 typeset -U path cdpath fpath manpath
 
 # Load homebrew early, kubectl for autocompletion
