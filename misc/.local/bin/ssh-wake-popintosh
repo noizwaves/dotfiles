@@ -61,11 +61,15 @@ function main() {
     echo "Waking up popintosh..."
     STATUS=$(wake)
 
+    local SPINNER=('|' '/' '-' '\')
+    local i=0
     while [[ $STATUS == 'pending' ]]; do
-      echo "Waiting for popintosh to wake up"
+      printf '\rWaiting for popintosh to wake up %s' "${SPINNER[$((i % 4))]}"
+      ((i++))
       sleep 1
       STATUS=$(get-status)
     done
+    printf '\r\033[K'
 
     if [[ $STATUS == 'online' ]]; then
       echo "popintosh is now online"
