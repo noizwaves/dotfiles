@@ -24,6 +24,9 @@
       "Bash(wc *)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:buildkite.com)",
+      "WebFetch(domain:devotel.uw2.staging.zp-int.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
       "Read(~/.claude/*)",
       "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
@@ -162,10 +165,17 @@
   },
   "outputStyle": "Explanatory",
   "sandbox": {
-    "enabled": true,
+    "enabled": false,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "network": {},
+    "network": {
+      "allowedHosts": [
+        "api.github.com",
+        "github.com",
+        "docs.github.com",
+        "buildkite.com"
+	    ]
+    },
     "filesystem": {
       "allowWrite": [
       ]
