@@ -20,6 +20,22 @@ source "${DIR}/ssh-wake-popintosh.env"
 UPSNAP_HOST='https://upsnap.noizwaves.cloud'
 POPINTOSH_ID='24eg45kkq869zfs'
 
+function authenticate() {
+  local RESPONSE
+  local BODY
+  BODY=$(jq -n --arg i "$UPSNAP_EMAIL" --arg p "$UPSNAP_PASSWORD" '{identity:$i,password:$p}')
+  RESPONSE=$(curl -s -X POST "${UPSNAP_HOST}/api/collections/users/auth-with-password" \
+    --header 'Content-Type: application/json' \
+    -d "$BODY")
+
+  TOKEN=$(echo "$RESPONSE" | jq --raw-output '.token')
+  if [[ -z "$TOKEN" || "$TOKEN" == 'null' ]]; then
+    echo "Failed to authenticate with UpSnap"
+    echo "$RESPONSE" | jq '.message' 2>/dev/null
+    exit 1
+  fi
+}
+
 function get-status() {
   curl -X GET "${UPSNAP_HOST}/api/collections/devices/records/${POPINTOSH_ID}" \
     --header 'Content-Type: application/json' \
@@ -37,6 +53,8 @@ function wake() {
 }
 
 function main() {
+  authenticate
+
   local STATUS
   STATUS=$(get-status)
   if [[ $STATUS == 'offline' ]]; then
@@ -56,8 +74,11 @@ function main() {
     fi
   elif [[ $STATUS == 'pending' ]]; then
     echo "Already trying to start popintosh"
-  else
+  elif [[ $STATUS == 'online' ]]; then
     echo "popintosh is already online"
+  else
+    echo "Failed to get status of popintosh, got: $STATUS"
+    exit 1
   fi
 }
 
