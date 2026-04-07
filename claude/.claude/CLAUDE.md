@@ -42,7 +42,7 @@
   - python-safe only has access to files under `$PWD`. Copy any required files into `./.tmp` before invoking python-safe, then reference them by their absolute path.
   - Useful for CSV manipulation (`csvkit`), data processing (`polars`), and table formatting (`tabulate`)
   - Multi-line scripts can be condensed to a single line with semicolons: `python-safe -c 'import polars as pl; ...'`
-- To view a file's contents from a GitHub repo, use `gh-file-view <owner/repo> <path> [ref]` instead of cloning or using the web UI
+- **NEVER use `gh api` to view or download file contents from GitHub repos.** Always use `gh-file-view <owner/repo> <path> [ref]` — it handles API pagination, encoding, and large files correctly. This applies to any situation where you want to read a file from a remote GitHub repository (viewing, downloading, comparing, etc.). Do not use `gh api repos/.../contents/...` or any other `gh api` workaround.
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
