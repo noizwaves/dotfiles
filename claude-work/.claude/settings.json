@@ -183,6 +183,7 @@
       "mcp__jiraconfluencegusto__getJiraIssue",
       "mcp__jiraconfluencegusto__getConfluencePage",
       "mcp__jiraconfluencegusto__getAccessibleAtlassianResources",
+      "mcp__slackgustoofficialmcp__slack_read_thread",
       "Bash(gh pr view *)",
       "Bash(gh pr list *)",
       "Bash(gh pr create *)",
