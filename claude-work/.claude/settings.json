@@ -10,6 +10,7 @@
       "Read(~/workspace/**)",
       "Edit(~/workspace/**)",
       "Write(~/workspace/**)",
+      "Read(~/Screenshots/**)",
       "Bash(cat *)",
       "Bash(cd *)",
       "Bash(echo *)",
@@ -237,7 +238,7 @@
         "github.com",
         "docs.github.com",
         "buildkite.com"
-	    ]
+      ]
     },
     "filesystem": {
       "allowWrite": [
