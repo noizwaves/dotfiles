@@ -30,8 +30,15 @@
 - Never duplicate variable or function names in comments
 
 ## MCP vs CLI Tools
-- Prefer local CLI tools (e.g., `gh`, `jq`, Bash commands) over MCP equivalents when available
-- Fall back to MCP tools only if the CLI fails, returns an error, or lacks the specific functionality needed
+- For GitHub operations: prefer the GitHub MCP (`mcp__githubgusto__*`) over `gh` CLI commands
+  - Fall back to `gh` CLI, `rgh`, or `gh-file-view` only if the MCP tool fails or lacks the specific functionality needed (e.g., `gh repo clone` has no MCP equivalent)
+- For non-GitHub tools: prefer local CLI tools (e.g., `jq`, Bash commands) over MCP equivalents when available
+
+## Searching Code
+- Default to GitHub code search first — local repos may be out of date or in a WIP state
+- Use the GitHub MCP `search_code` tool. Fallback: `rgh <query>` or `gh search code --owner Gusto "search query"`
+- For local search (only when exploring already-cloned repos): use the Grep tool, but be aware local copies may not reflect upstream
+- To clone a repo after finding it: `gh repo clone Gusto/<repo-name> ~/workspace/<repo-name>`
 
 ## Shell & Tooling
 - Prefer the `Grep` tool over `find ... -exec grep` or raw `rg` for content searches; prefer `Glob` over `find ... -name` for file listing
@@ -42,7 +49,7 @@
   - python-safe only has access to files under `$PWD`. Copy any required files into `./.tmp` before invoking python-safe, then reference them by their absolute path.
   - Useful for CSV manipulation (`csvkit`), data processing (`polars`), and table formatting (`tabulate`)
   - Multi-line scripts can be condensed to a single line with semicolons: `python-safe -c 'import polars as pl; ...'`
-- **NEVER use `gh api` to view or download file contents from GitHub repos.** Always use `gh-file-view <owner/repo> <path> [ref]` — it handles API pagination, encoding, and large files correctly. This applies to any situation where you want to read a file from a remote GitHub repository (viewing, downloading, comparing, etc.). Do not use `gh api repos/.../contents/...` or any other `gh api` workaround.
+- `gh-file-view` and `rgh` are available as CLI fallbacks for reading remote files and searching code if the GitHub MCP tools fail
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
