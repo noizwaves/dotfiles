@@ -4,6 +4,7 @@ packages:
   delta: 0.19.1
   diffsitter: 0.9.0
   direnv: 2.37.1
+  fd: 10.4.2
   fzf: 0.70.0
   glow: 2.1.1
   grab: 0.0.69

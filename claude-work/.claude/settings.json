@@ -15,6 +15,7 @@
       "Bash(cat *)",
       "Bash(cd *)",
       "Bash(echo *)",
+      "Bash(fd *)",
       "Bash(git *)",
       "Bash(grep *)",
       "Bash(head *)",
