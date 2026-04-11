@@ -27,7 +27,7 @@ return {
     "junegunn/fzf.vim",
     dependencies = { "junegunn/fzf" },
     keys = {
-      { "<leader>o", "<cmd>FzfGFiles!<cr>" },
+      { "<leader>oo", "<cmd>FzfGFiles!<cr>", desc = "Open: git-tracked file" },
     },
   },
 }

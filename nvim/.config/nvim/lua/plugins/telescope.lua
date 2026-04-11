@@ -4,12 +4,12 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Telescope",
     keys = {
-      { "<leader><S-o>", "<cmd>Telescope find_files<cr>" },
-      { "<leader>b", "<cmd>Telescope buffers<cr>" },
-      { "<leader>i", "<cmd>Telescope treesitter<cr>" },
-      { "<leader>f", "<cmd>Telescope live_grep<cr>" },
-      { "<leader>F", "<cmd>Telescope grep_string<cr>" },
-      { "<leader>u", "<cmd>Telescope lsp_workspace_symbols<cr>" },
+      { "<leader>oa", "<cmd>Telescope find_files<cr>", desc = "Open: all files (incl. gitignored)" },
+      { "<leader>ob", "<cmd>Telescope buffers<cr>", desc = "Open: buffer" },
+      { "<leader>ff", "<cmd>Telescope live_grep<cr>", desc = "Find: live grep" },
+      { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find: word under cursor" },
+      { "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Find: workspace symbols" },
+      { "<leader>ft", "<cmd>Telescope treesitter<cr>", desc = "Find: treesitter nodes" },
     },
     config = function()
       require("telescope").setup({

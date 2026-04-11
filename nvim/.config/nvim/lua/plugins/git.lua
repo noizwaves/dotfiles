@@ -4,12 +4,7 @@ return {
     dependencies = { "tpope/vim-rhubarb" },
     cmd = { "Git", "GBrowse" },
     keys = {
-      { "<leader>g", ":GBrowse<cr>", mode = "x" },
-      {
-        "<leader>l",
-        ":<C-u>execute \"Git log -L \" . line(\"'<\") . \",\" . line(\"'>\") . \":%\"<cr>",
-        mode = "x",
-      },
+      { "<leader>gh", ":GBrowse<cr>", mode = { "n", "x" }, desc = "Git: browse on GitHub" },
     },
   },
   { "tpope/vim-rhubarb" },

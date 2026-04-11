@@ -3,11 +3,10 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     dependencies = { "kyazdani42/nvim-web-devicons" },
-    cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+    cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
     keys = {
-      { "<leader>e", "<cmd>NvimTreeToggle<cr>" },
-      { "<leader>nn", "<cmd>NvimTreeFocus<cr>" },
-      { "<leader>ng", "<cmd>NvimTreeFindFile<cr>" },
+      { "<leader>nn", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree: toggle" },
+      { "<leader>nf", "<cmd>NvimTreeFindFile<cr>", desc = "NvimTree: find current file" },
     },
     opts = {
       renderer = {
