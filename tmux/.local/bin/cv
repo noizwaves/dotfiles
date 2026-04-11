@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${TMUX:-}" ]; then
+  echo "cv: must be run inside a tmux session" >&2
+  exit 1
+fi
+
+tmux split-window -h -c "#{pane_current_path}" "claude"
+tmux select-pane -L
+tmux send-keys "nvim" Enter
