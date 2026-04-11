@@ -1,0 +1,21 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: lazygit
+spec:
+  gitHubRelease:
+    org: jesseduffield
+    repo: lazygit
+    name: v{{ .Version }}
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,arm64: lazygit_{{ .Version }}_Darwin_arm64.tar.gz
+      linux,amd64: lazygit_{{ .Version }}_Linux_x86_64.tar.gz
+      linux,arm64: lazygit_{{ .Version }}_Linux_arm64.tar.gz
+    embeddedBinaryPath:
+      darwin,arm64: lazygit
+      linux,amd64: lazygit
+      linux,arm64: lazygit
+  program:
+    versionArgs: [version]
+    versionRegex: \d+\.\d+\.\d+

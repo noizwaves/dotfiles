@@ -9,6 +9,7 @@ packages:
   glow: 2.1.1
   grab: 0.0.69
   hyperfine: 1.20.0
+  lazygit: 0.61.0
   lefthook: 2.1.4
   pup: 0.37.0
   rg: 15.1.0
