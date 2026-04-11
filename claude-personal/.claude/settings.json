@@ -2,11 +2,11 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(head )",
-      "Bash(cat )",
-      "Bash(ls *)",
-      "Bash(git add )",
-      "Bash(git commit )",
+      "Bash(head:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
       "Read(~/.claude/*)",
       "Read(.claude/*)",
       "Read(~/workspace/**)",
@@ -35,6 +35,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
@@ -42,13 +43,13 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "model": "opus",
   "sandbox": {
+    "network": {},
     "filesystem": {
-      "allowWrite": [".git"]
-    },
-    "network": {
-      "allowedHosts": ["github.com"]
+      "allowWrite": [
+        ".git"
+      ]
     }
-  }
+  },
+  "effortLevel": "high"
 }
