@@ -1,6 +1,14 @@
 {
   "permissions": {
     "allow": [
+      "Edit(~/.claude/*)",
+      "Write(~/.claude/*)",
+      "Edit(.claude/*)",
+      "Write(.claude/*)",
+      "Read(~/.local/share/**)",
+      "Skill(update-config)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:upsnap.noizwaves.cloud)",
       "WebFetch(domain:starship.rs)"
     ]
   }
