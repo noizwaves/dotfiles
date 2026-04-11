@@ -22,6 +22,7 @@
       "Bash(kill *)",
       "Bash(ls *)",
       "Bash(ls -al *)",
+      "Bash(fd *)",
       "Bash(lsof *)",
       "Bash(sed *)",
       "Bash(wc *)",
@@ -218,6 +219,9 @@
       "mcp__gdrivegusto__update_doc_from_markdown",
       "mcp__githubgusto__merge_pull_request"
     ],
+    "deny": [
+      "Bash(find *)"
+    ],
     "defaultMode": "plan"
   },
   "model": "opus",
@@ -243,5 +247,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  }
+  },
+  "effortLevel": "medium"
 }
