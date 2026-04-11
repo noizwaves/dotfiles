@@ -11,6 +11,9 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Key Packages
 
+- **claude** — shared Claude Code config (`CLAUDE.md`, helper scripts in `.local/bin/`)
+- **claude-personal** — personal `~/.claude/settings.json`
+- **claude-work** — work `~/.claude/settings.json` (managed by Gusto plugin, this is the active one)
 - **zsh** — shell config (`.zshenv`)
 - **git** — git includes (Gusto-specific `.gitconfig_inc_gusto`)
 - **starship** — prompt config (standard + monorepo variants)
@@ -25,6 +28,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Editing Tips
 
+- **Always edit files in this repo**, not at their symlink destinations (e.g., edit `claude-work/.claude/settings.json` here, not `~/.claude/settings.json`)
 - When adding a new config, create a new stow package directory mirroring the home directory path
 
 ## Git
