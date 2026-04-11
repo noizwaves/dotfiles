@@ -15,7 +15,6 @@
       "Bash(cat *)",
       "Bash(cd *)",
       "Bash(echo *)",
-      "Bash(fd *)",
       "Bash(git *)",
       "Bash(grep *)",
       "Bash(head *)",
@@ -221,6 +220,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -236,21 +236,12 @@
     "enabled": false,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "network": {
-      "allowedHosts": [
-        "api.github.com",
-        "github.com",
-        "docs.github.com",
-        "buildkite.com"
-      ]
-    },
+    "network": {},
     "filesystem": {
-      "allowWrite": [
-      ]
+      "allowWrite": []
     }
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  },
-  "model": "opus"
+  }
 }
