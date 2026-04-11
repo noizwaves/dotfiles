@@ -2,11 +2,11 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(head:*)",
-      "Bash(cat:*)",
-      "Bash(ls:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
+      "Bash(head )",
+      "Bash(cat )",
+      "Bash(ls *)",
+      "Bash(git add )",
+      "Bash(git commit )",
       "Read(~/.claude/*)",
       "Read(.claude/*)",
       "Read(~/workspace/**)",
