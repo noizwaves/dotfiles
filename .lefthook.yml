@@ -1,6 +1,0 @@
-pre-commit:
-  commands:
-    claude-settings-sync:
-      glob: "claude-{personal,work}/.claude/settings.json"
-      run: ./claude/.local/bin/claude-settings-sync
-      stage_fixed: true

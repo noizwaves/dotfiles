@@ -31,10 +31,6 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **Always edit files in this repo**, not at their symlink destinations (e.g., edit `claude-work/.claude/settings.json` here, not `~/.claude/settings.json`)
 - When adding a new config, create a new stow package directory mirroring the home directory path
 
-## Claude settings sync
-
-`claude-personal/.claude/settings.json` and `claude-work/.claude/settings.json` each ship a full settings file; only one is stowed at a time. A lefthook pre-commit hook keeps every shared top-level key in sync between the two; `env` and `enabledPlugins` stay per-context. Sync logic lives in `claude/.local/bin/claude-settings-sync`, wired via `.lefthook.yml`. Run `make install-hooks` once per clone to register the hook.
-
 ## Git
 
 - Never use `git -C <path>` — all changes live in this directory; run git commands directly
