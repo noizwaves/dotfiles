@@ -9,6 +9,9 @@ work:
 personal:
 	stow --target=$$HOME --restow claude-personal/
 
+install-hooks:
+	lefthook install
+
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
 
