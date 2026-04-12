@@ -27,6 +27,7 @@
 
 ## Code Style
 - Only write comments that are contextually useful — explain *why*, not *what*
+- Comments should capture the real-world purpose and user-facing context, not just the technical mechanism (e.g., "Force a Touch ID confirmation" not "Force a fresh auth prompt")
 - Never duplicate variable or function names in comments
 
 ## MCP vs CLI Tools

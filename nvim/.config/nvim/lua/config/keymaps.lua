@@ -3,7 +3,14 @@ local map = vim.keymap.set
 
 map("n", "<C-f>", ":silent !tmux neww tmux-sessionizer<cr>", { silent = true })
 
-map("n", "<leader>c", ":source $MYVIMRC<cr>")
+vim.api.nvim_create_user_command("R", "source $MYVIMRC", {})
+
+-- Copy relative file path to system clipboard
+map("n", "<leader>cc", function()
+  local path = vim.fn.expand("%")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end)
 
 map("n", "<S-h>", "<cmd>bprev<cr>")
 map("n", "<S-l>", "<cmd>bnext<cr>")

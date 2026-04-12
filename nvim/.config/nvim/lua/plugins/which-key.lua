@@ -9,6 +9,7 @@ return {
         { "<leader>o", group = "open/files" },
         { "<leader>f", group = "find/search" },
         { "<leader>g", group = "git" },
+        { "<leader>c", group = "copy" },
         { "<leader>n", group = "nvim-tree" },
       },
     },
