@@ -30,6 +30,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 - **Always edit files in this repo**, not at their symlink destinations (e.g., edit `claude-work/.claude/settings.json` here, not `~/.claude/settings.json`)
 - When adding a new config, create a new stow package directory mirroring the home directory path
+- When adding or changing Neovim keymaps, update `docs/neovim-keymap.md` to keep the keymap reference in sync
 
 ## Git
 

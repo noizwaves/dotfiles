@@ -52,18 +52,4 @@ After removing plugins from the config, run `:PlugClean` to remove the installed
 
 ## Vim Keyboard Shortcuts
 
-### Finding / Searching
-
-- `<Leader>f`: live grep based find using Telescope
-- `:FindInFolder "some/path"`: live grep based find within a folder using Telescope
-- `<Leader>o`: find git tracked files using FZF
-
-Within Telescope:
-- `[n]p`: toggle preview panel
-
-Within FZF:
-- `<C-/>`: toggle preview panel
-
-GitHub integration:
-- `:GBrowse`: Go to file at GitHub in browser
-- `<Leader>g`: Go to selected line(s) at GitHub in browser
+See [docs/neovim-keymap.md](docs/neovim-keymap.md) for the full custom keymap reference.
