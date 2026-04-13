@@ -10,7 +10,7 @@ map("n", "<leader>cc", function()
   local path = vim.fn.expand("%")
   vim.fn.setreg("+", path)
   vim.notify("Copied: " .. path)
-end)
+end, { desc = "Relative file path" })
 
 map("n", "<S-h>", "<cmd>bprev<cr>")
 map("n", "<S-l>", "<cmd>bnext<cr>")
