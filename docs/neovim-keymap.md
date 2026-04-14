@@ -12,6 +12,7 @@
 
 Keymaps follow a `<leader>${plugin}${command}` pattern. Plugins/areas are:
 
+- `a` — AI/Claude
 - `c` — copy
 - `o` — open/files
 - `f` — find/search
@@ -76,6 +77,7 @@ Powered by [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim). T
 |---|---|---|
 | `Space gg` | Open LazyGit | `:LazyGit` |
 | `Space gh` | Open lines in GitHub (visual line mode) | `:GBrowse` |
+| `Space gl` | Line history in visual mode | `git log -L` |
 | | Show blame information | `:Git blame` |
 
 ## Plugin Management
@@ -85,6 +87,21 @@ Powered by [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim). T
 | Shortcut | Action |
 |---|---|
 | `:Lazy` | Launch plugin manager UI |
+
+## AI / Claude (`Space a`)
+
+[claudecode.nvim](https://github.com/coder/claudecode.nvim) integrates Claude Code into Neovim — Claude sees your current file, selections, and diagnostics in real-time.
+
+| Shortcut | Action | Command |
+|---|---|---|
+| `Space ac` | Toggle Claude terminal | `:ClaudeCode` |
+| `Space af` | Focus Claude terminal | `:ClaudeCodeFocus` |
+| `Space ar` | Resume last conversation | `:ClaudeCode --resume` |
+| `Space aC` | Continue last conversation | `:ClaudeCode --continue` |
+| `Space ab` | Add current buffer to context | `:ClaudeCodeAdd %` |
+| `Space as` | Send visual selection to Claude | `:ClaudeCodeSend` |
+| `Space aa` | Accept diff | `:ClaudeCodeDiffAccept` |
+| `Space ad` | Deny diff | `:ClaudeCodeDiffDeny` |
 
 ## QoL
 

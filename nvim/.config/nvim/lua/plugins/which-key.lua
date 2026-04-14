@@ -11,6 +11,7 @@ return {
         { "<leader>g", group = "git" },
         { "<leader>c", group = "copy" },
         { "<leader>n", group = "nvim-tree" },
+        { "<leader>a", group = "AI/Claude" },
       },
     },
   },
