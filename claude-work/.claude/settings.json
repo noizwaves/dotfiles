@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
+    "ENABLE_CLAUDEAI_MCP_SERVERS": "false",
     "GUSTO_CLAUDE_SETUP": "true"
   },
   "permissions": {
