@@ -14,7 +14,13 @@ end, { desc = "Relative file path" })
 
 map("n", "<S-h>", "<cmd>bprev<cr>")
 map("n", "<S-l>", "<cmd>bnext<cr>")
-map("n", "<S-w>", "<cmd>bprev <bar>bdelete #<cr>")
+map("n", "<S-w>", function()
+  if #vim.fn.getbufinfo({ buflisted = 1 }) == 1 then
+    vim.cmd("bdelete")
+  else
+    vim.cmd("bprev | bdelete #")
+  end
+end)
 
 -- Ctrl+/ to toggle search highlighting
 map("n", "<C-_>", "<cmd>set invhlsearch<cr>")
