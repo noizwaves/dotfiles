@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+STATE_FILE="/tmp/nvim-verify.state"
+
+if [ ! -f "$STATE_FILE" ]; then
+  exit 0
+fi
+
+# shellcheck source=/dev/null
+source "$STATE_FILE"
+
+# Try graceful shutdown first
+if [ -S "${SOCK:-}" ]; then
+  nvim --server "$SOCK" --remote-send ':qall!<CR>' 2>/dev/null || true
+  sleep 0.3
+fi
+
+# Force cleanup based on mode
+case "${MODE:-}" in
+  tmux)
+    if [ -n "${PANE_ID:-}" ]; then
+      tmux kill-pane -t "$PANE_ID" 2>/dev/null || true
+    fi
+    ;;
+  headless)
+    if [ -n "${NVIM_PID:-}" ]; then
+      kill "$NVIM_PID" 2>/dev/null || true
+    fi
+    ;;
+esac
+
+rm -f "${SOCK:-}" "$STATE_FILE"

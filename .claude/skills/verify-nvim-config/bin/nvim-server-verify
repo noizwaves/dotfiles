@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+STATE_FILE="/tmp/nvim-verify.state"
+
+if [ ! -f "$STATE_FILE" ]; then
+  echo "ERROR: no nvim server running (state file not found)" >&2
+  exit 2
+fi
+
+# shellcheck source=/dev/null
+source "$STATE_FILE"
+
+if [ -z "${SOCK:-}" ] || [ ! -S "$SOCK" ]; then
+  echo "ERROR: nvim socket not found at ${SOCK:-<unset>}" >&2
+  exit 2
+fi
+
+exit_code=0
+
+# Check for diagnostic errors
+echo "=== Diagnostics ==="
+diag_output=$(nvim --server "$SOCK" --remote-expr 'luaeval("vim.inspect(vim.diagnostic.get(0))")' 2>&1)
+if [ "$diag_output" = "{}" ]; then
+  echo "PASS: no diagnostic errors"
+else
+  echo "$diag_output"
+fi
+
+# Check lazy.nvim stats
+echo ""
+echo "=== Lazy Stats ==="
+stats_output=$(nvim --server "$SOCK" --remote-expr 'luaeval("vim.inspect(require(\"lazy\").stats())")' 2>&1)
+if [ $? -ne 0 ]; then
+  echo "FAIL: could not query lazy.nvim stats"
+  echo "  $stats_output"
+  exit_code=1
+else
+  echo "$stats_output"
+fi
+
+# Check for startup errors
+echo ""
+echo "=== Startup Errors ==="
+errmsg=$(nvim --server "$SOCK" --remote-expr 'luaeval("vim.v.errmsg")' 2>&1)
+if [ -z "$errmsg" ]; then
+  echo "PASS: no startup errors"
+else
+  echo "FAIL: startup error detected"
+  echo "  $errmsg"
+  exit_code=1
+fi
+
+exit $exit_code

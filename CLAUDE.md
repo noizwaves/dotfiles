@@ -33,6 +33,10 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **After adding or removing files**, remind the user to re-stow so new symlinks are created (edits to existing files propagate automatically via the existing symlink). The command is `make all` (or `make work`/`make personal` for claude settings)
 - When adding or changing Neovim keymaps, update `docs/neovim-keymap.md` to keep the keymap reference in sync
 
+## Neovim Config Verification
+
+After editing files under `nvim/.config/nvim/`, the `verify-nvim-config` skill activates automatically to verify changes via a headless Neovim instance. The skill uses `nvim-server-start`, `nvim-server-stop`, and `nvim-server-verify` scripts in `.claude/skills/verify-nvim-config/bin/`.
+
 ## Git
 
 - Never use `git -C <path>` — all changes live in this directory; run git commands directly

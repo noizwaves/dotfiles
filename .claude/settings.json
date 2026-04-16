@@ -9,7 +9,12 @@
       "Skill(update-config)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:upsnap.noizwaves.cloud)",
-      "WebFetch(domain:starship.rs)"
+      "WebFetch(domain:starship.rs)",
+      "Bash(tmux *)",
+      "Bash(nvim *)",
+      "Bash(nvim-server-start *)",
+      "Bash(nvim-server-stop *)",
+      "Bash(nvim-server-verify *)"
     ]
   }
 }
