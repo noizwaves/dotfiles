@@ -77,7 +77,7 @@ Powered by [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim). T
 |---|---|---|
 | `Space gg` | Open LazyGit | `:LazyGit` |
 | `Space gh` | Open lines in GitHub (visual line mode) | `:GBrowse` |
-| `Space gl` | Line history viewer (visual mode) | `git log -L` viewer: `j`/`k` navigate commits, `p` toggle diff preview, `o` open PR, `Enter` open commit, `h` help, `q` close |
+| `Space gl` | Line history viewer (visual mode) | `git log -L` viewer: `j`/`k` navigate commits, `p` toggle diff preview, `o` open PR, `Enter` open commit, `h` help, `Esc` close |
 | | Show blame information | `:Git blame` |
 
 ## Plugin Management

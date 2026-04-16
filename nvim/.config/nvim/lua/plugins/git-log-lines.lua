@@ -165,7 +165,7 @@ local function toggle_help(state)
     { "Enter", "open commit in browser" },
     { "o", "open PR in browser" },
     { "h", "toggle this help" },
-    { "q/Esc", "close" },
+    { "Esc", "close" },
   }
 
   local lines = {}
@@ -210,19 +210,7 @@ local function toggle_help(state)
   vim.api.nvim_set_current_win(state.list_win)
 end
 
--- Close all viewer windows and clean up
-local function close_viewer(state)
-  if state.autocmd_id then
-    pcall(vim.api.nvim_del_autocmd, state.autocmd_id)
-  end
-  -- Close other floats first, then list_win (current) last
-  local wins = { state.help_win, state.diff_win, state.backdrop_win, state.list_win }
-  for _, win in ipairs(wins) do
-    if win and vim.api.nvim_win_is_valid(win) then
-      vim.api.nvim_win_close(win, true)
-    end
-  end
-end
+-- Set up cleanup: when list_win closes (by any means), tear down everything else
 
 -- Show or hide the diff preview panel
 local function toggle_preview(state)
@@ -376,7 +364,6 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
   })
 
   -- Keybindings
-  local function close() close_viewer(state) end
 
   local pr_base_url = get_remote_pr_url(git_root)
 
@@ -397,8 +384,15 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
   end
 
   local opts = { buffer = list_buf, nowait = true }
-  vim.keymap.set("n", "q", close, opts)
-  vim.keymap.set("n", "<Esc>", close, opts)
+  vim.keymap.set("n", "<Esc>", function()
+    -- Close all floating windows to ensure full cleanup
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local config = vim.api.nvim_win_get_config(win)
+      if config.relative ~= "" then
+        pcall(vim.api.nvim_win_close, win, true)
+      end
+    end
+  end, opts)
   vim.keymap.set("n", "j", function() jump_commit(1) end, opts)
   vim.keymap.set("n", "k", function() jump_commit(-1) end, opts)
   vim.keymap.set("n", "p", function() toggle_preview(state) end, opts)

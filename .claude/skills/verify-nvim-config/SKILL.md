@@ -20,6 +20,8 @@ nvim-server-start → dynamic checks → nvim-server-verify → nvim-server-stop
 
 Helper scripts are in `.claude/skills/verify-nvim-config/bin/`. The socket path is stored in `/tmp/nvim-verify.state`.
 
+**Important:** The headless Neovim instance loads config files at startup. If you edit a file and need to verify the new version, you must stop and restart the server (`nvim-server-stop` then `nvim-server-start`) so the updated code is loaded.
+
 ## Dynamic Verification Patterns
 
 Construct `luaeval` queries based on what you changed. Read the socket path from the `nvim-server-start` output.
