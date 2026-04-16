@@ -14,9 +14,9 @@ if [ -f "$STATE_FILE" ]; then
 fi
 
 if [ -n "${TMUX:-}" ]; then
-  PANE_ID=$(tmux split-window -h -d -P -F '#{pane_id}' "nvim --listen $SOCK")
+  WINDOW_ID=$(tmux new-window -d -P -F '#{window_id}' "nvim --listen $SOCK")
   echo "SOCK=$SOCK" > "$STATE_FILE"
-  echo "PANE_ID=$PANE_ID" >> "$STATE_FILE"
+  echo "WINDOW_ID=$WINDOW_ID" >> "$STATE_FILE"
   echo "MODE=tmux" >> "$STATE_FILE"
 else
   nvim --headless --listen "$SOCK" &

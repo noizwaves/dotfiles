@@ -19,8 +19,8 @@ fi
 # Force cleanup based on mode
 case "${MODE:-}" in
   tmux)
-    if [ -n "${PANE_ID:-}" ]; then
-      tmux kill-pane -t "$PANE_ID" 2>/dev/null || true
+    if [ -n "${WINDOW_ID:-}" ]; then
+      tmux kill-window -t "$WINDOW_ID" 2>/dev/null || true
     fi
     ;;
   headless)

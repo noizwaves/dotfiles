@@ -24,50 +24,52 @@ Helper scripts are in `.claude/skills/verify-nvim-config/bin/`. The socket path 
 
 Construct `luaeval` queries based on what you changed. Read the socket path from the `nvim-server-start` output.
 
+**Important:** Always use the literal absolute socket path (e.g., `/tmp/nvim-verify-12345.sock`) directly in `nvim --server` commands. Do NOT store it in a shell variable like `$SOCK` — variable expansion triggers `simple_expansion` permission warnings.
+
 ### Plugin spec changed (`lua/plugins/<name>.lua`)
 
 Extract the plugin's short name from the spec's first string (e.g., `"nvim-telescope/telescope.nvim"` → `telescope.nvim`).
 
 ```bash
 # Check plugin is registered in lazy.nvim (works for all plugins, including lazy-loaded)
-nvim --server $SOCK --remote-expr 'luaeval("require(\"lazy.core.config\").plugins[\"telescope.nvim\"] ~= nil")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("require(\"lazy.core.config\").plugins[\"telescope.nvim\"] ~= nil")'
 
 # Check plugin is actually loaded (only true for non-lazy plugins or after trigger)
-nvim --server $SOCK --remote-expr 'luaeval("require(\"lazy.core.config\").plugins[\"telescope.nvim\"]._.loaded ~= nil")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("require(\"lazy.core.config\").plugins[\"telescope.nvim\"]._.loaded ~= nil")'
 
 # Check a lazy-loaded command exists (if plugin uses cmd = ...)
-nvim --server $SOCK --remote-expr 'luaeval("vim.fn.exists(\":Telescope\") == 2")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.fn.exists(\":Telescope\") == 2")'
 ```
 
 ### Keymap changed (`lua/config/keymaps.lua` or plugin `keys = {}`)
 
 ```bash
 # Check a normal-mode mapping exists
-nvim --server $SOCK --remote-expr 'luaeval("vim.fn.maparg(\"<leader>cc\", \"n\") ~= \"\"")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.fn.maparg(\"<leader>cc\", \"n\") ~= \"\"")'
 
 # Get the mapping's rhs to verify it's correct
-nvim --server $SOCK --remote-expr 'luaeval("vim.fn.maparg(\"<S-h>\", \"n\")")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.fn.maparg(\"<S-h>\", \"n\")")'
 ```
 
 ### Autocmd changed (`lua/config/autocmds.lua`)
 
 ```bash
 # Check an autocmd group has entries
-nvim --server $SOCK --remote-expr 'luaeval("#vim.api.nvim_get_autocmds({group=\"autoreload\"}) > 0")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("#vim.api.nvim_get_autocmds({group=\"autoreload\"}) > 0")'
 ```
 
 ### Option changed (`init.lua`)
 
 ```bash
 # Check a vim option value
-nvim --server $SOCK --remote-expr 'luaeval("vim.o.scrolloff")'
-nvim --server $SOCK --remote-expr 'luaeval("vim.o.number")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.o.scrolloff")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.o.number")'
 ```
 
 ### Colorscheme changed
 
 ```bash
-nvim --server $SOCK --remote-expr 'luaeval("vim.g.colors_name")'
+nvim --server /tmp/nvim-verify-XXXXX.sock --remote-expr 'luaeval("vim.g.colors_name")'
 ```
 
 ## When Multiple Files Changed
