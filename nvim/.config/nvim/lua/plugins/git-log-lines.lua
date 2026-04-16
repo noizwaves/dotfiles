@@ -103,14 +103,6 @@ local function render_commit_list(buf, commits)
     line_to_commit[base + 2] = i
     commit_first_line[i] = base + 1
 
-    -- PR number on its own line
-    if c.pr_number then
-      local pr_text = "PR #" .. c.pr_number
-      table.insert(lines, pr_text)
-      table.insert(highlights, { base + 2, 0, #pr_text, "GitLogPR" })
-      line_to_commit[base + 3] = i
-    end
-
     -- Blank separator (except after last commit)
     if i < #commits then
       local sep_line = #lines
@@ -162,8 +154,8 @@ local function toggle_help(state)
   local help_entries = {
     { "j/k", "navigate commits" },
     { "p", "toggle diff preview" },
-    { "Enter", "open commit in browser" },
-    { "o", "open PR in browser" },
+    { "Enter", "open PR in browser" },
+    { "o", "open commit in browser" },
     { "h", "toggle this help" },
     { "Esc", "close" },
   }
@@ -347,6 +339,9 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
     update_diff_preview(diff_buf, commits[1])
   end
 
+  -- Show diff preview by default
+  toggle_preview(state)
+
   -- CursorMoved: update diff when cursor moves to a different commit
   state.autocmd_id = vim.api.nvim_create_autocmd("CursorMoved", {
     buffer = list_buf,
@@ -400,17 +395,6 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
 
   vim.keymap.set("n", "<CR>", function()
     local c = commits[state.current_commit_idx]
-    if not c then return end
-    local url = get_commit_url(git_root, c.hash)
-    if url then
-      vim.ui.open(url)
-    else
-      vim.notify("No remote URL configured", vim.log.levels.WARN)
-    end
-  end, opts)
-
-  vim.keymap.set("n", "o", function()
-    local c = commits[state.current_commit_idx]
     if not c or not c.pr_number then
       vim.notify("No PR link for this commit", vim.log.levels.INFO)
       return
@@ -420,6 +404,17 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
       return
     end
     vim.ui.open(pr_base_url .. c.pr_number)
+  end, opts)
+
+  vim.keymap.set("n", "o", function()
+    local c = commits[state.current_commit_idx]
+    if not c then return end
+    local url = get_commit_url(git_root, c.hash)
+    if url then
+      vim.ui.open(url)
+    else
+      vim.notify("No remote URL configured", vim.log.levels.WARN)
+    end
   end, opts)
 
   -- Redirect focus back to commit list if backdrop gets focus
