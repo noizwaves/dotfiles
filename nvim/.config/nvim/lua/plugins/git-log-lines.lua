@@ -257,7 +257,7 @@ local function toggle_preview(state)
       col = state.inner_col + list_w + 1,
       row = state.inner_row,
       style = "minimal",
-      border = { "│", " ", " ", " ", " ", " ", " ", " " },
+      border = { "", "", "", "", "", "", "", "│" },
       zindex = 50,
     })
     vim.wo[state.diff_win].wrap = false
