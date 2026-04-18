@@ -261,12 +261,15 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
   local editor_w = vim.o.columns
   local editor_h = vim.o.lines
 
-  -- Backdrop: full screen with border and title
+  local backdrop_h = editor_h - 4
+  local inner_h = backdrop_h
+
+  -- Backdrop: sized to content with border and title
   local backdrop_buf = vim.api.nvim_create_buf(false, true)
   local backdrop_win = vim.api.nvim_open_win(backdrop_buf, false, {
     relative = "editor",
     width = editor_w - 2,
-    height = editor_h - 4,
+    height = backdrop_h,
     col = 0,
     row = 0,
     style = "minimal",
@@ -278,7 +281,6 @@ local function create_viewer(commits, git_root, rel_path, start_line, end_line)
 
   -- Inner dimensions (inside the backdrop border)
   local inner_w = editor_w - 4
-  local inner_h = editor_h - 6
   local inner_col = 1
   local inner_row = 1
 
