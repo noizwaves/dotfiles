@@ -208,17 +208,16 @@
       "Bash(gh project view *)",
       "Bash(gh browse *)"
     ],
+    "deny": [
+      "Bash(find *)"
+    ],
     "ask": [
       "mcp__gdrivegusto__create_doc_from_markdown",
       "mcp__gdrivegusto__update_doc_from_markdown",
       "mcp__githubgusto__merge_pull_request"
     ],
-    "deny": [
-      "Bash(find *)"
-    ],
     "defaultMode": "plan"
   },
-  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
@@ -234,5 +233,6 @@
       ]
     }
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "model": "opus"
 }
