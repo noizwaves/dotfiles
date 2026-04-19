@@ -2,7 +2,7 @@ return {
   {
     "noizwaves/gloggles.nvim",
     keys = {
-      { "<leader>gl", mode = "x", desc = "Git: line history (git log -L)" },
+      { "<leader>gl", mode = "x", desc = "Gloggles: git line history" },
     },
     opts = {},
   },
