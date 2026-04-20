@@ -1,21 +1,21 @@
 packages:
   adamctl: 0.0.9
-  crush: 0.52.0
-  delta: 0.19.1
+  crush: 0.60.0
+  delta: 0.19.2
   diffsitter: 0.9.0
   direnv: 2.37.1
   fd: 10.4.2
-  fzf: 0.70.0
-  glow: 2.1.1
+  fzf: 0.71.0
+  glow: 2.1.2
   grab: 0.0.69
   hyperfine: 1.20.0
-  lazygit: 0.61.0
-  lefthook: 2.1.4
-  pup: 0.37.0
+  lazygit: 0.61.1
+  lefthook: 2.1.6
+  pup: 0.50.2
   rg: 15.1.0
   scc: 3.7.0
-  sidecar: 0.83.0
-  starship: 1.24.2
-  td: 0.43.0
-  tv: 0.15.4
+  sidecar: 0.84.0
+  starship: 1.25.0
+  td: 0.44.0
+  tv: 0.15.6
   yazi: 26.1.22
