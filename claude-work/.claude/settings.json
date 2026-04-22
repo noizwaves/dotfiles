@@ -210,7 +210,9 @@
       "Bash(gh label list *)",
       "Bash(gh project list *)",
       "Bash(gh project view *)",
-      "Bash(gh browse *)"
+      "Bash(gh browse *)",
+      "Skill(splitting-buildkite-pipeline)",
+      "mcp__slackgustoofficialmcp__slack_read_channel"
     ],
     "deny": [
       "Bash(find *)"
@@ -222,6 +224,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -245,5 +248,6 @@
   "effortLevel": "medium",
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }
