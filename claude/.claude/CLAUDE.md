@@ -12,6 +12,12 @@
   - **Problem**: succinct description of the issue — include expected vs. actual behavior when applicable
   - **Solution**: *why* this approach was chosen, key trade-offs considered, and overall description of the changes
   - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally). Write in prose or concise paragraphs, not an incomplete checklist
+- **Be concise and direct.** Aim for the shortest body that conveys motivation + trade-offs. Target ≤400 words for most PRs; only exceed it when the "why" genuinely requires it
+- **Each fact stated once.** Do not duplicate companion-PR links, merge-order callouts, Jira/ticket references, or rollout notes across multiple sections — pick the section where each belongs and link back with a reference if needed elsewhere
+- **Use tables to compare near-duplicate things** (e.g., two roles differing only by one field, multiple renamed steps, before/after queues) instead of restating each one in prose
+- **Inline the "why not the alternative"** next to the decision it justifies, rather than giving alternatives their own section
+- **Context is a tight bullet list** of links (Jira, companion PRs, Slack threads), not prose. Save the narrative for Problem/Solution
+- **Testing is prose or a few short bullets**, never an incomplete/aspirational checklist
 
 ## Planning
 - Always ask clarifying questions before finalizing a plan
