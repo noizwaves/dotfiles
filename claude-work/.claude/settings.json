@@ -224,7 +224,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -246,8 +246,8 @@
     }
   },
   "effortLevel": "medium",
+  "preferredNotifChannel": "terminal_bell",
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
-  },
-  "skipAutoPermissionPrompt": true
+  }
 }
