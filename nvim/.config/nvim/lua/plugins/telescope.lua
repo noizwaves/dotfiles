@@ -2,7 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    cmd = "Telescope",
+    cmd = { "Telescope", "FindInFolder" },
     keys = {
       { "<leader>oa", "<cmd>Telescope find_files<cr>", desc = "Open: all files (incl. gitignored)" },
       { "<leader>ob", "<cmd>Telescope buffers<cr>", desc = "Open: buffer" },
