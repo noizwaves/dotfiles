@@ -1,0 +1,211 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: wt-cleanup [--dry-run] [-v|--verbose]" >&2
+  echo "" >&2
+  echo "Delete ~/workspace/<repo>--<name> directories whose branch is gone from origin." >&2
+  echo "Skips any directory with uncommitted changes or unpushed commits." >&2
+  echo "" >&2
+  echo "Options:" >&2
+  echo "  --dry-run        Show what would be deleted, but don't delete." >&2
+  echo "  -v, --verbose    Also print kept (non-stale) directories." >&2
+  echo "  -h, --help       Show this help." >&2
+  exit 1
+}
+
+dry_run=false
+verbose=false
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --dry-run) dry_run=true; shift ;;
+    -v|--verbose) verbose=true; shift ;;
+    -h|--help) usage ;;
+    *) usage ;;
+  esac
+done
+
+workspace="$HOME/workspace"
+[[ -d "$workspace" ]] || { echo "No $workspace directory" >&2; exit 1; }
+
+# Counters
+deleted=0
+skipped=0
+kept=0
+
+# Track which root repos we touched, for the final prune
+declare -a touched_roots=()
+already_fetched_roots=" "  # space-delimited set
+already_fetched_clones=" "
+
+note() { printf '%-14s %s\n' "$1" "$2"; }
+
+run() {
+  # Echo (when verbose) and execute. Quoting in the echo is approximate but
+  # close enough to be copy-pasteable for the simple commands we trace.
+  if $verbose; then
+    local arg q=""
+    for arg in "$@"; do
+      if [[ "$arg" =~ [[:space:]] ]]; then
+        q+=" '$arg'"
+      else
+        q+=" $arg"
+      fi
+    done
+    echo "+${q}" >&2
+  fi
+  "$@"
+}
+
+resolve_root_repo() {
+  # For a worktree dir, walk from .git/worktrees/<id> back to the main repo.
+  local dir="$1"
+  local common_dir
+  common_dir=$(git -C "$dir" rev-parse --git-common-dir 2>/dev/null) || return 1
+  # common_dir is typically /path/to/root/.git
+  [[ "$common_dir" == /* ]] || common_dir="$dir/$common_dir"
+  dirname "$common_dir"
+}
+
+is_dirty() {
+  # Echoes a reason if dirty, returns 0; else returns 1.
+  local dir="$1" branch="$2"
+  if [[ -n "$(git -C "$dir" status --porcelain)" ]]; then
+    echo "uncommitted changes"
+    return 0
+  fi
+
+  # Determine upstream state.
+  # - upstream configured + ref resolves    -> compare ahead-count
+  # - upstream configured + ref gone        -> branch was pushed then deleted on origin
+  #                                            (the canonical "merged PR" case) -> not dirty
+  # - upstream not configured               -> never-pushed local branch; only safe if
+  #                                            HEAD is reachable from some origin/* ref
+  local has_remote
+  has_remote=$(git -C "$dir" config --get "branch.$branch.remote" 2>/dev/null || true)
+  if [[ -n "$has_remote" ]]; then
+    local upstream
+    if upstream=$(git -C "$dir" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null) \
+         && git -C "$dir" show-ref --verify --quiet "refs/remotes/$upstream"; then
+      local ahead
+      ahead=$(git -C "$dir" rev-list --count "$upstream..HEAD" 2>/dev/null || echo 0)
+      if [[ "$ahead" != "0" ]]; then
+        echo "$ahead unpushed commits on $branch"
+        return 0
+      fi
+    fi
+    # else: upstream was configured but the ref is gone — treat as safe.
+  else
+    local head_sha contained=0 ref
+    head_sha=$(git -C "$dir" rev-parse HEAD)
+    while IFS= read -r ref; do
+      if git -C "$dir" merge-base --is-ancestor "$head_sha" "$ref" 2>/dev/null; then
+        contained=1
+        break
+      fi
+    done < <(git -C "$dir" for-each-ref --format='%(refname)' refs/remotes/origin/ 2>/dev/null)
+    if [[ "$contained" == 0 ]]; then
+      echo "no upstream and HEAD not on any origin ref"
+      return 0
+    fi
+  fi
+  return 1
+}
+
+fetch_once() {
+  # $1 = repo dir, $2 = "roots" | "clones"
+  local dir="$1" kind="$2"
+  if [[ "$kind" == "roots" ]]; then
+    case "$already_fetched_roots" in *" $dir "*) return 0 ;; esac
+    already_fetched_roots+="$dir "
+  else
+    case "$already_fetched_clones" in *" $dir "*) return 0 ;; esac
+    already_fetched_clones+="$dir "
+  fi
+  run git -C "$dir" fetch --prune origin >/dev/null 2>&1 || \
+    echo "warning: fetch failed in $dir" >&2
+}
+
+shopt -s nullglob
+for dir in "$workspace"/*--*; do
+  [[ -d "$dir" ]] || continue
+
+  # Classify: file .git -> worktree; dir .git -> clone; otherwise skip.
+  if [[ -f "$dir/.git" ]]; then
+    kind=worktree
+    if ! root=$(resolve_root_repo "$dir"); then
+      note "skip:" "$dir (cannot resolve root repo)"
+      skipped=$((skipped+1))
+      continue
+    fi
+    fetch_once "$root" roots
+    case " ${touched_roots[*]-} " in *" $root "*) ;; *) touched_roots+=("$root") ;; esac
+  elif [[ -d "$dir/.git" ]]; then
+    kind=clone
+    fetch_once "$dir" clones
+  else
+    continue
+  fi
+
+  # Branch.
+  if ! branch=$(git -C "$dir" symbolic-ref --short HEAD 2>/dev/null); then
+    note "skip:" "$dir (detached HEAD)"
+    skipped=$((skipped+1))
+    continue
+  fi
+
+  # Staleness: does origin/<branch> still exist locally after the prune fetch?
+  if git -C "$dir" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+    if $verbose; then
+      note "keep:" "$dir (branch $branch still on origin)"
+    fi
+    kept=$((kept+1))
+    continue
+  fi
+
+  # Dirty check.
+  if dirty_reason=$(is_dirty "$dir" "$branch"); then
+    note "skip:" "$dir (dirty: $dirty_reason)"
+    skipped=$((skipped+1))
+    continue
+  fi
+
+  # Delete (or pretend).
+  if $dry_run; then
+    note "would delete:" "$dir (branch $branch gone from origin)"
+    deleted=$((deleted+1))
+    continue
+  fi
+
+  if [[ "$kind" == "worktree" ]]; then
+    if run git -C "$root" worktree remove "$dir" 2>/dev/null; then
+      note "delete:" "$dir (branch $branch gone from origin)"
+      deleted=$((deleted+1))
+    else
+      # Fall back to manual removal.
+      run rm -rf "$dir"
+      note "delete:" "$dir (forced; branch $branch gone from origin)"
+      deleted=$((deleted+1))
+    fi
+  else
+    run rm -rf "$dir"
+    note "delete:" "$dir (clone; branch $branch gone from origin)"
+    deleted=$((deleted+1))
+  fi
+done
+
+# Final prune on every root repo we touched.
+if ! $dry_run; then
+  for root in "${touched_roots[@]-}"; do
+    [[ -n "${root:-}" ]] || continue
+    run git -C "$root" worktree prune
+  done
+fi
+
+if $dry_run; then
+  echo ""
+  echo "summary: would-delete $deleted, skipped $skipped, kept $kept"
+else
+  echo ""
+  echo "summary: deleted $deleted, skipped $skipped, kept $kept"
+fi
