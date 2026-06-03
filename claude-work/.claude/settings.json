@@ -115,7 +115,6 @@
       "mcp__claude_ai_Buildkite_Gusto__search_logs",
       "mcp__claude_ai_Buildkite_Gusto__tail_logs",
       "mcp__claude_ai_Buildkite_Gusto__user_token_organization",
-      "mcp__claude_ai_DD__search_datadog_events",
       "mcp__claude_ai_Gdrive_Gusto__fetch_file",
       "mcp__claude_ai_Gdrive_Gusto__get_metadata",
       "mcp__claude_ai_Gdrive_Gusto__list_folder",
