@@ -7,17 +7,17 @@
 - Focus on *why*, not *what* — the diff already shows what changed; the PR body should explain motivation, trade-offs, and decisions. If sufficient "why" context is missing, ask clarifying questions before writing the description
 - When a PR is for a Jira ticket, prefix the ticket number in the title (e.g., `[BUILD-123] Foo bar`) and link to the ticket in the Context section of the description
 - If the repo has a PR template, use that structure first — add headings for any missing focus areas below
-- If there is no PR template, structure the body with `##` headings for each focus area:
+- If there is no PR template, structure the body with `##` headings for each focus area. **Within every section, lead with a single succinct paragraph, then optionally add a bulleted list of points if there is more important content to share** (do not pad sections that don't need bullets):
   - **Context**: relevant conversations, resources, or observations (e.g., links to Slack threads, Jira tickets, Jira links)
   - **Problem**: succinct description of the issue — include expected vs. actual behavior when applicable
   - **Solution**: *why* this approach was chosen, key trade-offs considered, and overall description of the changes
-  - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally). Write in prose or concise paragraphs, not an incomplete checklist
+  - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally)
 - **Be concise and direct.** Aim for the shortest body that conveys motivation + trade-offs. Target ≤400 words for most PRs; only exceed it when the "why" genuinely requires it
 - **Each fact stated once.** Do not duplicate companion-PR links, merge-order callouts, Jira/ticket references, or rollout notes across multiple sections — pick the section where each belongs and link back with a reference if needed elsewhere
 - **Use tables to compare near-duplicate things** (e.g., two roles differing only by one field, multiple renamed steps, before/after queues) instead of restating each one in prose
 - **Inline the "why not the alternative"** next to the decision it justifies, rather than giving alternatives their own section
-- **Context is a tight bullet list** of links (Jira, companion PRs, Slack threads), not prose. Save the narrative for Problem/Solution
-- **Testing is prose or a few short bullets**, never an incomplete/aspirational checklist
+- **Context stays lean**: a one-line paragraph framing the change, followed by a tight bulleted list of links (Jira, companion PRs, Slack threads). Save the narrative for Problem/Solution
+- **Testing** follows the paragraph + optional bullets shape — never an incomplete/aspirational checklist
 
 ## Planning
 - Always ask clarifying questions before finalizing a plan
