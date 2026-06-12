@@ -39,4 +39,5 @@ After editing files under `nvim/.config/nvim/`, the `verify-nvim-config` skill a
 
 ## Git
 
+- Commit directly to `main` in this repo — do not create branches (overrides the global `an--` branch-prefix convention) unless explicitly told otherwise
 - Never use `git -C <path>` — all changes live in this directory; run git commands directly
