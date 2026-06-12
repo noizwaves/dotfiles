@@ -237,7 +237,8 @@
     "superpowers@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "eng-performance-reviews@gusto-claude-code": true,
-    "claude-introspection@gusto-claude-code": true
+    "claude-introspection@gusto-claude-code": true,
+    "gdev-wish@gusto-claude-code": true
   },
   "outputStyle": "Explanatory",
   "sandbox": {
