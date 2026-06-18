@@ -238,7 +238,16 @@
     "code-review@claude-plugins-official": true,
     "eng-performance-reviews@gusto-claude-code": true,
     "claude-introspection@gusto-claude-code": true,
-    "gdev-wish@gusto-claude-code": true
+    "gdev-wish@gusto-claude-code": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "dietrichgebert/ponytail"
+      }
+    }
   },
   "outputStyle": "Explanatory",
   "sandbox": {
