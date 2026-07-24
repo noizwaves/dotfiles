@@ -8,7 +8,6 @@
     "allow": [
       "Read(~/workspace/**)",
       "Edit(~/workspace/**)",
-      "Write(~/workspace/**)",
       "Read(~/Screenshots/**)",
       "Bash(cat *)",
       "Bash(cd *)",
@@ -30,12 +29,9 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:api.github.com)",
       "Read(~/.claude/*)",
-      "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
       "Read(.tmp/*)",
-      "Write(.tmp/*)",
       "Edit(.tmp/*)",
-      "Glob(.tmp/*)",
       "Grep(.tmp/*)",
       "Read(.claude/*)",
       "Bash(rgh *)",
@@ -226,7 +222,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
@@ -260,8 +256,13 @@
     }
   },
   "effortLevel": "medium",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "preferredNotifChannel": "terminal_bell",
   "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056851748
   }
