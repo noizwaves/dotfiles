@@ -6,6 +6,7 @@ echo "Installing dotfiles for Arch"
 # tools
 sudo pacman -S --noconfirm \
   make \
+  openbsd-netcat \
   stow \
   tmux \
   wget \
@@ -17,7 +18,8 @@ sudo pacman -S --noconfirm \
   syncthing \
   ghostty \
   neovim \
-  obsidian
+  obsidian \
+  signal-desktop
 
 # yay for AUR
 if ! command -v yay; then
