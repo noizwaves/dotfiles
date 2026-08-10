@@ -16,7 +16,7 @@ sudo pacman -S --noconfirm \
   dust \
   syncthing \
   ghostty \
-  bitwarden \
+  neovim \
   obsidian
 
 # yay for AUR
@@ -32,8 +32,9 @@ fi
 
 # AUR packages
 yay -S --needed --noconfirm \
+  1password \
+  1password-cli \
   antigen-git \
-  visual-studio-code-bin \
   plexamp-bin
 
 if ! command -v cargo; then
@@ -63,11 +64,4 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 
   echo "Installing tmux plugins..."
   ~/.tmux/plugins/tpm/bin/install_plugins
-fi
-
-# TODO: neovim?
-
-# VS Code is installed and running in a GUI (i.e. not a remote connection)
-if (command -v code &> /dev/null) && (type Xorg &> /dev/null); then
-  make install-vscode-extensions
 fi
