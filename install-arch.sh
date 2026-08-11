@@ -3,50 +3,6 @@ set -e
 
 echo "Installing dotfiles for Arch"
 
-# tools
-sudo pacman -S --noconfirm \
-  make \
-  openbsd-netcat \
-  stow \
-  tmux \
-  wget \
-  zsh \
-  tree \
-  atuin \
-  ttf-jetbrains-mono-nerd \
-  dust \
-  syncthing \
-  ghostty \
-  neovim \
-  obsidian \
-  signal-desktop
-
-# yay for AUR
-if ! command -v yay; then
-  sudo pacman -S --needed --noconfirm base-devel git
-  git clone https://aur.archlinux.org/yay.git
-  pushd yay
-  makepkg -si --noconfirm
-  popd
-
-  rm -rf yay
-fi
-
-# AUR packages
-yay -S --needed --noconfirm \
-  1password \
-  1password-cli \
-  antigen-git \
-  plexamp-bin
-
-if ! command -v cargo; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
-
-if ! command -v mise; then
-  curl --proto '=https' --tlsv1.2 -sSf https://mise.run | sh
-fi
-
 if ! command -v grab &>/dev/null; then
   curl --silent https://raw.githubusercontent.com/noizwaves/grab/main/install.sh | bash
 fi
