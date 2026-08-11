@@ -13,6 +13,9 @@ rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config
 
 make
 
+# Arch is always a personal machine
+make personal
+
 # ZSH me pls
 sudo usermod --shell /usr/bin/zsh $(whoami)
 
