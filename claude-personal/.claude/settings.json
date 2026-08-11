@@ -218,7 +218,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "sonnet",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
@@ -234,5 +234,6 @@
       ]
     }
   },
+  "disableRemoteControl": true,
   "effortLevel": "medium"
 }
