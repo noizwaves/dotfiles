@@ -122,6 +122,7 @@ alias ds='devspace run shell'
 alias jql="jq -C | less -R"
 
 alias tks='tmux kill-server'
+alias tkss='tmux kill-session'
 
 alias paths="echo \$PATH | tr : '\n'"
 
