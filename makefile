@@ -1,4 +1,4 @@
-PACKAGES := $(shell ls -d */ | grep -vE '^claude-(personal|work)/')
+PACKAGES := $(shell ls -d */ | grep -vE '^claude-(personal|work)/' | grep -vE '^docs/')
 
 all:
 	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --restow $(PACKAGES)
