@@ -13,7 +13,8 @@
   - **Problem**: succinct description of the issue — include expected vs. actual behavior when applicable
   - **Solution**: *why* this approach was chosen, key trade-offs considered, and overall description of the changes
   - **Testing**: describe what was done to verify the fix — automated (new/updated tests, CI steps) or manual (commands run, actions taken locally)
-- **Be concise and direct.** Aim for the shortest body that conveys motivation + trade-offs. Target ≤400 words for most PRs; only exceed it when the "why" genuinely requires it
+- **50 words per section, hard cap.** A target to stay under, not approach — most sections are one or two sentences. Content that doesn't fit belongs in a code comment or a review reply, not the PR body
+- **Cut anything the reviewer doesn't need in order to approve.** No explanations of how the framework or tool works, no recap of how you located the problem, no reasoning that led nowhere. If the change is obviously correct, "verified X" is the entire Testing section. Keep only: why this change, why this approach over the alternative, and what a reviewer should be suspicious of
 - **Each fact stated once.** Do not duplicate companion-PR links, merge-order callouts, Jira/ticket references, or rollout notes across multiple sections — pick the section where each belongs and link back with a reference if needed elsewhere
 - **Use tables to compare near-duplicate things** (e.g., two roles differing only by one field, multiple renamed steps, before/after queues) instead of restating each one in prose
 - **Inline the "why not the alternative"** next to the decision it justifies, rather than giving alternatives their own section
