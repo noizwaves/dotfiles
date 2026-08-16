@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Pins individual KDE settings that live in config files too noisy to stow.
+#
+# Most KDE config is symlinked straight into this repo (see kde/.config/), which
+# works because KConfig writes through symlinks. kdeglobals is the exception:
+# Plasma rewrites it during ordinary use — colour scheme data, widget style, and
+# a [KFileDialog Settings] block that records file-dialog sort order and
+# geometry — so stowing it would bury real settings in churn.
+#
+# Add a kwriteconfig6 line here for each key worth keeping. Re-run any time
+# after fiddling in System Settings to snap the pinned keys back.
+
+set -e
+
+# Terminal used by "Open Terminal Here" in Dolphin and friends
+kwriteconfig6 --file kdeglobals --group General --key TerminalApplication \
+  "/usr/bin/ghostty --gtk-single-instance=true"
+
+echo "Applied KDE settings"

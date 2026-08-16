@@ -23,7 +23,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **tmux** — tmux-sessionizer script
 - **direnv** — direnvrc
 - **vscode** — extensions list and snippets
-- **kde** — KDE default applications (`~/.config/mimeapps.list`)
+- **kde** — KDE settings (see [KDE Configuration](#kde-configuration))
 - **grab** — grab repository definitions
 - **gdev** — gdev-pull helper script
 
@@ -33,6 +33,22 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - When adding a new config, create a new stow package directory mirroring the home directory path
 - **After adding or removing files**, remind the user to re-stow so new symlinks are created (edits to existing files propagate automatically via the existing symlink). The command is `make all` (or `make work`/`make personal` for claude settings)
 - When adding or changing Neovim keymaps, update `docs/neovim-keymap.md` to keep the keymap reference in sync
+
+## KDE Configuration
+
+KDE settings are managed two ways. Pick based on how noisy the target file is.
+
+**Stow the whole file** when it only changes when you deliberately change a setting. KConfig (System Settings, `kwriteconfig6`) writes *through* symlinks rather than replacing them, so a stowed config stays linked and edits land straight in this repo. Currently stowed:
+
+- `kde/.config/mimeapps.list` — default applications, keyed by mimetype (`application/pdf`) or URL scheme (`x-scheme-handler/https`). Covers browser, mail, file manager, and per-filetype handlers
+- `kde/.config/powerdevilrc` — power management: AC/battery power profiles and brightness
+
+**Pin individual keys via `kde/.local/bin/kde-apply-settings`** when Plasma rewrites the file during ordinary use. `kdeglobals` is the standing example — it carries colour scheme data, widget style, and a `[KFileDialog Settings]` block that records file-dialog sort order and geometry, so stowing it buries real settings in churn. Add a `kwriteconfig6` line to the script instead. It runs from `install-arch.sh` and is safe to re-run any time.
+
+Notes:
+
+- `xdg-mime default` is symlink-safe here only because its KDE code path needs the Qt5-era `qtpaths` binary, which isn't installed. If `qtpaths` ever lands on `PATH`, that path activates and replaces `~/.config/mimeapps.list` with a regular file. Symptom: changing a default no longer shows up in `git status`. Fix with `make all`
+- These are laptop/Plasma-specific, but `make all` stows every package on every machine. Harmless elsewhere, just inert
 
 ## Neovim Config Verification
 

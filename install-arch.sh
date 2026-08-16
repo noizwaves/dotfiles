@@ -16,6 +16,9 @@ make
 # Arch is always a personal machine
 make personal
 
+# KDE settings that can't be stowed
+$HOME/.local/bin/kde-apply-settings
+
 # ZSH me pls
 sudo usermod --shell /usr/bin/zsh $(whoami)
 
