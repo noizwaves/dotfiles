@@ -22,7 +22,6 @@ cask "ghostty"
 cask "rectangle"
 cask "keycastr"
 cask "flycut"
-cask "stats"
 
 cask "font-jetbrains-mono-nerd-font"
 

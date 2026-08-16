@@ -5,12 +5,6 @@
 
 ## Install
 1. `./install`
-1. Configure iTerm 2 to load preferences
-  1. <kbd>Cmd+,</kbd>
-  1. Navigate to `General > Preferences`
-  1. Enable `Load preferences from a custom folder or URL`
-  1. Set directory to `~/workspace/dotfiles/iterm2`
-  1. Set `Save changes` to `Automatically`
 
 ## Uninstall
 ```

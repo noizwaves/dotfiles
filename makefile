@@ -1,7 +1,7 @@
 PACKAGES := $(shell ls -d */ | grep -vE '^claude-(personal|work)/' | grep -vE '^docs/')
 
 all:
-	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --restow $(PACKAGES)
+	stow --target=$$HOME --restow $(PACKAGES)
 
 work:
 	stow --target=$$HOME --restow claude-work/
@@ -19,7 +19,7 @@ all-devops:
 	stow --target=$$HOME --restow git starship tmux zsh ssh nvim grab
 
 delete:
-	stow --ignore=com.googlecode.iterm2.plist --ignore=Stats.plist --target=$$HOME --delete $(PACKAGES)
+	stow --target=$$HOME --delete $(PACKAGES)
 
 brew:
 	brew bundle

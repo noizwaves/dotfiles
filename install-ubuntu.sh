@@ -60,7 +60,7 @@ make
 # ZSH me pls
 sudo usermod --shell /bin/zsh $(whoami)
 
-# Configure Gnome desktop (with Kinto running)
+# Configure Gnome desktop
 dconf write /org/gnome/shell/keybindings/toggle-application-view "['<Alt>F1']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/home "['']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/email "['']"

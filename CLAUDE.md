@@ -4,7 +4,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Structure
 
-- Each directory (e.g., `zsh/`, `git/`, `starship/`, `wezterm/`) is a stow package
+- Each directory (e.g., `zsh/`, `git/`, `starship/`, `ghostty/`) is a stow package
 - `.stowrc` configures `--no-folding` (individual symlinks, not directory symlinks) and `--dotfiles`
 - `install` script dispatches to platform-specific installers (macOS, Ubuntu, devcontainers, Arch, server)
 - `personal.Brewfile` and `aptfile-*` manage package installs
@@ -17,7 +17,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **zsh** — shell config (`.zshenv`)
 - **git** — git includes (Gusto-specific `.gitconfig_inc_gusto`)
 - **starship** — prompt config (standard + monorepo variants)
-- **wezterm** — terminal emulator config (Lua + Dracula theme)
+- **ghostty** — terminal emulator config
 - **nvim** — Neovim spell dictionary
 - **ssh** — SSH config (work config, rc)
 - **tmux** — tmux-sessionizer script
