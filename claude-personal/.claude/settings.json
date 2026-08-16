@@ -216,9 +216,10 @@
       "mcp__gdrivegusto__update_doc_from_markdown",
       "mcp__githubgusto__merge_pull_request"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "auto"
   },
   "model": "opus",
+  "disableRemoteControl": true,
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
@@ -234,6 +235,5 @@
       ]
     }
   },
-  "disableRemoteControl": true,
   "effortLevel": "medium"
 }

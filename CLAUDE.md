@@ -23,6 +23,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **tmux** — tmux-sessionizer script
 - **direnv** — direnvrc
 - **vscode** — extensions list and snippets
+- **kde** — KDE default applications (`~/.config/mimeapps.list`)
 - **grab** — grab repository definitions
 - **gdev** — gdev-pull helper script
 
