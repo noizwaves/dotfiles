@@ -14,8 +14,8 @@ packages:
   pup: 1.10.8
   rg: 15.2.0
   scc: 3.7.0
-  sidecar: 0.98.0
+  sidecar: 0.99.1
   starship: 1.26.0
   td: 0.57.0
   tv: 0.15.9
-  yazi: 26.5.6
+  yazi: 26.8.15
