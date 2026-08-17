@@ -11,7 +11,7 @@
 	signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
-	pager = delta
+	pager = hunk pager
 	excludesfile = ~/.gitignore
 	fsmonitor = true
 
