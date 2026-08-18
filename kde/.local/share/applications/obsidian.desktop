@@ -1,0 +1,14 @@
+# Overrides /usr/share/applications/obsidian.desktop, whose StartupWMClass
+# (md.Obsidian) does not match the Wayland app_id Obsidian actually sets
+# (md.obsidian.Obsidian). Without the match Plasma cannot find this entry, so
+# the taskbar and alt-tab switcher fall back to the generic Wayland "W" icon.
+[Desktop Entry]
+Name=Obsidian
+Exec=/usr/bin/obsidian %U
+Terminal=false
+Type=Application
+Icon=obsidian
+StartupWMClass=md.obsidian.Obsidian
+Comment=Obsidian
+MimeType=x-scheme-handler/obsidian;
+Categories=Office;
