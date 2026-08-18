@@ -1,0 +1,11 @@
+# Alias so KWin's task switcher can find an icon for the app_id Fastmail sets;
+# see md.obsidian.Obsidian.desktop for why these files exist. fastmail.desktop
+# remains the visible launcher entry and the mailto: handler.
+[Desktop Entry]
+Name=Fastmail
+Exec=fastmail %U
+Terminal=false
+Type=Application
+Icon=fastmail
+StartupWMClass=com.fastmail.Fastmail
+NoDisplay=true

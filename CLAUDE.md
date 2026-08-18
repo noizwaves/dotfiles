@@ -45,7 +45,14 @@ KDE settings are managed two ways. Pick based on how noisy the target file is.
 
 **Pin individual keys via `kde/.local/bin/kde-apply-settings`** when Plasma rewrites the file during ordinary use. `kdeglobals` is the standing example — it carries colour scheme data, widget style, and a `[KFileDialog Settings]` block that records file-dialog sort order and geometry, so stowing it buries real settings in churn. Add a `kwriteconfig6` line to the script instead. It runs from `install-arch.sh` and is safe to re-run any time.
 
-**Override a broken system `.desktop` entry** by dropping a corrected copy in `kde/.local/share/applications/`, which shadows the `/usr/share/applications/` one. `obsidian.desktop` is there because the packaged entry's `StartupWMClass` doesn't match the Wayland `app_id` Obsidian actually sets, so Plasma can't tie the window to the app and falls back to the generic Wayland "W" icon in the taskbar and alt-tab switcher. To read a window's real `app_id`, load a KWin script that prints `workspace.windowList()` via `qdbus6 org.kde.KWin /Scripting loadScript`, then check `journalctl --user` for its output. After adding an override run `make all` to stow it, then `kde-apply-settings` to rebuild the caches Plasma reads entries from.
+**Fix a wrong window icon** with a `.desktop` file in `kde/.local/share/applications/`. Two different lookups have to succeed, and an app whose Wayland `app_id` doesn't match its packaged entry can fail either one:
+
+| Shows the icon | Matches on | Fix |
+| --- | --- | --- |
+| Taskbar (plasmashell) | `app_id`, falling back to a `StartupWMClass` search | Shadow the system entry with a same-named copy carrying the right `StartupWMClass` (`obsidian.desktop`) |
+| Alt-tab switcher (KWin) | a file named literally `<app_id>.desktop` — no `StartupWMClass` search | Add an alias entry named after the `app_id` (`md.obsidian.Obsidian.desktop`, `com.fastmail.Fastmail.desktop`) |
+
+Alias entries are `NoDisplay=true` so the launcher keeps showing one copy, and omit `MimeType` so the packaged entry stays the registered scheme handler. To read a window's real `app_id`, load a KWin script that prints `workspace.windowList()` via `qdbus6 org.kde.KWin /Scripting loadScript`, then check `journalctl --user` for its output. After adding a file run `make all` to stow it, then `kde-apply-settings` to rebuild the caches Plasma reads entries from. KWin caches a window's icon, so already-open windows may need restarting.
 
 Notes:
 

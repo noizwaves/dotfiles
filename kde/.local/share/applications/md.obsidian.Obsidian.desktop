@@ -1,0 +1,15 @@
+# KWin's task switcher resolves a window's icon by looking for a desktop file
+# named literally after the Wayland app_id — it does not search StartupWMClass
+# the way the taskbar does. Obsidian ships obsidian.desktop but announces itself
+# as md.obsidian.Obsidian, so this alias is what puts a real icon in super+tab.
+#
+# NoDisplay keeps it out of the launcher (obsidian.desktop is the visible entry)
+# and MimeType is deliberately omitted so the obsidian:// handler stays there.
+[Desktop Entry]
+Name=Obsidian
+Exec=/usr/bin/obsidian %U
+Terminal=false
+Type=Application
+Icon=obsidian
+StartupWMClass=md.obsidian.Obsidian
+NoDisplay=true
