@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Pins individual KDE settings that live in config files too noisy to stow.
+# Pins individual KDE settings that live in config files too noisy to stow, and
+# refreshes the caches Plasma reads desktop entries out of.
 #
 # Most KDE config is symlinked straight into this repo (see kde/.config/), which
 # works because KConfig writes through symlinks. kdeglobals is the exception:
@@ -16,5 +17,11 @@ set -e
 # Terminal used by "Open Terminal Here" in Dolphin and friends
 kwriteconfig6 --file kdeglobals --group General --key TerminalApplication \
   "/usr/bin/ghostty --gtk-single-instance=true"
+
+# Pick up the .desktop overrides in kde/.local/share/applications/. Without
+# this, newly stowed entries stay invisible to Plasma and windows they exist to
+# fix keep showing the generic Wayland icon.
+update-desktop-database "$HOME/.local/share/applications"
+kbuildsycoca6 --noincremental
 
 echo "Applied KDE settings"
