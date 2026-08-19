@@ -22,6 +22,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "Installing dotfiles for Ubuntu"
 
+# renovate: datasource=github-tags depName=seatgeek/bash-aptfile
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
   echo "Installing aptfile..."
@@ -31,6 +32,7 @@ fi
 
 # nerd fonts
 mkdir -p ~/.local/share/fonts
+# renovate: datasource=github-releases depName=ryanoasis/nerd-fonts extractVersion=^v(?<version>.+)$
 NERD_FONT_VERSION="3.1.1"
 if ! ls -al ~/.local/share/fonts | grep -v JetBrainsMono &> /dev/null; then
   curl -L -o nerdfont.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v${NERD_FONT_VERSION}/JetBrainsMono.zip

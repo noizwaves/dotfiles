@@ -59,6 +59,16 @@ Notes:
 - `xdg-mime default` is symlink-safe here only because its KDE code path needs the Qt5-era `qtpaths` binary, which isn't installed. If `qtpaths` ever lands on `PATH`, that path activates and replaces `~/.config/mimeapps.list` with a regular file. Symptom: changing a default no longer shows up in `git status`. Fix with `make all`
 - These are laptop/Plasma-specific, but `make all` stows every package on every machine. Harmless elsewhere, just inert
 
+## Dependency Updates
+
+Renovate (`renovate.json5`) opens weekly draft PRs for the versions pinned in this repo:
+
+- **grab tools** (`grab/.grab/config.yml`) — one custom manager per package, grouped into a single PR. `grab update` rewrites that file and would strip inline `# renovate:` comments, so the GitHub org/repo is duplicated into `renovate.json5`. **Adding a grab package means adding a matching entry there.**
+- **mise tools** (`mise/.config/mise/config.toml`) — picked up by Renovate's native mise manager
+- **install script pins** — annotated inline with `# renovate:` comments above each `*_VERSION=` line
+
+Brewfiles and aptfiles have no Renovate manager and stay manual. Validate changes with `npx --package renovate@latest renovate-config-validator`.
+
 ## Neovim Config Verification
 
 After editing files under `nvim/.config/nvim/`, the `verify-nvim-config` skill activates automatically to verify changes via a headless Neovim instance. The skill uses `nvim-server-start`, `nvim-server-stop`, and `nvim-server-verify` scripts in `.claude/skills/verify-nvim-config/bin/`.

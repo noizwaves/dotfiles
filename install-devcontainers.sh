@@ -22,6 +22,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "Installing dotfiles for devcontainers"
 
+# renovate: datasource=github-tags depName=seatgeek/bash-aptfile
 APTFILE_VERSION="1.2.0"
 if ! command -v aptfile &> /dev/null; then
   echo "Installing aptfile..."
