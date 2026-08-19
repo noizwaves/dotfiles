@@ -18,6 +18,30 @@ set -e
 kwriteconfig6 --file kdeglobals --group General --key TerminalApplication \
   "/usr/bin/ghostty --gtk-single-instance=true"
 
+# macOS-style "natural" scrolling: content follows the fingers instead of the
+# scrollbar. kcminputrc keys each device separately, so discover every pointer
+# attached right now — a "mouse" handler is the kernel's own marker for one —
+# and pin them all. That covers whatever this machine happens to have: touchpad,
+# TrackPoint, the virtual pointer keyd interposes, an external mouse.
+while IFS= read -r line; do
+  case "$line" in
+    "I: "*)
+      vendor=${line#*Vendor=}; vendor=${vendor%% *}
+      product=${line#*Product=}; product=${product%% *}
+      ;;
+    'N: Name="'*)
+      name=${line#N: Name=\"}; name=${name%\"}
+      ;;
+    "H: Handlers="*mouse*)
+      # Vendor and product are hex in procfs but decimal in kcminputrc
+      kwriteconfig6 --file kcminputrc \
+        --group Libinput --group "$((16#$vendor))" --group "$((16#$product))" \
+        --group "$name" --key NaturalScroll true
+      echo "Natural scrolling: $name"
+      ;;
+  esac
+done < /proc/bus/input/devices
+
 # Pick up the .desktop overrides in kde/.local/share/applications/. Without
 # this, newly stowed entries stay invisible to Plasma and windows they exist to
 # fix keep showing the generic Wayland icon.
