@@ -220,9 +220,9 @@
       "mcp__claude_ai_Gdrive_Gusto__update_doc_from_markdown",
       "mcp__claude_ai_Github-Gusto__merge_pull_request"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "npx -y @owloops/claude-powerline@latest --style=minimal"
