@@ -11,6 +11,7 @@
 	signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
+	editor = nvim
 	pager = hunk pager
 	excludesfile = ~/.gitignore
 	fsmonitor = true
