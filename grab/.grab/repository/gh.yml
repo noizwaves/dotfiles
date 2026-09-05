@@ -1,0 +1,23 @@
+apiVersion: grab.noizwaves.com/v1alpha1
+kind: Package
+metadata:
+  name: gh
+spec:
+  gitHubRelease:
+    org: cli
+    repo: cli
+    name: "v{{ .Version }}"
+    versionRegex: \d+\.\d+\.\d+
+    fileName:
+      darwin,amd64: gh_{{ .Version }}_macOS_amd64.zip
+      darwin,arm64: gh_{{ .Version }}_macOS_arm64.zip
+      linux,amd64: gh_{{ .Version }}_linux_amd64.tar.gz
+      linux,arm64: gh_{{ .Version }}_linux_arm64.tar.gz
+    embeddedBinaryPath:
+      darwin,amd64: "gh_{{ .Version }}_macOS_amd64/bin/gh"
+      darwin,arm64: "gh_{{ .Version }}_macOS_arm64/bin/gh"
+      linux,amd64: "gh_{{ .Version }}_linux_amd64/bin/gh"
+      linux,arm64: "gh_{{ .Version }}_linux_arm64/bin/gh"
+  program:
+    versionArgs: [--version]
+    versionRegex: \d+\.\d+\.\d+

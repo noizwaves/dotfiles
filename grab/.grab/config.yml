@@ -6,6 +6,7 @@ packages:
   direnv: 2.37.1
   fd: 10.5.0
   fzf: 0.74.3
+  gh: 2.100.0
   glow: 3.0.0
   grab: 0.0.69
   hyperfine: 1.20.0

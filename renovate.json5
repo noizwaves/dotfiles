@@ -74,6 +74,14 @@
     {
       customType: "regex",
       managerFilePatterns: ["grab/.grab/config.yml"],
+      matchStrings: ["\\n\\s+gh: [\"']?(?<currentValue>[^\"'\\s]+)"],
+      depNameTemplate: "cli/cli",
+      datasourceTemplate: "github-releases",
+      extractVersionTemplate: "^v(?<version>.+)$",
+    },
+    {
+      customType: "regex",
+      managerFilePatterns: ["grab/.grab/config.yml"],
       matchStrings: ["\\n\\s+glow: [\"']?(?<currentValue>[^\"'\\s]+)"],
       depNameTemplate: "charmbracelet/glow",
       datasourceTemplate: "github-releases",
