@@ -38,6 +38,7 @@
 - Only write comments that are contextually useful — explain *why*, not *what*
 - Comments should capture the real-world purpose and user-facing context, not just the technical mechanism (e.g., "Force a Touch ID confirmation" not "Force a fresh auth prompt")
 - Never duplicate variable or function names in comments
+- Comments and docs describe the interface, not the implementation: say what something does for the person using it (e.g., "set up dependencies"), not how it does it (e.g., "fetch the theme and install Hugo"). This applies to inline comments, README command annotations, docstrings and usage text
 
 ## MCP vs CLI Tools
 - For GitHub operations: prefer the GitHub MCP (`mcp__githubgusto__*`) over `gh` CLI commands
