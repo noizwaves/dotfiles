@@ -4,7 +4,7 @@
     "allow": [
       "Read(~/workspace/**)",
       "Edit(~/workspace/**)",
-      "Write(~/workspace/**)",
+      "Edit(~/workspace/**)",
       "Read(~/Screenshots/**)",
       "Bash(cat *)",
       "Bash(cd *)",
@@ -26,12 +26,9 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:api.github.com)",
       "Read(~/.claude/*)",
-      "Glob(~/.claude/*)",
       "Grep(~/.claude/*)",
       "Read(.tmp/*)",
-      "Write(.tmp/*)",
       "Edit(.tmp/*)",
-      "Glob(.tmp/*)",
       "Grep(.tmp/*)",
       "Read(.claude/*)",
       "mcp__githubgusto__actions_get",
@@ -235,5 +232,10 @@
       ]
     }
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    }
+  }
 }
