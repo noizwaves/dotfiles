@@ -11,3 +11,6 @@ UseProfileSpecificDisplayBrightness=true
 
 [Battery][Performance]
 PowerProfile=balanced
+
+[Inhibitions]
+BlockedInhibitions=localsend_app:wakelock
