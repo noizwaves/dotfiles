@@ -1,0 +1,14 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+# Match the default effort used by the active Claude Code profile.
+model_reasoning_effort = "medium"
+
+# Claude Code's "auto" permission mode is closest to interactive approvals.
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+
+[projects."/home/adam/workspace/dotfiles"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+gpt-6-astra = 1
