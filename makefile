@@ -4,10 +4,10 @@ all:
 	stow --target=$$HOME --restow $(PACKAGES)
 
 work:
-	stow --target=$$HOME --restow claude-work/
+	stow --target=$$HOME --restow claude-work/ codex-work/
 
 personal:
-	stow --target=$$HOME --restow claude-personal/
+	stow --target=$$HOME --restow claude-personal/ codex-personal/
 
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh
