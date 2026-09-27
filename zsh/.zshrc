@@ -315,7 +315,7 @@ function rust-scratch() {
 
 # Claude commands
 export CLAUDE_CODE_NO_FLICKER=1
-alias c="claude"
+alias c="codex"
 
 function claude-scratch() {
   DIR=$(mktemp -d -t claude_scratch.XXXXXXX)
