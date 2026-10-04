@@ -1,4 +1,4 @@
-PACKAGES := $(shell ls -d */ | grep -vE '^claude-(personal|work)/' | grep -vE '^docs/')
+PACKAGES := $(shell ls -d */ | grep -vE '^(claude|codex)-(personal|work)/' | grep -vE '^docs/')
 
 all:
 	stow --target=$$HOME --restow $(PACKAGES)

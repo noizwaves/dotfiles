@@ -57,10 +57,6 @@
 - For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
 - Always use `node-safe` to execute Node scripts or expressions — never invoke `node` directly
   - node-safe only has access to files under `$PWD`. Copy any required files (downloaded data, absolute-path inputs) into `./.tmp` before invoking node-safe, then reference them by their absolute path.
-- Always use `python-safe` to execute Python scripts or expressions — never invoke `python` directly
-  - python-safe only has access to files under `$PWD`. Copy any required files into `./.tmp` before invoking python-safe, then reference them by their absolute path.
-  - Useful for CSV manipulation (`csvkit`), data processing (`polars`), and table formatting (`tabulate`)
-  - Multi-line scripts can be condensed to a single line with semicolons: `python-safe -c 'import polars as pl; ...'`
 - `gh-file-view` and `rgh` are available as CLI fallbacks for reading remote files and searching code if the GitHub MCP tools fail
 
 ## Bug Fixes

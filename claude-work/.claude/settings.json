@@ -36,7 +36,6 @@
       "Read(.claude/*)",
       "Bash(rgh *)",
       "Bash(node-safe *)",
-      "Bash(python-safe *)",
       "Bash(gh-file-view *)",
       "Bash(bk agent list *)",
       "Bash(bk agent view *)",
