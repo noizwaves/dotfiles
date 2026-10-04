@@ -12,7 +12,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 ## Key Packages
 
 - **claude** — shared Claude Code config (`CLAUDE.md`, helper scripts in `.local/bin/`)
-- **codex** — Codex config (`config.toml`) and shared global instructions (`AGENTS.md` delegates to Claude's `CLAUDE.md`)
+- **codex** — Codex config (`config.toml`) and shared global instructions (`AGENTS.md` symlinks to Claude's `CLAUDE.md`)
 - **claude-personal** — personal `~/.claude/settings.json`
 - **claude-work** — work `~/.claude/settings.json` (managed by Gusto plugin, this is the active one)
 - **zsh** — shell config (`.zshenv`)
