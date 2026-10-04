@@ -3,6 +3,11 @@ notify = ["/Users/adam.neumann/.codex/computer-use/Codex Computer Use.app/Conten
 model = "gpt-5.6-sol"
 model_reasoning_effort = "xhigh"
 
+# Let Codex review approval requests on my behalf.
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+
 [desktop]
 dock-icon-preference = "codex-system"
 followUpQueueMode = "queue"
