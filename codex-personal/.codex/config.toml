@@ -2,6 +2,7 @@
 
 # Match the default effort used by the active Claude Code profile.
 model_reasoning_effort = "medium"
+project_doc_fallback_filenames = [".AGENTS.md"]
 
 # Let Codex review approval requests on my behalf.
 sandbox_mode = "workspace-write"
