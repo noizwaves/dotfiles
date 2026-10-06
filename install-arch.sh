@@ -13,9 +13,6 @@ rm -f $HOME/.gitconfig $HOME/.gitconfig_inc_gusto $HOME/.gitignore $HOME/.config
 
 make
 
-# Arch is always a personal machine
-make personal
-
 # KDE settings that can't be stowed
 $HOME/.local/bin/kde-apply-settings
 

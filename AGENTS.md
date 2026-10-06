@@ -12,9 +12,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 ## Key Packages
 
 - **claude** — shared Claude Code config (`CLAUDE.md`, helper scripts in `.local/bin/`)
-- **codex** — Codex config (`config.toml`) and shared global instructions (`AGENTS.md` symlinks to Claude's `CLAUDE.md`)
-- **claude-personal** — personal `~/.claude/settings.json`
-- **claude-work** — work `~/.claude/settings.json` (managed by Gusto plugin, this is the active one)
+- **codex** — shared global instructions (`AGENTS.md` symlinks to Claude's `CLAUDE.md`)
 - **zsh** — shell config (`.zshenv`)
 - **git** — git includes (Gusto-specific `.gitconfig_inc_gusto`)
 - **starship** — prompt config (standard + monorepo variants)
@@ -30,9 +28,9 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Editing Tips
 
-- **Always edit files in this repo**, not at their symlink destinations (e.g., edit `claude-work/.claude/settings.json` here, not `~/.claude/settings.json`)
+- **Always edit files in this repo**, not at their symlink destinations (e.g., edit `claude/.claude/CLAUDE.md` here, not `~/.claude/CLAUDE.md`)
 - When adding a new config, create a new stow package directory mirroring the home directory path
-- **After adding or removing files**, remind the user to re-stow so new symlinks are created (edits to existing files propagate automatically via the existing symlink). The command is `make all` (or `make work`/`make personal` for claude settings)
+- **After adding or removing files**, remind the user to re-stow so new symlinks are created (edits to existing files propagate automatically via the existing symlink). The command is `make all`
 - When adding or changing Neovim keymaps, update `docs/neovim-keymap.md` to keep the keymap reference in sync
 
 ## KDE Configuration
