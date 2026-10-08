@@ -48,12 +48,12 @@
 ## Searching Code
 - Default to GitHub code search first — local repos may be out of date or in a WIP state
 - Use the GitHub MCP `search_code` tool. Fallback: `rgh <query>` or `gh search code --owner Gusto "search query"`
-- For local search (only when exploring already-cloned repos): use the Grep tool, but be aware local copies may not reflect upstream
+- For local search (only when exploring already-cloned repos): use the agent's content-search tool or `rg`, but be aware local copies may not reflect upstream
 - To clone a repo after finding it: `gh repo clone Gusto/<repo-name> ~/workspace/<repo-name>`
 
 ## Shell & Tooling
-- **Never use `find`** — it is denied at the permissions level. Use `Glob` for file patterns, `Grep` for content search, and `fd` for any shell-level file finding
-- Prefer the `Grep` tool over `fd ... -exec grep` or raw `rg` for content searches; prefer `Glob` over `fd` when a glob pattern suffices
+- Use `fd` instead of `find` for shell-level file finding (`find` is blocked in Claude Code)
+- Prefer the agent's built-in file-search and content-search tools when it has them; otherwise use `fd` for files and `rg` for content
 - For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
 - Always use `node-safe` to execute Node scripts or expressions — never invoke `node` directly
   - node-safe only has access to files under `$PWD`. Copy any required files (downloaded data, absolute-path inputs) into `./.tmp` before invoking node-safe, then reference them by their absolute path.
@@ -63,4 +63,4 @@
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
 
 ## Sandbox
-- If `git commit` fails with "could not create temporary file" inside the sandbox, run `mkdir -p /tmp/claude` — the sandbox sets `TMPDIR=/tmp/claude` but doesn't pre-create it, and SSH commit signing needs that directory for temp files
+- If `git commit` fails with "could not create temporary file" inside the Claude Code sandbox, create the directory `TMPDIR` points at — the sandbox sets it without creating it, and SSH commit signing writes temp files there

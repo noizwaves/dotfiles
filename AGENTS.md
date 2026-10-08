@@ -11,13 +11,15 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Key Packages
 
+- **atuin** — shell history config
 - **claude** — shared Claude Code config (`CLAUDE.md`, helper scripts in `.local/bin/`)
 - **codex** — shared global instructions (`AGENTS.md` symlinks to Claude's `CLAUDE.md`)
-- **zsh** — shell config (`.zshenv`)
+- **cursor** — Cursor editor settings, keybindings, extensions and snippets
+- **zsh** — shell config (`.zshenv`, `.zshrc`)
 - **git** — git includes (Gusto-specific `.gitconfig_inc_gusto`)
 - **starship** — prompt config (standard + monorepo variants)
 - **ghostty** — terminal emulator config
-- **nvim** — Neovim spell dictionary
+- **nvim** — Neovim config (lazy.nvim plugins, keymaps, spell dictionary)
 - **ssh** — SSH config (work config, rc)
 - **tmux** — tmux-sessionizer script
 - **direnv** — direnvrc
@@ -25,6 +27,8 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 - **kde** — KDE settings (see [KDE Configuration](#kde-configuration))
 - **grab** — grab repository definitions
 - **gdev** — gdev-pull helper script
+- **mise** — mise tool versions
+- **misc** — standalone helper scripts in `.local/bin/` (`rgh`, `gh-file-view`, `wt`, etc.)
 
 ## Editing Tips
 

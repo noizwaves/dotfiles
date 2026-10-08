@@ -16,17 +16,17 @@ nvim-server-start → dynamic checks → nvim-server-verify → nvim-server-stop
 1. Start the server: `nvim-server-start` (prints socket path)
 2. Run change-specific checks using `nvim --server <sock> --remote-expr 'luaeval("...")'`
 3. Run baseline health check: `nvim-server-verify`
-4. **Always** stop the server: `nvim-server-stop` (even if checks fail)
+4. Stop the server: `nvim-server-stop` (even if checks fail)
 
 Helper scripts are in `.claude/skills/verify-nvim-config/bin/`. The socket path is stored in `/tmp/nvim-verify.state`.
 
-**Important:** The headless Neovim instance loads config files at startup. If you edit a file and need to verify the new version, you must stop and restart the server (`nvim-server-stop` then `nvim-server-start`) so the updated code is loaded.
+The headless Neovim instance loads config files only at startup, so after editing a file, restart the server (`nvim-server-stop` then `nvim-server-start`) before verifying the new version.
 
 ## Dynamic Verification Patterns
 
 Construct `luaeval` queries based on what you changed. Read the socket path from the `nvim-server-start` output.
 
-**Important:** Always use the literal absolute socket path (e.g., `/tmp/nvim-verify-12345.sock`) directly in `nvim --server` commands. Do NOT store it in a shell variable like `$SOCK` — variable expansion triggers `simple_expansion` permission warnings.
+Pass the literal absolute socket path (e.g., `/tmp/nvim-verify-12345.sock`) to `nvim --server` rather than a shell variable like `$SOCK`, because variable expansion triggers `simple_expansion` permission warnings.
 
 ### Plugin spec changed (`lua/plugins/<name>.lua`)
 
@@ -82,4 +82,4 @@ If changes span multiple files, verify each changed area, then run `nvim-server-
 
 - If `nvim-server-start` fails (exit 2): config has a fatal error preventing startup. Check the error output, fix, and retry.
 - If a `luaeval` query fails: the feature you changed may have a runtime error. The error message from nvim will indicate the problem.
-- **Always run `nvim-server-stop`** at the end, even after failures.
+- Run `nvim-server-stop` at the end, even after failures.
