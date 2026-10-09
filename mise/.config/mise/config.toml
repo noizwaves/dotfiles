@@ -6,4 +6,6 @@ watchexec = "latest"
 # the Forgejo releases API
 "forgejo:gitea/tea" = { version = "0.15.1", api_url = "https://gitea.com/api/v1" }
 hunk = "0.18.2"
+pipx = "1.17.5"
+uv = "0.12.17"
 
