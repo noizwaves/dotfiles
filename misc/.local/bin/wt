@@ -74,4 +74,9 @@ if [[ -f "$repo_root/.claude/settings.local.json" ]]; then
   echo "Symlinked .claude/settings.local.json"
 fi
 
-tmux-sessionizer "$worktree_path"
+# Agents run without a TTY; give them the path instead of hijacking tmux
+if [[ -t 1 ]]; then
+  tmux-sessionizer "$worktree_path"
+else
+  echo "$worktree_path"
+fi
