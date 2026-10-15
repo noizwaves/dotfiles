@@ -1,0 +1,19 @@
+#!/bin/sh
+set -eu
+
+skills_dir="$HOME/.agents/skills"
+claude_skills_dir="$HOME/.claude/skills"
+
+mkdir -p "$skills_dir" "$claude_skills_dir"
+
+for skill_dir in "$skills_dir"/*; do
+    [ -d "$skill_dir" ] && [ -f "$skill_dir/SKILL.md" ] || continue
+
+    destination="$claude_skills_dir/${skill_dir##*/}"
+    if [ -e "$destination" ] && [ ! -L "$destination" ]; then
+        printf 'Cannot link skill: %s already exists and is not a symlink\n' "$destination" >&2
+        exit 1
+    fi
+
+    ln -sfn "$skill_dir" "$destination"
+done

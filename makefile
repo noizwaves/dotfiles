@@ -2,6 +2,7 @@ PACKAGES := $(shell ls -d */ | grep -vE '^docs/')
 
 all:
 	stow --target=$$HOME --restow $(PACKAGES)
+	sh agents/.local/bin/link-agent-skills
 
 all-devcontainers:
 	stow --target=$$HOME --restow git starship zsh

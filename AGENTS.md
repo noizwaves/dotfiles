@@ -11,6 +11,7 @@ Personal dotfiles repo using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ## Key Packages
 
+- **agents** — shared personal skills in `.agents/skills/`; `make all` links each skill into `.claude/skills/`
 - **atuin** — shell history config
 - **claude** — shared Claude Code config (`CLAUDE.md`, helper scripts in `.local/bin/`)
 - **codex** — shared global instructions (`AGENTS.md` symlinks to Claude's `CLAUDE.md`)
