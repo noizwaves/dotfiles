@@ -169,7 +169,13 @@ function git-log-pretty() {
 
 # AWS Commands
 function aws-use-profile() {
-  export AWS_PROFILE=$(cat ~/.aws/config | grep '\[profile' | cut -d ' ' -f 2 | cut -d ']' -f 1 | fzf)
+  local profile
+  profile=$(
+    sed -n 's/^\[profile \(.*\)\]$/\1/p' "${AWS_CONFIG_FILE:-$HOME/.aws/config}" |
+      grep -E '(buildstabilityprodinfra$|^build-stability-prodinfra|^dex-admin-(gusto-main|dex-environments)$|gusto-cicd-buildkite)' |
+      fzf
+  ) || return
+  [[ -n "$profile" ]] && export AWS_PROFILE="$profile"
 }
 alias aup="aws-use-profile"
 
