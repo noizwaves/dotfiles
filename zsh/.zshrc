@@ -168,6 +168,8 @@ function git-log-pretty() {
 }
 
 # AWS Commands
+alias l='gusto-aws-login atlas gusto-main'
+
 function aws-use-profile() {
   local profile
   profile=$(
