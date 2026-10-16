@@ -11,21 +11,6 @@
 make delete
 ```
 
-## Personal Agent Skills
-
-Store shared skills in `agents/.agents/skills/<skill-name>/SKILL.md`, with any
-supporting scripts, references, and assets alongside `SKILL.md`.
-
-Run `make all` after adding a skill. Stow installs its files under
-`~/.agents/skills`, where Codex discovers them. The final step links each skill
-directory containing `SKILL.md` into `~/.claude/skills`, so Claude Code uses the
-same files. It also links any other skills already in `~/.agents/skills`.
-
-The linking step can be rerun with `sh agents/.local/bin/link-agent-skills`.
-Existing symlinks are updated; a conflicting file or real directory causes an
-error so its contents are preserved. Unrelated Claude skills are left alone.
-After removing a skill, remove its Claude symlink as well.
-
 ## Features
 
 ### Cross-platform
