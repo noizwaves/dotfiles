@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   echo "Usage: wt-cleanup [--dry-run] [-v|--verbose]" >&2
   echo "" >&2
-  echo "Delete ~/workspace/<repo>--<name> directories whose branch is gone from origin." >&2
+  echo "Delete ~/workspace/.worktrees/<repo>--<name> directories whose branch is gone from origin." >&2
   echo "Skips any directory with uncommitted changes or unpushed commits." >&2
   echo "" >&2
   echo "Options:" >&2
@@ -25,7 +25,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-workspace="$HOME/workspace"
+workspace="$HOME/workspace/.worktrees"
 [[ -d "$workspace" ]] || { echo "No $workspace directory" >&2; exit 1; }
 
 # Counters

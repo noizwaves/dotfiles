@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   echo "Usage: wt [--clone] [-b <branch>] <name>" >&2
   echo "" >&2
-  echo "Create a git worktree at ~/workspace/<repo>--<name>" >&2
+  echo "Create a git worktree at ~/workspace/.worktrees/<repo>--<name>" >&2
   echo "" >&2
   echo "Options:" >&2
   echo "  -b <branch>  Use an existing branch instead of creating an--<name>" >&2
@@ -43,7 +43,9 @@ if [[ -z "$name" ]]; then
 fi
 repo_root=$(git rev-parse --show-toplevel)
 repo_name=$(basename "$repo_root")
-worktree_path="$HOME/workspace/${repo_name}--${name}"
+worktrees_root="$HOME/workspace/.worktrees"
+worktree_path="$worktrees_root/${repo_name}--${name}"
+mkdir -p "$worktrees_root"
 
 if [[ "$clone" == true ]]; then
   if [[ -n "$branch" ]]; then

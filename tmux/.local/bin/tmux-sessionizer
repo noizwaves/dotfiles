@@ -4,7 +4,12 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find -L ~/workspace -mindepth 1 -maxdepth 1 -type d -not -name '.*' | fzf)
+    selected=$(
+        for root in "$HOME/workspace" "$HOME/workspace/.worktrees"; do
+            [[ -d "$root" ]] || continue
+            fd --follow --type d --max-depth 1 --no-ignore . "$root"
+        done | sed 's:/$::' | fzf
+    )
 fi
 
 if [[ -z $selected ]]; then
