@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: wt-pull" >&2
+  echo "" >&2
+  echo "Pull repositories under ~/workspace, excluding .worktrees." >&2
+  echo "Only fast-forward; skip repositories when a pull cannot proceed safely." >&2
+}
+
+case "${1:-}" in
+  -h|--help) usage; exit 0 ;;
+esac
+[[ $# -eq 0 ]] || { usage; exit 1; }
+
+workspace="$HOME/workspace"
+[[ -d "$workspace" ]] || { echo "No $workspace directory" >&2; exit 1; }
+
+updated=0
+unchanged=0
+skipped=0
+
+note() { printf '%-14s %s\n' "$1" "$2"; }
+
+pull_repo() (
+  cd "$1" || exit 1
+  local before output
+  if ! git symbolic-ref --quiet HEAD >/dev/null 2>&1; then
+    note "skip:" "$1 (detached HEAD)"
+    exit 2
+  fi
+  if ! git rev-parse --verify '@{upstream}' >/dev/null 2>&1; then
+    note "skip:" "$1 (no available upstream)"
+    exit 2
+  fi
+
+  before=$(git rev-parse HEAD)
+  # Keep local edits in place and avoid creating merge commits during bulk updates.
+  if output=$(git pull --quiet --ff-only --no-rebase --no-autostash 2>&1); then
+    if [[ "$before" == "$(git rev-parse HEAD)" ]]; then
+      note "up-to-date:" "$1"
+      exit 3
+    fi
+    note "updated:" "$1"
+  else
+    note "skip:" "$1 (pull failed)"
+    while IFS= read -r line; do
+      printf '    %s\n' "$line"
+    done <<< "$output"
+    exit 2
+  fi
+)
+
+scan() {
+  local dir="$1" child result
+  if [[ -e "$dir/.git" ]]; then
+    if pull_repo "$dir"; then
+      updated=$((updated+1))
+    else
+      result=$?
+      if [[ "$result" == 3 ]]; then
+        unchanged=$((unchanged+1))
+      else
+        skipped=$((skipped+1))
+      fi
+    fi
+    return
+  fi
+
+  for child in "$dir"/*; do
+    [[ -d "$child" ]] || continue
+    [[ "${child##*/}" != .worktrees ]] || continue
+    # Follow repository links, but avoid loops through linked parent directories.
+    [[ ! -L "$child" || -e "$child/.git" ]] || continue
+    scan "$child"
+  done
+}
+
+shopt -s nullglob dotglob
+scan "$workspace"
+echo ""
+echo "summary: updated $updated, up-to-date $unchanged, skipped $skipped"
