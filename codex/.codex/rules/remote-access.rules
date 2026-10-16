@@ -1,0 +1,4 @@
+prefix_rule(pattern = ["ssh"], decision = "prompt")
+prefix_rule(pattern = ["scp"], decision = "prompt")
+prefix_rule(pattern = ["/usr/bin/ssh"], decision = "prompt")
+prefix_rule(pattern = ["/usr/bin/scp"], decision = "prompt")
