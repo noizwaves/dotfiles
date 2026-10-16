@@ -36,7 +36,7 @@ pull_repo() (
 
   before=$(git rev-parse HEAD)
   # Keep local edits in place and avoid creating merge commits during bulk updates.
-  if output=$(git pull --quiet --ff-only --no-rebase --no-autostash 2>&1); then
+  if output=$(git -c core.hooksPath=/dev/null pull --quiet --ff-only --no-rebase --no-autostash 2>&1); then
     if [[ "$before" == "$(git rev-parse HEAD)" ]]; then
       note "up-to-date:" "$1"
       exit 3
