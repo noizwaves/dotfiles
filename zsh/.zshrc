@@ -338,9 +338,8 @@ function jwt-decode() {
 
 export PATH="/usr/local/sbin:$PATH"
 
-function claude-done() {
-  $ terminal-notifier -title "Claude Code" -message "Claude has finished working"
-}
+# cmux
+export CMUX_CODEX_HOOKS_DISABLED=1
 
 # function crush() {
 #   local AWS_PROFILE="bedrock-users"
