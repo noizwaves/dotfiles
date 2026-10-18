@@ -1,3 +1,12 @@
+[Added Associations]
+application/pdf=org.gnome.Evince.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+
 [Default Applications]
+application/pdf=org.gnome.Evince.desktop;
 x-scheme-handler/abc=plexamp.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/codex=chatgpt.desktop
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
