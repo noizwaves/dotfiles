@@ -12,11 +12,11 @@ packages:
   hyperfine: 2.0.0
   lazygit: 0.66.2
   lefthook: 2.2.2
-  pup: 2.0.0
+  pup: 2.0.1
   rg: 15.2.0
   scc: 4.1.0
   sidecar: 1.17.1
-  starship: 1.26.0
-  td: 0.67.0
+  starship: 1.27.0
+  td: 0.69.0
   tv: 0.15.9
   yazi: 26.9.1
