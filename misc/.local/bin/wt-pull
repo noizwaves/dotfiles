@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   echo "Usage: wt-pull" >&2
   echo "" >&2
-  echo "Pull repositories under ~/workspace, excluding .worktrees." >&2
+  echo "Pull repositories under ~/workspace, excluding .worktrees, .tmp, and .clu." >&2
   echo "Only fast-forward; skip repositories when a pull cannot proceed safely." >&2
 }
 
@@ -69,7 +69,9 @@ scan() {
 
   for child in "$dir"/*; do
     [[ -d "$child" ]] || continue
-    [[ "${child##*/}" != .worktrees ]] || continue
+    case "${child##*/}" in
+      .worktrees|.tmp|.clu) continue ;;
+    esac
     # Follow repository links, but avoid loops through linked parent directories.
     [[ ! -L "$child" || -e "$child/.git" ]] || continue
     scan "$child"
