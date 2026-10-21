@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "providers": {
+    "opencode": {
+      "models": {
+        "nemotron-3.5-super-vl-free": { "disabled": true },
+        "beam-free": { "disabled": true },
+        "longcat-2.5-preview-free": { "disabled": true },
+        "space-bunny-free": { "disabled": true },
+        "mimo-v2.6-flash-free": { "disabled": true },
+        "deepseek-v4.1-flash-free": { "disabled": true },
+        "glm-5.3-flash-free": { "disabled": true },
+        "nemotron-3.5-lightning-free": { "disabled": true },
+        "nemotron-3-ultra-free": { "disabled": true },
+        "big-pickle": { "disabled": true }
+      }
+    }
+  }
+}
