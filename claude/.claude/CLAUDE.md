@@ -41,13 +41,13 @@
 - Comments and docs describe the interface, not the implementation: say what something does for the person using it (e.g., "set up dependencies"), not how it does it (e.g., "fetch the theme and install Hugo"). This applies to inline comments, README command annotations, docstrings and usage text
 
 ## MCP vs CLI Tools
-- For GitHub operations: prefer the GitHub MCP (`mcp__githubgusto__*`) over `gh` CLI commands
-  - Fall back to `gh` CLI, `rgh`, or `gh-file-view` only if the MCP tool fails or lacks the specific functionality needed (e.g., `gh repo clone` has no MCP equivalent)
-- For non-GitHub tools: prefer local CLI tools (e.g., `jq`, Bash commands) over MCP equivalents when available
+- Prefer CLI tools over MCP equivalents whenever the CLI supports the task
+- For GitHub operations, prefer `gh`, `rgh`, or `gh-file-view`
+- Use MCP tools when a suitable CLI is unavailable or lacks the required functionality
 
 ## Searching Code
 - Default to GitHub code search first — local repos may be out of date or in a WIP state
-- Use the GitHub MCP `search_code` tool. Fallback: `rgh <query>` or `gh search code --owner Gusto "search query"`
+- Use `rgh <query>` or `gh search code --owner Gusto "search query"`. Fall back to the GitHub MCP `search_code` tool if the CLIs are unavailable or lack the required functionality
 - For local search (only when exploring already-cloned repos): use the agent's content-search tool or `rg`, but be aware local copies may not reflect upstream
 - To clone a repo after finding it: `gh repo clone Gusto/<repo-name> ~/workspace/<repo-name>`
 
@@ -57,7 +57,7 @@
 - For JSON querying and manipulation: use `jq` for simple single-expression queries; use `node-safe` for anything more complex (multi-step logic, conditionals, transformations). Multi-line node scripts can be condensed to a single line with semicolons: `node-safe -e 'const x = ...; console.log(...)'`
 - Always use `node-safe` to execute Node scripts or expressions — never invoke `node` directly
   - node-safe only has access to files under `$PWD`. Copy any required files (downloaded data, absolute-path inputs) into `./.tmp` before invoking node-safe, then reference them by their absolute path.
-- `gh-file-view` and `rgh` are available as CLI fallbacks for reading remote files and searching code if the GitHub MCP tools fail
+- Use `gh-file-view` to read remote files and `rgh` to search code
 
 ## Bug Fixes
 - Fix data at the source, not downstream — prefer adjusting inputs over compensating after filtering/processing
