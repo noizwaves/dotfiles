@@ -1,12 +1,12 @@
 packages:
   adamctl: 0.0.9
-  crush: 0.98.1
+  crush: 0.98.2
   delta: 0.20.1
   diffsitter: 0.9.0
   direnv: 2.38.2
   fd: 10.5.0
   fzf: 0.74.5
-  gh: 2.103.0
+  gh: 2.103.2
   glow: 3.0.0
   grab: 0.0.69
   hyperfine: 2.0.0
