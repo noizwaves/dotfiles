@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -gt 0 ]]; then
+    selected="$*"
+else
+    selected=$(
+        { tmux list-sessions -f '#{==:#{@amux-sessionizer},1}' -F '#{session_name}' 2>/dev/null || true; } |
+            fzf --no-multi --prompt='amux> ' \
+                --header='Enter: open or create | Ctrl-N: create typed name | Esc: cancel' \
+                --bind='enter:accept-or-print-query,ctrl-n:print-query'
+    ) || exit 0
+fi
+
+if [[ -z ${selected//[[:space:]]/} ]]; then
+    exit 0
+fi
+
+selected=${selected//[.:]/_}
+
+if ! tmux has-session -t "=$selected" 2>/dev/null; then
+    tmux new-session -d -s "$selected" -c "$PWD" \; \
+        set-option -t "=$selected:" @amux-sessionizer 1
+elif [[ $(tmux show-options -qv -t "=$selected:" @amux-sessionizer) != 1 ]]; then
+    printf 'amux-sessionizer: "%s" is already used by a non-amux session. Choose another name.\n' "$selected" >&2
+    exit 1
+fi
+
+tmux set-window-option -t "=$selected:" automatic-rename on \; \
+    set-window-option -t "=$selected:" allow-rename off \; \
+    set-option -t "=$selected:" set-titles on \; \
+    set-option -t "=$selected:" set-titles-string '#{session_name}'
+
+if [[ -z ${TMUX:-} ]]; then
+    exec tmux attach-session -t "=$selected"
+else
+    exec tmux switch-client -t "=$selected"
+fi

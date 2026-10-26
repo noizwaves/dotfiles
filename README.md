@@ -17,6 +17,18 @@ make delete
 
 Support for macOS, Ubuntu, and devcontainers.
 
+### Named terminal sessions
+
+Press `Ctrl+G` in the shell or tmux `prefix` then `g` to search sessions created by `amux-sessionizer`. Type a short descriptor such as `upgrade rspec` or `409 investigate`, then press Enter to open the selected session or create one when nothing matches. New sessions start in the current directory.
+
+Press `Ctrl+N` to create the typed name even when fuzzy matches exist, or Esc to cancel. Spaces are preserved; dots and colons become underscores for tmux.
+
+The terminal title uses the session name; tmux windows show the process running in them. Reopening an existing amux session restores automatic window naming.
+
+Names already used by other tmux sessions are reserved. To include an amux session created before ownership tracking, mark it once: `tmux set-option -t '=upgrade rspec:' @amux-sessionizer 1` (replace the name with your session).
+
+You can also open a name directly: `amux-sessionizer "upgrade rspec"`. The existing `Ctrl+F` and tmux `prefix` then `f` shortcuts still open the directory picker.
+
 ### Feedback on Problems
 
 Neovim's LSP diagnostic framework provides the core functionality.
