@@ -8,6 +8,18 @@ else
         { tmux list-sessions -f '#{==:#{@amux-sessionizer},1}' -F '#{session_name}' 2>/dev/null || true; } |
             fzf --no-multi --prompt='amux> ' \
                 --header='Enter: open or create | Ctrl-N: create typed name | Esc: cancel' \
+                --preview '
+                    session_name={}
+                    session_id=$(tmux show-options -qv -t "=$session_name:" @amux-session-id 2>/dev/null) || exit 0
+                    if [ -z "$session_id" ]; then
+                        printf "Open this session once to enable its nugget summary.\n"
+                    elif command -v nug >/dev/null 2>&1; then
+                        AMUX_SESSION_ID="$session_id" NUGGET_SESSION_ID="$session_id" nug session view --offline
+                    else
+                        printf "Install nugget to preview this session.\n"
+                    fi
+                ' \
+                --preview-window='right,60%,wrap,<60(down,50%)' \
                 --bind='enter:accept-or-print-query,ctrl-n:print-query'
     ) || exit 0
 fi

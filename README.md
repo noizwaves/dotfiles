@@ -23,6 +23,8 @@ Press `Ctrl+G` in the shell or tmux `prefix` then `g` to search sessions created
 
 Press `Ctrl+N` to create the typed name even when fuzzy matches exist, or Esc to cancel. Spaces are preserved; dots and colons become underscores for tmux.
 
+Highlight an existing session to preview its saved nugget summary, including linked PRs and merge dependencies. The panel uses `nug session view --offline` to keep navigation fast; run `nug session view` inside the session to refresh GitHub data. Install nugget to enable previews.
+
 The terminal title uses the session name; tmux windows show the process running in them. Reopening an existing amux session restores automatic window naming.
 
 Each amux session gets a UUID exported as both `AMUX_SESSION_ID` and `NUGGET_SESSION_ID`, allowing [nugget](https://github.com/noizwaves/nugget) to track its work. The UUID survives reopening and renaming; recreating a killed session gets a new UUID. Python 3 is required to create an identity.
