@@ -19,14 +19,25 @@ fi
 selected=${selected//[.:]/_}
 
 if ! tmux has-session -t "=$selected" 2>/dev/null; then
-    tmux new-session -d -s "$selected" -c "$PWD" \; \
-        set-option -t "=$selected:" @amux-sessionizer 1
+    session_id=$(python3 -c 'import uuid; print(uuid.uuid4())')
+    tmux new-session -d -s "$selected" -c "$PWD" \
+        -e "AMUX_SESSION_ID=$session_id" -e "NUGGET_SESSION_ID=$session_id" \; \
+        set-option -t "=$selected:" @amux-sessionizer 1 \; \
+        set-option -t "=$selected:" @amux-session-id "$session_id"
 elif [[ $(tmux show-options -qv -t "=$selected:" @amux-sessionizer) != 1 ]]; then
     printf 'amux-sessionizer: "%s" is already used by a non-amux session. Choose another name.\n' "$selected" >&2
     exit 1
+else
+    session_id=$(tmux show-options -qv -t "=$selected:" @amux-session-id)
+    if [[ -z $session_id ]]; then
+        session_id=$(python3 -c 'import uuid; print(uuid.uuid4())')
+        tmux set-option -t "=$selected:" @amux-session-id "$session_id"
+    fi
 fi
 
-tmux set-window-option -t "=$selected:" automatic-rename on \; \
+tmux set-environment -t "=$selected:" AMUX_SESSION_ID "$session_id" \; \
+    set-environment -t "=$selected:" NUGGET_SESSION_ID "$session_id" \; \
+    set-window-option -t "=$selected:" automatic-rename on \; \
     set-window-option -t "=$selected:" allow-rename off \; \
     set-option -t "=$selected:" set-titles on \; \
     set-option -t "=$selected:" set-titles-string '#{session_name}'

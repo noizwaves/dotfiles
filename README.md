@@ -25,6 +25,10 @@ Press `Ctrl+N` to create the typed name even when fuzzy matches exist, or Esc to
 
 The terminal title uses the session name; tmux windows show the process running in them. Reopening an existing amux session restores automatic window naming.
 
+Each amux session gets a UUID exported as both `AMUX_SESSION_ID` and `NUGGET_SESSION_ID`, allowing [nugget](https://github.com/noizwaves/nugget) to track its work. The UUID survives reopening and renaming; recreating a killed session gets a new UUID. Python 3 is required to create an identity.
+
+For sessions created before UUID support, reopen them with `amux-sessionizer`, then start a new window or pane to receive the variables. Existing shells and agents keep their original environment.
+
 Names already used by other tmux sessions are reserved. To include an amux session created before ownership tracking, mark it once: `tmux set-option -t '=upgrade rspec:' @amux-sessionizer 1` (replace the name with your session).
 
 You can also open a name directly: `amux-sessionizer "upgrade rspec"`. The existing `Ctrl+F` and tmux `prefix` then `f` shortcuts still open the directory picker.
