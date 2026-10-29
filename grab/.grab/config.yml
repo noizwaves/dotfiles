@@ -6,13 +6,13 @@ packages:
   direnv: 2.38.2
   fd: 10.5.0
   fzf: 0.74.5
-  gh: 2.103.2
+  gh: 2.103.3
   glow: 3.0.0
   grab: 0.0.69
   hyperfine: 2.0.0
   lazygit: 0.66.2
   lefthook: 2.2.2
-  pup: 2.3.0
+  pup: 2.3.5
   rg: 15.2.0
   scc: 4.1.0
   sidecar: 1.17.1
