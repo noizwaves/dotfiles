@@ -19,7 +19,7 @@ else
                         printf "Install nugget to preview this session.\n"
                     fi
                 ' \
-                --preview-window='right,60%,wrap,<60(down,50%)' \
+                --preview-window='down,67%,wrap' \
                 --bind='enter:accept-or-print-query,ctrl-n:print-query'
     ) || exit 0
 fi
