@@ -14,7 +14,7 @@ else
                     if [ -z "$session_id" ]; then
                         printf "Open this session once to enable its nugget summary.\n"
                     elif command -v nug >/dev/null 2>&1; then
-                        AMUX_SESSION_ID="$session_id" NUGGET_SESSION_ID="$session_id" nug session view --offline
+                        AMUX_SESSION_ID="$session_id" NUGGET_SESSION_ID="$session_id" nug session view
                     else
                         printf "Install nugget to preview this session.\n"
                     fi
