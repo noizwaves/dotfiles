@@ -23,7 +23,7 @@ Press `Ctrl+G` in the shell or tmux `prefix` then `g` to search sessions created
 
 Press `Ctrl+N` to create the typed name even when fuzzy matches exist, or Esc to cancel. Spaces are preserved; dots and colons become underscores for tmux.
 
-Highlight an existing session to preview its saved nugget summary, including linked PRs and merge dependencies. The preview appears below the session list and takes up two-thirds of the picker height. The panel uses `nug session view --offline` to keep navigation fast; run `nug session view` inside the session to refresh GitHub data. Install nugget to enable previews.
+Highlight an existing session to preview its nugget summary, including linked PRs, required checks, reviews, and dependencies. The preview appears below the session list and takes up two-thirds of the picker height. The panel uses `nug session view`, reusing cached GitHub data for five minutes. When data is missing or stale, it shows a loading message while fetching and caching the updated summary. If GitHub is unavailable, nugget warns and falls back to saved data. Install nugget to enable previews.
 
 The terminal title uses the session name; tmux windows show the process running in them. Reopening an existing amux session restores automatic window naming.
 

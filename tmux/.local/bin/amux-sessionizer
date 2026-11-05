@@ -322,7 +322,8 @@ def main():
             raise AmuxError("-a requires --destroy")
         if args.preview:
             session_id = str(UUID(args.preview))
-            print(nug("view", session_id, "--offline"), end="")
+            env = {**os.environ, "AMUX_SESSION_ID": session_id, "NUGGET_SESSION_ID": session_id}
+            return subprocess.run(["nug", "session", "view"], env=env).returncode
         elif args.sync_name:
             session_id, target = args.sync_name
             with lifecycle_lock():
