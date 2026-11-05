@@ -1,61 +1,353 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env python3
+"""Open durable work sessions, or explicitly rename or destroy them."""
 
-if [[ $# -gt 0 ]]; then
-    selected="$*"
-else
-    selected=$(
-        { tmux list-sessions -f '#{==:#{@amux-sessionizer},1}' -F '#{session_name}' 2>/dev/null || true; } |
-            fzf --no-multi --prompt='amux> ' \
-                --header='Enter: open or create | Ctrl-N: create typed name | Esc: cancel' \
-                --preview '
-                    session_name={}
-                    session_id=$(tmux show-options -qv -t "=$session_name:" @amux-session-id 2>/dev/null) || exit 0
-                    if [ -z "$session_id" ]; then
-                        printf "Open this session once to enable its nugget summary.\n"
-                    elif command -v nug >/dev/null 2>&1; then
-                        AMUX_SESSION_ID="$session_id" NUGGET_SESSION_ID="$session_id" nug session view --offline
-                    else
-                        printf "Install nugget to preview this session.\n"
-                    fi
-                ' \
-                --preview-window='down,67%,wrap' \
-                --bind='enter:accept-or-print-query,ctrl-n:print-query'
-    ) || exit 0
-fi
+import argparse
+from contextlib import contextmanager
+import fcntl
+import json
+import os
+from pathlib import Path
+import shlex
+import subprocess
+import sys
+from uuid import UUID, uuid4
 
-if [[ -z ${selected//[[:space:]]/} ]]; then
-    exit 0
-fi
 
-selected=${selected//[.:]/_}
+class AmuxError(Exception):
+    pass
 
-if ! tmux has-session -t "=$selected" 2>/dev/null; then
-    session_id=$(python3 -c 'import uuid; print(uuid.uuid4())')
-    tmux new-session -d -s "$selected" -c "$PWD" \
-        -e "AMUX_SESSION_ID=$session_id" -e "NUGGET_SESSION_ID=$session_id" \; \
-        set-option -t "=$selected:" @amux-sessionizer 1 \; \
-        set-option -t "=$selected:" @amux-session-id "$session_id"
-elif [[ $(tmux show-options -qv -t "=$selected:" @amux-sessionizer) != 1 ]]; then
-    printf 'amux-sessionizer: "%s" is already used by a non-amux session. Choose another name.\n' "$selected" >&2
-    exit 1
-else
-    session_id=$(tmux show-options -qv -t "=$selected:" @amux-session-id)
-    if [[ -z $session_id ]]; then
-        session_id=$(python3 -c 'import uuid; print(uuid.uuid4())')
-        tmux set-option -t "=$selected:" @amux-session-id "$session_id"
-    fi
-fi
 
-tmux set-environment -t "=$selected:" AMUX_SESSION_ID "$session_id" \; \
-    set-environment -t "=$selected:" NUGGET_SESSION_ID "$session_id" \; \
-    set-window-option -t "=$selected:" automatic-rename on \; \
-    set-window-option -t "=$selected:" allow-rename off \; \
-    set-option -t "=$selected:" set-titles on \; \
-    set-option -t "=$selected:" set-titles-string '#{session_name}'
+def run(arguments, *, check=True, **kwargs):
+    try:
+        result = subprocess.run(arguments, capture_output=True, text=True, **kwargs)
+    except FileNotFoundError:
+        raise AmuxError(f"{arguments[0]} is required; install it before opening amux sessions") from None
+    if check and result.returncode:
+        raise AmuxError(result.stderr.strip() or f"{arguments[0]} exited with {result.returncode}")
+    return result
 
-if [[ -z ${TMUX:-} ]]; then
-    exec tmux attach-session -t "=$selected"
-else
-    exec tmux switch-client -t "=$selected"
-fi
+
+def tmux(*arguments, check=True):
+    return run(["tmux", *arguments], check=check)
+
+
+def nug(action, session_id=None, *arguments):
+    env = dict(os.environ)
+    if session_id is not None:
+        env.update(AMUX_SESSION_ID=session_id, NUGGET_SESSION_ID=session_id)
+    return run(["nug", "session", action, *arguments], env=env).stdout
+
+
+def catalog():
+    try:
+        result = json.loads(nug("list", None, "--json"))
+        if not isinstance(result["sessions"], list) or not isinstance(result["warnings"], list):
+            raise ValueError
+        return result
+    except (ValueError, KeyError, TypeError):
+        raise AmuxError("installed nug lacks durable session support; reinstall nugget") from None
+
+
+def info(session_id):
+    return json.loads(nug("info", session_id, "--json"))
+
+
+def warning(message):
+    print(f"amux-sessionizer: warning: {message}", file=sys.stderr)
+
+
+@contextmanager
+def lifecycle_lock():
+    directory = Path.home() / ".local/share/nugget/sessions"
+    # Persist the location before a session can be reported as durable.
+    missing = []
+    parent = directory
+    while not parent.exists():
+        missing.append(parent)
+        parent = parent.parent
+    for parent in reversed(missing):
+        parent.mkdir(exist_ok=True)
+        descriptor = os.open(parent.parent, os.O_RDONLY)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+    with (directory / ".amux.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(lock, fcntl.LOCK_UN)
+
+
+def live_sessions():
+    result = tmux("list-sessions", "-F",
+                  "#{session_id}\t#{session_name}\t#{@amux-sessionizer}\t#{@amux-session-id}",
+                  check=False)
+    if result.returncode:
+        if any(message in result.stderr.lower() for message in
+               ("no server running", "no such file or directory", "connection refused")):
+            return []
+        raise AmuxError(result.stderr.strip())
+    sessions = []
+    for line in result.stdout.splitlines():
+        fields = line.split("\t")
+        if len(fields) != 4:
+            raise AmuxError("cannot safely read tmux session names containing control characters")
+        target, name, managed, session_id = fields
+        if managed == "1" and session_id:
+            try:
+                if str(UUID(session_id)) != session_id:
+                    raise ValueError
+            except ValueError:
+                raise AmuxError(f"invalid amux UUID on tmux session {name}") from None
+        sessions.append({"target": target, "name": name, "managed": managed == "1",
+                         "session_id": session_id})
+    return sessions
+
+
+def matching_uuid(sessions, session_id):
+    matches = [session for session in sessions
+               if session["managed"] and session["session_id"] == session_id]
+    if len(matches) > 1:
+        raise AmuxError(f"multiple running tmux sessions have UUID {session_id}")
+    return matches[0] if matches else None
+
+
+def configure(session):
+    target, session_id = session["target"], session["session_id"]
+    tmux("set-environment", "-t", target, "AMUX_SESSION_ID", session_id)
+    tmux("set-environment", "-t", target, "NUGGET_SESSION_ID", session_id)
+    for option, value in (("@amux-sessionizer", "1"), ("@amux-session-id", session_id),
+                          ("set-titles", "on"), ("set-titles-string", "#{session_name}")):
+        tmux("set-option", "-t", target, option, value)
+    for option, value in (("automatic-rename", "on"), ("allow-rename", "off")):
+        tmux("set-window-option", "-t", target, option, value)
+    command = shlex.join([sys.executable, str(Path(__file__).resolve()),
+                          "--sync-name", session_id, target])
+    tmux("set-hook", "-t", target, "session-renamed[876]",
+         "run-shell -b " + shlex.quote(command))
+
+
+def sync_name(session):
+    saved = info(session["session_id"])
+    if saved["destroyed"]:
+        raise AmuxError(f"{session['name']} was destroyed but is still running; retry tkss")
+    action = "rename" if saved["session_name"] is not None else "register"
+    try:
+        nug(action, session["session_id"], "--name", session["name"])
+    except AmuxError:
+        if saved["session_name"] and saved["session_name"] != session["name"]:
+            tmux("rename-session", "-t", session["target"], saved["session_name"])
+        raise
+
+
+def reconcile():
+    with lifecycle_lock():
+        catalog()
+        sessions = live_sessions()
+        for session in sessions:
+            if not session["managed"]:
+                continue
+            try:
+                if session["session_id"]:
+                    matching_uuid(sessions, session["session_id"])
+                if not session["session_id"]:
+                    session["session_id"] = str(uuid4())
+                    tmux("set-option", "-t", session["target"], "@amux-session-id", session["session_id"])
+                sync_name(session)
+                configure(session)
+            except AmuxError as error:
+                warning(f"cannot save {session['name']}: {error}")
+
+
+def ensure_session(name, selected_id=None):
+    with lifecycle_lock():
+        saved = catalog()
+        sessions = live_sessions()
+        if selected_id:
+            record = info(selected_id)
+            if record["destroyed"] or not record["registered"] or not record["session_name"]:
+                raise AmuxError("selected session is no longer available")
+            name, session_id, restoring = record["session_name"], selected_id, True
+        else:
+            name = name.replace(".", "_").replace(":", "_")
+            matches = [entry for entry in saved["sessions"] if entry["session_name"] == name]
+            if len(matches) > 1:
+                raise AmuxError(f"multiple saved sessions have name {name}")
+            session_id = matches[0]["session_id"] if matches else None
+            restoring = bool(session_id)
+        occupant = next((session for session in sessions if session["name"] == name), None)
+        if occupant and (not occupant["managed"] or occupant["session_id"] != session_id):
+            raise AmuxError(f'"{name}" is already used by an unrelated tmux session')
+        if session_id is None:
+            session_id = str(uuid4())
+            try:
+                nug("register", session_id, "--name", name)
+            except AmuxError:
+                winners = [entry for entry in catalog()["sessions"] if entry["session_name"] == name]
+                if len(winners) != 1:
+                    raise
+                session_id, restoring = winners[0]["session_id"], True
+        record = info(session_id)
+        if record["destroyed"] or record["session_name"] != name:
+            raise AmuxError("session changed while opening; select it again")
+        session = matching_uuid(sessions, session_id)
+        if session:
+            if session["name"] != name:
+                raise AmuxError("running session name differs from its saved name; reopen the picker")
+            configure(session)
+            return session["target"], session_id
+        directory = Path.home() / "workspace" if restoring else Path.cwd()
+        if not directory.is_dir():
+            raise AmuxError(f"restored shell directory does not exist: {directory}")
+        result = tmux("new-session", "-d", "-P", "-F", "#{session_id}", "-s", name,
+                      "-c", str(directory), "-e", f"AMUX_SESSION_ID={session_id}",
+                      "-e", f"NUGGET_SESSION_ID={session_id}",
+                      ";", "set-option", "-t", f"={name}:", "@amux-sessionizer", "1",
+                      ";", "set-option", "-t", f"={name}:", "@amux-session-id", session_id,
+                      check=False)
+        if result.returncode:
+            session = matching_uuid(live_sessions(), session_id)
+            if not session or session["name"] != name:
+                raise AmuxError(result.stderr.strip() or "could not start tmux session")
+        else:
+            session = {"target": result.stdout.strip(), "name": name,
+                       "session_id": session_id, "managed": True}
+        configure(session)
+        return session["target"], session_id
+
+
+def attach(target, session_id):
+    with lifecycle_lock():
+        saved = info(session_id)
+        session = matching_uuid(live_sessions(), session_id)
+        if saved["destroyed"] or not session or session["target"] != target:
+            raise AmuxError("session was destroyed while opening")
+    command = "switch-client" if os.environ.get("TMUX") else "attach-session"
+    os.execvp("tmux", ["tmux", command, "-t", target])
+
+
+def destroy(name=None, target=None, all_others=False):
+    with lifecycle_lock():
+        saved = catalog()
+        sessions = live_sessions()
+        if name is not None:
+            matches = [entry for entry in saved["sessions"] if entry["session_name"] == name]
+            if len(matches) != 1:
+                raise AmuxError(f"no unique saved session named {name}")
+            session_id = matches[0]["session_id"]
+            victim = matching_uuid(sessions, session_id)
+            victims = [victim] if victim else []
+            nug("destroy", session_id)
+        else:
+            arguments = ["display-message", "-p"]
+            if target:
+                arguments += ["-t", target]
+            selected = tmux(*arguments, "#{session_id}").stdout.strip()
+            victims = [session for session in sessions
+                       if (session["target"] != selected if all_others else session["target"] == selected)]
+            if not victims and not all_others:
+                raise AmuxError("target tmux session no longer exists")
+            for victim in victims:
+                if victim["managed"]:
+                    if not victim["session_id"]:
+                        victim["session_id"] = str(uuid4())
+                        tmux("set-option", "-t", victim["target"], "@amux-session-id", victim["session_id"])
+                        nug("register", victim["session_id"], "--name", victim["name"])
+                    elif not info(victim["session_id"])["registered"]:
+                        nug("register", victim["session_id"], "--name", victim["name"])
+                    nug("destroy", victim["session_id"])
+        for victim in victims:
+            tmux("kill-session", "-t", victim["target"])
+
+
+def rename(name, target=None):
+    with lifecycle_lock():
+        arguments = ["display-message", "-p"]
+        if target:
+            arguments += ["-t", target]
+        selected = tmux(*arguments, "#{session_id}").stdout.strip()
+        session = next((entry for entry in live_sessions() if entry["target"] == selected), None)
+        if not session or not session["managed"] or not session["session_id"]:
+            raise AmuxError("rename requires a registered amux session")
+        name = name.replace(".", "_").replace(":", "_")
+        if any(entry["name"] == name and entry["target"] != selected for entry in live_sessions()):
+            raise AmuxError(f'"{name}" is already used by another tmux session')
+        nug("rename", session["session_id"], "--name", name)
+        tmux("rename-session", "-t", selected, name)
+
+
+def choose():
+    saved = catalog()
+    for message in saved["warnings"]:
+        warning(message)
+    sessions = live_sessions()
+    lines = []
+    for entry in saved["sessions"]:
+        running = matching_uuid(sessions, entry["session_id"]) is not None
+        lines.append(f"{entry['session_id']}\t{entry['session_name']}\t[{'running' if running else 'saved'}]")
+    preview = shlex.join([sys.executable, str(Path(__file__).resolve()), "--preview"]) + " {1}"
+    result = run(["fzf", "--no-multi", "--prompt=amux> ", "--delimiter=\t", "--with-nth=2..",
+                  "--nth=2", "--header=Enter: open or create | Ctrl-N: create typed name | Esc: cancel",
+                  "--preview", preview, "--preview-window=down,67%,wrap",
+                  "--bind=enter:accept-or-print-query,ctrl-n:print-query"],
+                 input="\n".join(lines) + ("\n" if lines else ""), check=False)
+    if result.returncode in (1, 130):
+        return None, None
+    if result.returncode:
+        raise AmuxError(result.stderr.strip() or "session picker failed")
+    value = result.stdout.rstrip("\n")
+    if "\t" in value:
+        session_id, name, _ = value.split("\t", 2)
+        return name, session_id
+    return value, None
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_mutually_exclusive_group()
+    commands.add_argument("--destroy", action="store_true", help="permanently end a session identity")
+    commands.add_argument("--rename", metavar="NAME", help="durably rename a running session")
+    commands.add_argument("--preview", metavar="UUID", help=argparse.SUPPRESS)
+    commands.add_argument("--sync-name", nargs=2, metavar=("UUID", "TARGET"), help=argparse.SUPPRESS)
+    parser.add_argument("-t", metavar="TARGET", help="tmux target for destroy or rename")
+    parser.add_argument("-a", action="store_true", help="destroy all other running sessions")
+    parser.add_argument("name", nargs="*", help="session name; omit to open the picker")
+    args = parser.parse_args()
+    try:
+        if (args.t or args.a) and not (args.destroy or args.rename):
+            raise AmuxError("-t and -a require --destroy or --rename")
+        if args.a and not args.destroy:
+            raise AmuxError("-a requires --destroy")
+        if args.preview:
+            session_id = str(UUID(args.preview))
+            print(nug("view", session_id, "--offline"), end="")
+        elif args.sync_name:
+            session_id, target = args.sync_name
+            with lifecycle_lock():
+                session = matching_uuid(live_sessions(), str(UUID(session_id)))
+                if session and session["target"] == target:
+                    sync_name(session)
+        elif args.destroy:
+            if args.name and (args.t or args.a):
+                raise AmuxError("a saved name cannot be combined with -t or -a")
+            destroy(" ".join(args.name) if args.name else None, args.t, args.a)
+        elif args.rename is not None:
+            rename(args.rename, args.t)
+        else:
+            reconcile()
+            name, selected_id = (" ".join(args.name), None) if args.name else choose()
+            if name and name.strip():
+                target, session_id = ensure_session(name, selected_id)
+                attach(target, session_id)
+    except (AmuxError, OSError, ValueError) as error:
+        print(f"amux-sessionizer: {error}", file=sys.stderr)
+        return 1
+    except KeyboardInterrupt:
+        return 130
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
