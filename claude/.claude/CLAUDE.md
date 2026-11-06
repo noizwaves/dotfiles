@@ -21,6 +21,10 @@
 - **Context stays lean**: a one-line paragraph framing the change, followed by a tight bulleted list of links (Jira, companion PRs, Slack threads). Save the narrative for Problem/Solution
 - **Testing** follows the paragraph + optional bullets shape — never an incomplete/aspirational checklist
 
+## PR Tracking
+- After successfully creating a GitHub PR, if `NUGGET_SESSION_ID` is set, run `nug pr add <created-pr-url>` before reporting completion. Use the URL returned by PR creation.
+- If registration fails, report the PR URL and registration error. Do not retry PR creation. Never generate or replace the session ID.
+
 ## Planning
 - Always ask clarifying questions before finalizing a plan
 
