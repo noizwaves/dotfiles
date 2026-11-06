@@ -68,3 +68,6 @@
 
 ## Sandbox
 - If `git commit` fails with "could not create temporary file" inside the Claude Code sandbox, create the directory `TMPDIR` points at — the sandbox sets it without creating it, and SSH commit signing writes temp files there
+
+## Browser Access
+- NEVER access, launch, inspect, or control Google Chrome through any tool or fallback. Do not attempt Chrome access or request permission to use it.

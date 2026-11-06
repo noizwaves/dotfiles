@@ -373,3 +373,6 @@ export CMUX_CODEX_HOOKS_DISABLED=1
 
 #zprof
 
+# BEGIN MANAGED: cpe_claude_code
+export PATH="$HOME/.local/bin:$PATH"
+# END MANAGED: cpe_claude_code
