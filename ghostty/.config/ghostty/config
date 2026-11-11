@@ -11,3 +11,4 @@ window-inherit-working-directory = false
 working-directory = ~/workspace
 
 desktop-notifications = true
+maximize = true
